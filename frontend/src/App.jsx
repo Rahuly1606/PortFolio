@@ -1,7 +1,8 @@
 import './App.css';
 import Navbar from './components/Navbar';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 function App() {
   const projects = [
@@ -104,6 +105,16 @@ function App() {
     return () => clearInterval(skillTimer);
   }, [skills.length]);
 
+  // Scroll animations
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
+
   return (
     <>
       <Navbar />
@@ -144,7 +155,7 @@ function App() {
             transition={{ duration: 0.5 }}
             className="mt-10 lg:mt-0 flex flex-col items-center lg:items-start"
           >
-            <h2 className="text-3xl font-bold text-gray-900"></h2>
+            {/* <h2 className="text-3xl font-bold text-gray-900"></h2> */}
             <motion.div
               key={skills[skillIndex].name}
               initial={{ opacity: 0, x: 50 }}
@@ -297,14 +308,33 @@ function App() {
             <p className="mt-4 text-lg text-gray-600">
               Have a project in mind or just want to say hi? Feel free to reach out!
             </p>
-            <motion.a
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              href="mailto:john.doe@example.com"
-              className="mt-8 inline-block rounded-md bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 transition-all duration-300"
-            >
-              Email Me
-            </motion.a>
+            <form className="mt-8 max-w-md mx-auto">
+              <div className="grid grid-cols-1 gap-6">
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                />
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                />
+                <textarea
+                  placeholder="Your Message"
+                  rows="4"
+                  className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                ></textarea>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  type="submit"
+                  className="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-500 transition-all duration-300"
+                >
+                  Send Message
+                </motion.button>
+              </div>
+            </form>
           </motion.div>
         </div>
       </section>
