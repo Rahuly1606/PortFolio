@@ -30,7 +30,7 @@ function Navbar() {
     { name: 'Projects', href: '#projects' },
     { name: 'Certificates', href: '#certificates' },
     { name: 'Contact', href: '#contact' },
-    { name: 'Resume', href: '/resume.pdf' }, // Add resume link
+    { name: 'Resume', href: 'https://rahuly-resume.tiiny.site' }, 
   ];
 
   const handleSmoothScroll = (e, href) => {
@@ -71,7 +71,9 @@ function Navbar() {
               <motion.a
                 key={item.name}
                 href={item.href}
-                onClick={(e) => handleSmoothScroll(e, item.href)}
+                onClick={(e) => item.name !== 'Resume' && handleSmoothScroll(e, item.href)}
+                target={item.name === 'Resume' ? '_blank' : undefined}
+                rel={item.name === 'Resume' ? 'noopener noreferrer' : undefined}
                 className="text-sm font-semibold text-gray-900 hover:text-indigo-600"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -110,7 +112,9 @@ function Navbar() {
                   <a
                     key={item.name}
                     href={item.href}
-                    onClick={(e) => handleSmoothScroll(e, item.href)}
+                    onClick={(e) => item.name !== 'Resume' && handleSmoothScroll(e, item.href)}
+                    target={item.name === 'Resume' ? '_blank' : undefined}
+                    rel={item.name === 'Resume' ? 'noopener noreferrer' : undefined}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
                   >
                     {item.name}

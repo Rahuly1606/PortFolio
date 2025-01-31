@@ -7,42 +7,43 @@ import { useInView } from 'react-intersection-observer';
 function App() {
   const projects = [
     {
-      name: 'Project Alpha',
-      description: 'A cutting-edge web application built with React and Tailwind CSS.',
-      image: 'https://via.placeholder.com/400x200',
+      name: 'Job Portal',
+      description: 'Designed and developed a job portal with features like user authentication, job posting, and resume management.',
+      image: 'job_portal.png',
       link: '#',
     },
     {
-      name: 'Project Beta',
-      description: 'An AI-powered chatbot integrated with natural language processing.',
-      image: 'https://via.placeholder.com/400x200',
+      name: 'Real Time Chat App',
+      description: 'Built a real-time chat app using the MERN stack, Socket.IO, and Cloudinary for media management....',
+      image: 'chat.png',
       link: '#',
     },
     {
-      name: 'Project Gamma',
-      description: 'A mobile app for fitness tracking with real-time analytics.',
-      image: 'https://via.placeholder.com/400x200',
+      name: 'INoteBook',
+      description: 'iNote is a ReactJS-based notebook app with authentication, allowing users to securely create, edit, and manage their personal notes',
+      image: 'note.png',
       link: '#',
     },
   ];
 
   const skills = [
-    { name: 'React', icon: '⚛️' },
-    { name: 'Tailwind CSS', icon: '🎨' },
-    { name: 'Node.js', icon: '🛠️' },
-    { name: 'Python', icon: '🐍' },
-    { name: 'UI/UX Design', icon: '✏️' },
-    { name: 'Git', icon: '🔧' },
-    { name: 'GitHub', icon: '🐙' },
-    { name: 'Django', icon: '🌐' },
-    { name: 'Java', icon: '☕' },
+    { name: 'Java', icon: 'icons/java.png' },
+    { name: 'React', icon: 'icons/react.png' },
+    { name: 'Tailwind CSS', icon: 'icons/tailwind.png' },
+    { name: 'Node.js', icon: 'icons/nodejs.png' },
+    { name: 'Python', icon: 'icons/python.png' },
+    { name: 'UI/UX Design', icon: 'icons/uiux.png' },
+    { name: 'Git', icon: 'icons/git.png' },
+    { name: 'GitHub', icon: 'github.png' },
+    { name: 'Django', icon: 'icons/django.png' },
   ];
 
   const links = [
-    { name: 'GitHub', url: 'https://github.com', icon: '👨‍💻' },
-    { name: 'LinkedIn', url: 'https://linkedin.com', icon: '🔗' },
-    { name: 'LeetCode', url: 'https://leetcode.com', icon: '🧠' },
-    { name: 'CodeChef', url: 'https://codechef.com', icon: '🍲' },
+    { name: 'GitHub', url: 'https://github.com/Rahuly1606', icon: 'github.png' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/rahuly1606/', icon: 'linkedin.png' },
+    { name: 'LeetCode', url: 'https://leetcode.com/u/klu2300090198/', icon: 'leetcode.png' },
+    { name: 'CodeChef', url: 'https://www.codechef.com/users/klu2300090198', icon: 'codechef.jpg' },
+    { name: 'Resume', url: 'https://rahuly-resume.tiiny.site', icon: 'resume.png' }, // Ensure the resume link is correct
   ];
 
   const certificates = [
@@ -107,18 +108,51 @@ function App() {
 
   // Scroll animations
   const controls = useAnimation();
-  const [ref, inView] = useInView();
+  const [homeRef, homeInView] = useInView({ triggerOnce: true });
+  const [aboutRef, aboutInView] = useInView({ triggerOnce: true });
+  const [projectsRef, projectsInView] = useInView({ triggerOnce: true });
+  const [certificatesRef, certificatesInView] = useInView({ triggerOnce: true });
+  const [linksRef, linksInView] = useInView({ triggerOnce: true });
+  const [contactRef, contactInView] = useInView({ triggerOnce: true });
 
   useEffect(() => {
-    if (inView) {
-      controls.start('visible');
-    }
-  }, [controls, inView]);
+    if (homeInView) controls.start('visible');
+  }, [controls, homeInView]);
+
+  useEffect(() => {
+    if (aboutInView) controls.start('visible');
+  }, [controls, aboutInView]);
+
+  useEffect(() => {
+    if (projectsInView) controls.start('visible');
+  }, [controls, projectsInView]);
+
+  useEffect(() => {
+    if (certificatesInView) controls.start('visible');
+  }, [controls, certificatesInView]);
+
+  useEffect(() => {
+    if (linksInView) controls.start('visible');
+  }, [controls, linksInView]);
+
+  useEffect(() => {
+    if (contactInView) controls.start('visible');
+  }, [controls, contactInView]);
 
   return (
     <>
       <Navbar />
-      <section id="home" className="bg-gray-50 py-20">
+      <motion.section
+        id="home"
+        className="bg-gray-50 py-20"
+        initial={{ opacity: 0, y: 50 }}
+        animate={homeInView ? 'visible' : 'hidden'}
+        variants={{
+          visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+          hidden: { opacity: 0, y: 50 },
+        }}
+        ref={homeRef}
+      >
         <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between">
           <motion.div
             initial={{ opacity: 0, y: -50 }}
@@ -150,27 +184,38 @@ function App() {
             </div>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="mt-10 lg:mt-0 flex flex-col items-center lg:items-start"
           >
-            {/* <h2 className="text-3xl font-bold text-gray-900"></h2> */}
             <motion.div
               key={skills[skillIndex].name}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className="mt-4 flex items-center gap-4 rounded-full bg-white px-6 py-3 shadow-lg text-2xl"
             >
-              <span className="text-3xl">{skills[skillIndex].icon}</span>
+              <span className="text-3xl">
+                <img src={skills[skillIndex].icon} alt={skills[skillIndex].name} className="h-6 w-6" />
+              </span>
               <span className="text-xl font-medium text-gray-900">{skills[skillIndex].name}</span>
             </motion.div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section id="about" className="bg-white py-20">
+      <motion.section
+        id="about"
+        className="bg-white py-20"
+        initial={{ opacity: 0, y: 50 }}
+        animate={aboutInView ? 'visible' : 'hidden'}
+        variants={{
+          visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+          hidden: { opacity: 0, y: 50 },
+        }}
+        ref={aboutRef}
+      >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: -50 }}
@@ -180,8 +225,11 @@ function App() {
           >
             <h2 className="text-3xl font-bold text-gray-900">About Me</h2>
             <p className="mt-4 text-lg text-gray-600">
-              I'm a full-stack developer with over 5 years of experience in building scalable and user-friendly
-              applications. I specialize in React, Node.js, and modern web technologies.
+              I'm a Full-Stack Developer with over 1 years of experience in building scalable, high-performance, and user-friendly applications.
+              My expertise lies in React, Node.js, and modern web technologies, enabling me to craft seamless and responsive digital experiences.
+            </p>
+            <p className="mt-4 text-lg text-gray-600">
+              My goal is to create impactful software that improves the lives of users and drives business success. Let's connect and build something amazing together!
             </p>
             <div className="mt-8 flex justify-center gap-4 flex-wrap">
               {skills.map((skill) => (
@@ -191,16 +239,26 @@ function App() {
                   whileTap={{ scale: 0.9 }}
                   className="flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2 cursor-pointer hover:bg-indigo-100 transition-all duration-300"
                 >
-                  <span>{skill.icon}</span>
+                  <img src={skill.icon} alt={skill.name} className="h-6 w-6" />
                   <span className="text-sm font-medium text-gray-900">{skill.name}</span>
                 </motion.div>
               ))}
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section id="projects" className="bg-gray-50 py-20">
+      <motion.section
+        id="projects"
+        className="bg-gray-50 py-20"
+        initial={{ opacity: 0, y: 50 }}
+        animate={projectsInView ? 'visible' : 'hidden'}
+        variants={{
+          visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+          hidden: { opacity: 0, y: 50 },
+        }}
+        ref={projectsRef}
+      >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: -50 }}
@@ -232,9 +290,19 @@ function App() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section id="certificates" className="bg-white py-20">
+      <motion.section
+        id="certificates"
+        className="bg-white py-20"
+        initial={{ opacity: 0, y: 50 }}
+        animate={certificatesInView ? 'visible' : 'hidden'}
+        variants={{
+          visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+          hidden: { opacity: 0, y: 50 },
+        }}
+        ref={certificatesRef}
+      >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: -50 }}
@@ -265,9 +333,19 @@ function App() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section id="links" className="bg-white py-20">
+      <motion.section
+        id="links"
+        className="bg-white py-20"
+        initial={{ opacity: 0, y: 50 }}
+        animate={linksInView ? 'visible' : 'hidden'}
+        variants={{
+          visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+          hidden: { opacity: 0, y: 50 },
+        }}
+        ref={linksRef}
+      >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: -50 }}
@@ -277,26 +355,54 @@ function App() {
           >
             Connect with Me
           </motion.h2>
-          <div className="mt-8 flex justify-center gap-6">
-            {links.map((link) => (
-              <motion.a
-                key={link.name}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="flex items-center gap-2 rounded-full bg-gray-100 px-6 py-3 text-sm font-semibold text-gray-900 hover:bg-indigo-100 transition-all duration-300"
-              >
-                <span>{link.icon}</span>
-                <span>{link.name}</span>
-              </motion.a>
-            ))}
+          <div className="mt-8 flex flex-col lg:flex-row justify-center gap-120">
+            <div className="flex flex-col items-center gap-6">
+              {links.filter(link => link.name !== 'LinkedIn').map((link) => (
+                <motion.a
+                  key={link.name}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="flex items-center gap-2 rounded-full bg-gray-100 px-6 py-3 text-sm font-semibold text-gray-900 hover:bg-indigo-100 transition-all duration-300"
+                >
+                  <img src={link.icon} alt={link.name} className="h-6 w-6" />
+                  <span>{link.name}</span>
+                </motion.a>
+              ))}
+            </div>
+            <div className="flex flex-col items-center gap-6">
+              {links.filter(link => link.name === 'LinkedIn').map((link) => (
+                <motion.a
+                  key={link.name}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="flex items-center gap-2 rounded-full bg-gray-100 px-6 py-3 text-sm font-semibold text-gray-900 hover:bg-indigo-100 transition-all duration-300"
+                >
+                  <img src={link.icon} alt={link.name} className="h-6 w-6" />
+                  <span>{link.name}</span>
+                </motion.a>
+              ))}
+            </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section id="contact" className="bg-gray-50 py-20">
+      <motion.section
+        id="contact"
+        className="bg-gray-50 py-20"
+        initial={{ opacity: 0, y: 50 }}
+        animate={contactInView ? 'visible' : 'hidden'}
+        variants={{
+          visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+          hidden: { opacity: 0, y: 50 },
+        }}
+        ref={contactRef}
+      >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: -50 }}
@@ -337,7 +443,7 @@ function App() {
             </form>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
     </>
   );
 }
