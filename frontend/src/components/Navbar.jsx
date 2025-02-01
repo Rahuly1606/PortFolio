@@ -1,24 +1,6 @@
 import React, { useState } from 'react';
-import {
-  Dialog,
-  DialogPanel,
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  Popover,
-  PopoverButton,
-  PopoverGroup,
-  PopoverPanel,
-} from '@headlessui/react';
-import {
-  Bars3Icon,
-  XMarkIcon,
-  CodeBracketIcon,
-  BriefcaseIcon,
-  UserIcon,
-  EnvelopeIcon,
-} from '@heroicons/react/24/outline';
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { Dialog, DialogPanel } from '@headlessui/react';
+import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { motion } from 'framer-motion';
 
 function Navbar() {
@@ -63,7 +45,7 @@ function Navbar() {
               className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
             >
               <span className="sr-only">Open main menu</span>
-              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+              <MenuIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
@@ -71,9 +53,7 @@ function Navbar() {
               <motion.a
                 key={item.name}
                 href={item.href}
-                onClick={(e) => item.name !== 'Resume' && handleSmoothScroll(e, item.href)}
-                target={item.name === 'Resume' ? '_blank' : undefined}
-                rel={item.name === 'Resume' ? 'noopener noreferrer' : undefined}
+                onClick={(e) => handleSmoothScroll(e, item.href)}
                 className="text-sm font-semibold text-gray-900 hover:text-indigo-600"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -102,7 +82,7 @@ function Navbar() {
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
             >
               <span className="sr-only">Close menu</span>
-              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+              <XIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
           <div className="mt-6 flow-root">
@@ -112,9 +92,7 @@ function Navbar() {
                   <a
                     key={item.name}
                     href={item.href}
-                    onClick={(e) => item.name !== 'Resume' && handleSmoothScroll(e, item.href)}
-                    target={item.name === 'Resume' ? '_blank' : undefined}
-                    rel={item.name === 'Resume' ? 'noopener noreferrer' : undefined}
+                    onClick={(e) => handleSmoothScroll(e, item.href)}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
                   >
                     {item.name}

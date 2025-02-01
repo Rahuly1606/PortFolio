@@ -1,5 +1,6 @@
 import './App.css';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer'; // Import the Footer component
 import { motion, useAnimation } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
@@ -43,7 +44,6 @@ function App() {
     { name: 'LinkedIn', url: 'https://www.linkedin.com/in/rahuly1606/', icon: 'linkedin.png' },
     { name: 'LeetCode', url: 'https://leetcode.com/u/klu2300090198/', icon: 'leetcode.png' },
     { name: 'CodeChef', url: 'https://www.codechef.com/users/klu2300090198', icon: 'codechef.jpg' },
-    { name: 'Resume', url: 'https://rahuly-resume.tiiny.site', icon: 'resume.png' }, // Ensure the resume link is correct
   ];
 
   const certificates = [
@@ -144,7 +144,7 @@ function App() {
       <Navbar />
       <motion.section
         id="home"
-        className="bg-gray-50 py-20"
+        className="bg-gray-50 py-20 shadow-lg"
         initial={{ opacity: 0, y: 50 }}
         animate={homeInView ? 'visible' : 'hidden'}
         variants={{
@@ -169,7 +169,7 @@ function App() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 href="#projects"
-                className="rounded-md bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 transition-all duration-300"
+                className="button-33"
               >
                 View Projects
               </motion.a>
@@ -177,7 +177,7 @@ function App() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 href="#contact"
-                className="rounded-md bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-gray-300 hover:bg-gray-50 transition-all duration-300"
+                className="button-17"
               >
                 Contact Me
               </motion.a>
@@ -207,7 +207,7 @@ function App() {
 
       <motion.section
         id="about"
-        className="bg-white py-20"
+        className="bg-white py-20 shadow-lg"
         initial={{ opacity: 0, y: 50 }}
         animate={aboutInView ? 'visible' : 'hidden'}
         variants={{
@@ -237,7 +237,7 @@ function App() {
                   key={skill.name}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  className="flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2 cursor-pointer hover:bg-indigo-100 transition-all duration-300"
+                  className="flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2 cursor-pointer shadow-md hover:bg-indigo-100 transition-all duration-300"
                 >
                   <img src={skill.icon} alt={skill.name} className="h-6 w-6" />
                   <span className="text-sm font-medium text-gray-900">{skill.name}</span>
@@ -250,7 +250,7 @@ function App() {
 
       <motion.section
         id="projects"
-        className="bg-gray-50 py-20"
+        className="bg-gray-50 py-20 shadow-lg"
         initial={{ opacity: 0, y: 50 }}
         animate={projectsInView ? 'visible' : 'hidden'}
         variants={{
@@ -294,7 +294,7 @@ function App() {
 
       <motion.section
         id="certificates"
-        className="bg-white py-20"
+        className="bg-white py-20 shadow-lg"
         initial={{ opacity: 0, y: 50 }}
         animate={certificatesInView ? 'visible' : 'hidden'}
         variants={{
@@ -337,7 +337,7 @@ function App() {
 
       <motion.section
         id="links"
-        className="bg-white py-20"
+        className="bg-white py-20 shadow-lg"
         initial={{ opacity: 0, y: 50 }}
         animate={linksInView ? 'visible' : 'hidden'}
         variants={{
@@ -365,7 +365,7 @@ function App() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  className="flex items-center gap-2 rounded-full bg-gray-100 px-6 py-3 text-sm font-semibold text-gray-900 hover:bg-indigo-100 transition-all duration-300"
+                  className="flex items-center gap-2 rounded-full bg-gray-100 px-6 py-3 text-sm font-semibold text-gray-900 shadow-md hover:bg-indigo-100 transition-all duration-300"
                 >
                   <img src={link.icon} alt={link.name} className="h-6 w-6" />
                   <span>{link.name}</span>
@@ -381,7 +381,7 @@ function App() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  className="flex items-center gap-2 rounded-full bg-gray-100 px-6 py-3 text-sm font-semibold text-gray-900 hover:bg-indigo-100 transition-all duration-300"
+                  className="flex items-center gap-2 rounded-full bg-gray-100 px-6 py-3 text-sm font-semibold text-gray-900 shadow-md hover:bg-indigo-100 transition-all duration-300"
                 >
                   <img src={link.icon} alt={link.name} className="h-6 w-6" />
                   <span>{link.name}</span>
@@ -392,9 +392,9 @@ function App() {
         </div>
       </motion.section>
 
-      <motion.section
+      {/* <motion.section
         id="contact"
-        className="bg-gray-50 py-20"
+        className="bg-gray-50 py-20 shadow-lg"
         initial={{ opacity: 0, y: 50 }}
         animate={contactInView ? 'visible' : 'hidden'}
         variants={{
@@ -419,23 +419,23 @@ function App() {
                 <input
                   type="text"
                   placeholder="Your Name"
-                  className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-md"
                 />
                 <input
                   type="email"
                   placeholder="Your Email"
-                  className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-md"
                 />
                 <textarea
                   placeholder="Your Message"
                   rows="4"
-                  className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-md"
                 ></textarea>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   type="submit"
-                  className="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-500 transition-all duration-300"
+                  className="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-500 transition-all duration-300"
                 >
                   Send Message
                 </motion.button>
@@ -443,7 +443,8 @@ function App() {
             </form>
           </motion.div>
         </div>
-      </motion.section>
+      </motion.section> */}
+      <Footer /> {/* Add the Footer component */}
     </>
   );
 }
