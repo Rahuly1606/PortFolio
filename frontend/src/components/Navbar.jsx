@@ -21,8 +21,8 @@ function Navbar() {
   };
 
   return (
-    <header className="bg-white shadow-sm">
-      <nav aria-label="Global" className="mx-auto max-w-7xl px-6 py-4 lg:px-8">
+    <header className="bg-white bg-opacity-90  fixed top-0 w-full z-50">
+      <nav aria-label="Global" className="mx-auto max-w-7xl px-6 py-7 lg:px-8">
         <div className="flex items-center justify-between">
           <motion.a
             href="#home"

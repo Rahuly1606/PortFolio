@@ -144,7 +144,8 @@ function App() {
       <Navbar />
       <motion.section
         id="home"
-        className="bg-gray-50 py-20 shadow-lg"
+        className="bg-gray-50 py-30 shadow-lg bg-cover bg-center"
+        style={{ backgroundImage: "url('tbn10.jpg')" }}
         initial={{ opacity: 0, y: 50 }}
         animate={homeInView ? 'visible' : 'hidden'}
         variants={{
