@@ -11,8 +11,9 @@ function Navbar() {
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
     { name: 'Certificates', href: '#certificates' },
-    { name: 'Contact', href: '#contact' },
-    { name: 'Resume', href: 'https://rahuly-resume.tiiny.site' }, 
+    { name: 'Skills', href: '#skills' }, // Add Skills link
+    { name: 'Contact', href: '#footer' },
+    { name: 'Resume', href: 'Resume.pdf', download: true }, // Add download property
   ];
 
   const handleSmoothScroll = (e, href) => {
@@ -20,8 +21,16 @@ function Navbar() {
     document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleDownload = (e, href) => {
+    e.preventDefault();
+    const link = document.createElement('a');
+    link.href = href;
+    link.download = 'Resume.pdf';
+    link.click();
+  };
+
   return (
-    <header className="bg-white bg-opacity-90  fixed top-0 w-full z-50">
+    <header className="bg-white bg-opacity-90  w-full z-50">
       <nav aria-label="Global" className="mx-auto max-w-7xl px-6 py-7 lg:px-8">
         <div className="flex items-center justify-between">
           <motion.a
@@ -53,7 +62,7 @@ function Navbar() {
               <motion.a
                 key={item.name}
                 href={item.href}
-                onClick={(e) => handleSmoothScroll(e, item.href)}
+                onClick={(e) => item.download ? handleDownload(e, item.href) : handleSmoothScroll(e, item.href)}
                 className="text-sm font-semibold text-gray-900 hover:text-indigo-600"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -71,7 +80,7 @@ function Navbar() {
             <a href="#home" className="flex items-center gap-2">
               <img
                 alt="Portfolio Logo"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                src="img.jpeg"
                 className="h-8 w-8 rounded-full"
               />
               <span className="text-xl font-bold text-gray-900">My Portfolio</span>
@@ -92,8 +101,8 @@ function Navbar() {
                   <a
                     key={item.name}
                     href={item.href}
-                    onClick={(e) => handleSmoothScroll(e, item.href)}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
+                    onClick={(e) => item.download ? handleDownload(e, item.href) : handleSmoothScroll(e, item.href)}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-colors duration-200"
                   >
                     {item.name}
                   </a>

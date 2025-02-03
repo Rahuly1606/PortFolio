@@ -39,11 +39,32 @@ function App() {
     { name: 'Django', icon: 'icons/django.png' },
   ];
 
+  const programmingLanguages = [
+    { name: 'Java', icon: 'icons/java.png', progress: 80 },
+    { name: 'Python', icon: 'icons/python.png', progress: 85 },
+    { name: 'Git', icon: 'icons/git.png', progress: 60 },
+    { name: 'GitHub', icon: 'github.png', progress: 75 },
+  ];
+
+  const frontendSkills = [
+    { name: 'React', icon: 'icons/react.png', progress: 70 },
+    { name: 'Tailwind CSS', icon: 'icons/tailwind.png', progress: 60 },
+    { name: 'UI/UX Design', icon: 'icons/uiux.png', progress: 65 },
+  ];
+
+  const backendSkills = [
+    { name: 'Node.js', icon: 'icons/nodejs.png', progress: 75 },
+    { name: 'Django', icon: 'icons/django.png', progress: 70 },
+    { name: 'MongoDB', icon: 'icons/mongodb.png', progress: 80 }, // Add MongoDB
+    { name: 'MySQL', icon: 'icons/mysql.png', progress: 85 }, // Add MySQL
+  ];
+
   const links = [
     { name: 'GitHub', url: 'https://github.com/Rahuly1606', icon: 'github.png' },
-    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/rahuly1606/', icon: 'linkedin.png' },
+    { name: 'HackerRank', url: 'https://www.hackerrank.com/profile/kl2300090198', icon: 'hackerank.png' },
     { name: 'LeetCode', url: 'https://leetcode.com/u/klu2300090198/', icon: 'leetcode.png' },
     { name: 'CodeChef', url: 'https://www.codechef.com/users/klu2300090198', icon: 'codechef.jpg' },
+    { name : 'GitLab', url:'https://gitlab.com/Rahuly1606', icon: 'icons/gitlab.png'},
   ];
 
   const certificates = [
@@ -114,6 +135,7 @@ function App() {
   const [certificatesRef, certificatesInView] = useInView({ triggerOnce: true });
   const [linksRef, linksInView] = useInView({ triggerOnce: true });
   const [contactRef, contactInView] = useInView({ triggerOnce: true });
+  const [skillsRef, skillsInView] = useInView({ triggerOnce: true });
 
   useEffect(() => {
     if (homeInView) controls.start('visible');
@@ -138,6 +160,15 @@ function App() {
   useEffect(() => {
     if (contactInView) controls.start('visible');
   }, [controls, contactInView]);
+
+  useEffect(() => {
+    if (skillsInView) controls.start('visible');
+  }, [controls, skillsInView]);
+
+  const handleSmoothScroll = (e, href) => {
+    e.preventDefault();
+    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <>
@@ -170,6 +201,7 @@ function App() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 href="#projects"
+                onClick={(e) => handleSmoothScroll(e, '#projects')}
                 className="button-33"
               >
                 View Projects
@@ -177,10 +209,22 @@ function App() {
               <motion.a
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                href="#contact"
+                href="#footer"
+                onClick={(e) => handleSmoothScroll(e, '#footer')}
                 className="button-17"
               >
                 Contact Me
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                href="https://www.linkedin.com/in/rahuly1606/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button-17 flex items-center gap-2"
+              >
+                <img src="linkedin.png" alt="LinkedIn" className="h-6 w-6" />
+                LinkedIn
               </motion.a>
             </div>
           </motion.div>
@@ -195,7 +239,7 @@ function App() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="mt-4 flex items-center gap-4 rounded-full bg-white px-6 py-3 shadow-lg text-2xl"
+              className="mt-4 flex items-center gap-4 rounded-full bg-white mb-16 px-8 py-5 shadow-lg text-2xl"
             >
               <span className="text-3xl">
                 <img src={skills[skillIndex].icon} alt={skills[skillIndex].name} className="h-6 w-6" />
@@ -205,10 +249,10 @@ function App() {
           </motion.div>
         </div>
       </motion.section>
-
+    
       <motion.section
         id="about"
-        className="bg-white py-20 shadow-lg"
+        className="bg-gradient-to-r from-white to-blue-30 py-24 shadow-xl rounded-xl"
         initial={{ opacity: 0, y: 50 }}
         animate={aboutInView ? 'visible' : 'hidden'}
         variants={{
@@ -217,41 +261,52 @@ function App() {
         }}
         ref={aboutRef}
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12 flex flex-col lg:flex-row items-center">
           <motion.div
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center"
+            className="text-center lg:text-left lg:w-2/3"
           >
-            <h2 className="text-3xl font-bold text-gray-900">About Me</h2>
-            <p className="mt-4 text-lg text-gray-600">
-              I'm a Full-Stack Developer with over 1 years of experience in building scalable, high-performance, and user-friendly applications.
-              My expertise lies in React, Node.js, and modern web technologies, enabling me to craft seamless and responsive digital experiences.
+            <h2 className="text-5xl font-extrabold text-black mb-6">
+              About Me
+            </h2>
+            <p className="mt-4 text-lg text-gray-800 leading-relaxed">
+              🚀 I'm a passionate <span className="font-semibold text-blue-600">Full-Stack Developer</span> with a knack for building
+              high-performance, scalable, and visually stunning web applications.
             </p>
-            <p className="mt-4 text-lg text-gray-600">
-              My goal is to create impactful software that improves the lives of users and drives business success. Let's connect and build something amazing together!
+            <p className="mt-4 text-lg text-gray-700 leading-relaxed">
+              With expertise in <span className="text-purple-600 font-semibold">React, Node.js</span>, and modern web technologies,
+              I specialize in crafting seamless, responsive, and engaging digital experiences.
             </p>
-            <div className="mt-8 flex justify-center gap-4 flex-wrap">
-              {skills.map((skill) => (
-                <motion.div
-                  key={skill.name}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2 cursor-pointer shadow-md hover:bg-indigo-100 transition-all duration-300"
-                >
-                  <img src={skill.icon} alt={skill.name} className="h-6 w-6" />
-                  <span className="text-sm font-medium text-gray-900">{skill.name}</span>
-                </motion.div>
-              ))}
-            </div>
+            <p className="mt-4 text-lg text-gray-700 leading-relaxed">
+              💡 I love turning ideas into reality and solving complex problems with clean and efficient code.
+              Whether it’s a new feature or optimizing an existing one, my goal is always to deliver exceptional user experiences.
+            </p>
+            <p className="mt-6 text-lg text-gray-800 font-medium italic">
+              "Let’s build something amazing together and create meaningful digital experiences!" 🌟
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mt-10 lg:mt-0 lg:w-1/3 flex justify-center lg:justify-end"
+          >
+            <img
+              src="profile-img.png"
+              alt="Profile"
+              style={{ borderRadius: "131px 36px 130px 36px" }}
+              className="rounded-full w-72 h-72 object-cover shadow-2xl transition-transform transform hover:scale-105 hover:shadow-blue-500/50"
+            />
           </motion.div>
         </div>
       </motion.section>
 
+
       <motion.section
         id="projects"
-        className="bg-gray-50 py-20 shadow-lg"
+        className="bg-gradient-to-b from-white-50 to-blue py-24 shadow-lg rounded-xl"
         initial={{ opacity: 0, y: 50 }}
         animate={projectsInView ? 'visible' : 'hidden'}
         variants={{
@@ -260,29 +315,33 @@ function App() {
         }}
         ref={projectsRef}
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <motion.h2
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center text-3xl font-bold text-gray-900"
+            className="text-center text-5xl font-extrabold text-black"
           >
-            Projects
+            My Projects 
           </motion.h2>
-          <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <p className="text-center text-lg text-gray-700 mt-4">
+            Check out some of the amazing projects I've worked on!
+          </p>
+
+          <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {projects.map((project) => (
               <motion.div
                 key={project.name}
                 whileHover={{ scale: 1.05 }}
-                className="overflow-hidden rounded-lg bg-white shadow-lg hover:shadow-xl transition-all duration-300"
+                className="overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:shadow-blue-500/50"
               >
-                <img src={project.image} alt={project.name} className="h-48 w-full object-cover" />
+                <img src={project.image} alt={project.name} className="h-52 w-full object-cover rounded-t-xl" />
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900">{project.name}</h3>
-                  <p className="mt-2 text-gray-600">{project.description}</p>
+                  <h3 className="text-2xl font-bold text-gray-900">{project.name}</h3>
+                  <p className="mt-2 text-gray-600 leading-relaxed">{project.description}</p>
                   <a
                     href={project.link}
-                    className="mt-4 inline-block text-sm font-semibold text-indigo-600 hover:text-indigo-500 transition-all duration-300"
+                    className="mt-4 inline-block text-md font-semibold text-indigo-600 hover:text-indigo-500 transition-all duration-300"
                   >
                     Learn More →
                   </a>
@@ -293,9 +352,10 @@ function App() {
         </div>
       </motion.section>
 
+
       <motion.section
         id="certificates"
-        className="bg-white py-20 shadow-lg"
+        className="bg-gradient-to-b from-white to-blue-50 py-24 shadow-lg rounded-xl"
         initial={{ opacity: 0, y: 50 }}
         animate={certificatesInView ? 'visible' : 'hidden'}
         variants={{
@@ -304,29 +364,33 @@ function App() {
         }}
         ref={certificatesRef}
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <motion.h2
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center text-3xl font-bold text-gray-900"
+            className="text-center text-5xl font-extrabold text-black"
           >
-            Certificates
+             My Certifications
           </motion.h2>
-          <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <p className="text-center text-lg text-gray-700 mt-4">
+            These are my achievements in various fields.
+          </p>
+
+          <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {certificates.map((certificate) => (
               <motion.div
                 key={certificate.name}
-                whileHover={{ scale: 1.05 }}
-                className="overflow-hidden rounded-lg bg-white shadow-lg hover:shadow-xl transition-all duration-300 p-6"
+                whileHover={{ scale: 1.05, boxShadow: "0px 4px 15px rgba(0,0,0,0.2)" }}
+                className="overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:shadow-blue-500/5 p-6"
               >
-                <h3 className="text-xl font-bold text-gray-900">{certificate.name}</h3>
+                <h3 className="text-2xl font-bold text-gray-900">{certificate.name}</h3>
                 <p className="mt-2 text-gray-600">Issued by: {certificate.issuer}</p>
                 <a
                   href={certificate.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-block text-sm font-semibold text-indigo-600 hover:text-indigo-500 transition-all duration-300"
+                  className="mt-4 inline-block text-md font-semibold text-indigo-600 hover:text-indigo-500 transition-all duration-300"
                 >
                   Verify Certificate →
                 </a>
@@ -335,116 +399,153 @@ function App() {
           </div>
         </div>
       </motion.section>
-
       <motion.section
-        id="links"
-        className="bg-white py-20 shadow-lg"
+        id="skills"
+        className="bg-gradient-to-b from-blue-50 to-white py-24 shadow-xl rounded-xl"
         initial={{ opacity: 0, y: 50 }}
-        animate={linksInView ? 'visible' : 'hidden'}
+        animate={skillsInView ? 'visible' : 'hidden'}
         variants={{
           visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
           hidden: { opacity: 0, y: 50 },
         }}
-        ref={linksRef}
+        ref={skillsRef}
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <motion.h2
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center text-3xl font-bold text-gray-900"
+            className="text-center text-5xl font-extrabold text-black"
           >
-            Connect with Me
+             My Skills
           </motion.h2>
-          <div className="mt-8 flex flex-col lg:flex-row justify-center gap-120">
-            <div className="flex flex-col items-center gap-6">
-              {links.filter(link => link.name !== 'LinkedIn').map((link) => (
-                <motion.a
-                  key={link.name}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="flex items-center gap-2 rounded-full bg-gray-100 px-6 py-3 text-sm font-semibold text-gray-900 shadow-md hover:bg-indigo-100 transition-all duration-300"
-                >
-                  <img src={link.icon} alt={link.name} className="h-6 w-6" />
-                  <span>{link.name}</span>
-                </motion.a>
-              ))}
+          <p className="text-center text-lg text-gray-700 mt-4">
+            A showcase of my technical skills and expertise.
+          </p>
+
+          <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">Programming Languages</h3>
+              <div className="space-y-4">
+                {programmingLanguages.map((skill) => (
+                  <motion.div
+                    key={skill.name}
+                    whileHover={{ scale: 1.05, boxShadow: "0px 4px 15px rgba(0,0,0,0.2)" }}
+                    className="overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:ring-2 hover:ring-gray-400 p-3"
+                  >
+                    <div className="flex items-center gap-4">
+                      <img src={skill.icon} alt={skill.name} className="h-8 w-8" />
+                      <h3 className="text-lg font-bold text-gray-900">{skill.name}</h3>
+                    </div>
+                    <div className="mt-4">
+                      <div className="h-2 bg-gray-200 rounded-full">
+                        <div
+                          className="h-full bg-gradient-to-r from-gray-700 to-black rounded-full transition-all duration-500"
+                          style={{ width: `${skill.progress}%` }}
+                        ></div>
+                      </div>
+                      <p className="mt-2 text-sm font-semibold text-gray-700">{skill.progress}%</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-            <div className="flex flex-col items-center gap-6">
-              {links.filter(link => link.name === 'LinkedIn').map((link) => (
-                <motion.a
-                  key={link.name}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="flex items-center gap-2 rounded-full bg-gray-100 px-6 py-3 text-sm font-semibold text-gray-900 shadow-md hover:bg-indigo-100 transition-all duration-300"
-                >
-                  <img src={link.icon} alt={link.name} className="h-6 w-6" />
-                  <span>{link.name}</span>
-                </motion.a>
-              ))}
+
+            <div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">Frontend</h3>
+              <div className="space-y-4">
+                {frontendSkills.map((skill) => (
+                  <motion.div
+                    key={skill.name}
+                    whileHover={{ scale: 1.05, boxShadow: "0px 4px 15px rgba(0,0,0,0.2)" }}
+                    className="overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:ring-2 hover:ring-gray-400 p-3"
+                  >
+                    <div className="flex items-center gap-4">
+                      <img src={skill.icon} alt={skill.name} className="h-8 w-8" />
+                      <h3 className="text-lg font-bold text-gray-900">{skill.name}</h3>
+                    </div>
+                    <div className="mt-4">
+                      <div className="h-2 bg-gray-200 rounded-full">
+                        <div
+                          className="h-full bg-gradient-to-r from-gray-700 to-black rounded-full transition-all duration-500"
+                          style={{ width: `${skill.progress}%` }}
+                        ></div>
+                      </div>
+                      <p className="mt-2 text-sm font-semibold text-gray-700">{skill.progress}%</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">Backend</h3>
+              <div className="space-y-4">
+                {backendSkills.map((skill) => (
+                  <motion.div
+                    key={skill.name}
+                    whileHover={{ scale: 1.05, boxShadow: "0px 4px 15px rgba(0,0,0,0.2)" }}
+                    className="overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:ring-2 hover:ring-gray-400 p-3"
+                  >
+                    <div className="flex items-center gap-4">
+                      <img src={skill.icon} alt={skill.name} className="h-8 w-8" />
+                      <h3 className="text-lg font-bold text-gray-900">{skill.name}</h3>
+                    </div>
+                    <div className="mt-4">
+                      <div className="h-2 bg-gray-200 rounded-full">
+                        <div
+                          className="h-full bg-gradient-to-r from-gray-700 to-black rounded-full transition-all duration-500"
+                          style={{ width: `${skill.progress}%` }}
+                        ></div>
+                      </div>
+                      <p className="mt-2 text-sm font-semibold text-gray-700">{skill.progress}%</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </motion.section>
 
-      {/* <motion.section
-        id="contact"
-        className="bg-gray-50 py-20 shadow-lg"
+      <motion.section
+        id="links"
+        className="relative bg-gradient-to-r from-white-100 to-grey-50 py-24 shadow-xl rounded-xl"
         initial={{ opacity: 0, y: 50 }}
-        animate={contactInView ? 'visible' : 'hidden'}
-        variants={{
-          visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-          hidden: { opacity: 0, y: 50 },
-        }}
-        ref={contactRef}
+        animate={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <motion.div
+        <div className="mx-auto max-w-7xl px-6 lg:px-12 text-center">
+          <motion.h2
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center"
+            className="text-5xl font-extrabold text-black"
           >
-            <h2 className="text-3xl font-bold text-gray-900">Get in Touch</h2>
-            <p className="mt-4 text-lg text-gray-600">
-              Have a project in mind or just want to say hi? Feel free to reach out!
-            </p>
-            <form className="mt-8 max-w-md mx-auto">
-              <div className="grid grid-cols-1 gap-6">
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-md"
-                />
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-md"
-                />
-                <textarea
-                  placeholder="Your Message"
-                  rows="4"
-                  className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-md"
-                ></textarea>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  type="submit"
-                  className="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-500 transition-all duration-300"
-                >
-                  Send Message
-                </motion.button>
-              </div>
-            </form>
-          </motion.div>
+            🔗 Problem Solving & Development Projects
+          </motion.h2>
+          <p className="mt-4 text-lg text-black-200">
+          Check Out My Coding Platforms
+          </p>
+
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {links.map((link) => (
+              <motion.a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, rotate: 3 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center justify-center gap-4 w-50 bg-white px-1 py-4 rounded-lg  duration-300 object-cover shadow-2xl transition-transform transform hover:scale-105 hover:shadow-blue-500/50"
+              >
+                <img src={link.icon} alt={link.name} className="h-8 w-8" />
+                <span className="text-xl font-bold text-gray-900">{link.name}</span>
+              </motion.a>
+            ))}
+          </div>
         </div>
-      </motion.section> */}
+      </motion.section>
+
       <Footer /> {/* Add the Footer component */}
     </>
   );
