@@ -1,6 +1,7 @@
 import './App.css';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer'; // Import the Footer component
+import Footer from './components/Footer';
+import MyProjects from './components/MyProjects'; // Import the MyProjects component
 import { motion, useAnimation } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
@@ -304,53 +305,7 @@ function App() {
       </motion.section>
 
 
-      <motion.section
-        id="projects"
-        className="bg-gradient-to-b from-white-50 to-blue py-24 shadow-lg rounded-xl"
-        initial={{ opacity: 0, y: 50 }}
-        animate={projectsInView ? 'visible' : 'hidden'}
-        variants={{
-          visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-          hidden: { opacity: 0, y: 50 },
-        }}
-        ref={projectsRef}
-      >
-        <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <motion.h2
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center text-5xl font-extrabold text-black"
-          >
-            My Projects 
-          </motion.h2>
-          <p className="text-center text-lg text-gray-700 mt-4">
-            Check out some of the amazing projects I've worked on!
-          </p>
-
-          <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
-              <motion.div
-                key={project.name}
-                whileHover={{ scale: 1.05 }}
-                className="overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:shadow-blue-500/50"
-              >
-                <img src={project.image} alt={project.name} className="h-52 w-full object-cover rounded-t-xl" />
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-gray-900">{project.name}</h3>
-                  <p className="mt-2 text-gray-600 leading-relaxed">{project.description}</p>
-                  <a
-                    href={project.link}
-                    className="mt-4 inline-block text-md font-semibold text-indigo-600 hover:text-indigo-500 transition-all duration-300"
-                  >
-                    Learn More →
-                  </a>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
+      <MyProjects projects={projects} projectsInView={projectsInView} projectsRef={projectsRef} />
 
 
       <motion.section
