@@ -9,8 +9,8 @@ html {
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: #f8fafc;
-  color: #1e293b;
+  background-color: #121212;
+  color: #e2e8f0;
   transition: background-color 0.3s ease, color 0.3s ease;
   line-height: 1.6;
   text-rendering: optimizeLegibility;
@@ -61,16 +61,16 @@ p {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  background-image: linear-gradient(to right, #6366f1, #3b82f6);
+  background-image: linear-gradient(to right, #8b5cf6, #3b82f6);
 }
 
 /* Professional glass effect */
 .glass {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(30, 30, 30, 0.2);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 /* Scroll animations */
@@ -103,16 +103,16 @@ a, button {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #1e1e1e;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #4b5563;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #6b7280;
 }
 
 /* Utility classes */
@@ -154,14 +154,14 @@ a, button {
 /* Animated background grid pattern */
 .bg-grid-pattern {
   background-image: 
-    linear-gradient(to right, rgba(99, 102, 241, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+    linear-gradient(to right, rgba(99, 102, 241, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.15) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 /* Professional dot pattern */
 .bg-dot-pattern {
-  background-image: radial-gradient(rgba(99, 102, 241, 0.2) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(99, 102, 241, 0.25) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
@@ -215,12 +215,12 @@ a, button {
 
 .project-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
 }
 
 /* Skill progress bars */
 .skill-progress-bg {
-  background-color: #e2e8f0;
+  background-color: #2d3748;
   border-radius: 9999px;
   height: 8px;
   overflow: hidden;
@@ -229,7 +229,7 @@ a, button {
 .skill-progress-bar {
   height: 100%;
   border-radius: 9999px;
-  background: linear-gradient(90deg, #6366f1, #3b82f6);
+  background: linear-gradient(90deg, #8b5cf6, #3b82f6);
   transition: width 1s ease-in-out;
 }
 
@@ -247,36 +247,36 @@ a, button {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  background: linear-gradient(135deg, #8b5cf6, #4f46e5);
   color: white;
-  box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.4), 0 2px 4px -1px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.4), 0 2px 4px -1px rgba(139, 92, 246, 0.2);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.4), 0 4px 6px -2px rgba(99, 102, 241, 0.1);
+  box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.4), 0 4px 6px -2px rgba(139, 92, 246, 0.1);
   transform: translateY(-2px);
 }
 
 .btn-primary:active {
   transform: translateY(0);
-  box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.3), 0 2px 4px -1px rgba(99, 102, 241, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.3), 0 2px 4px -1px rgba(139, 92, 246, 0.1);
 }
 
 .btn-secondary {
-  background: white;
-  color: #4f46e5;
-  border: 1px solid #e0e7ff;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background: #1e1e1e;
+  color: #a78bfa;
+  border: 1px solid #4b5563;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
 }
 
 .btn-secondary:hover {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
 }
 
 .btn-secondary:active {
   transform: translateY(0);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
 }
 
 /* Professional input styles */
@@ -284,16 +284,16 @@ a, button {
   width: 100%;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  border: 1px solid #e2e8f0;
-  background-color: white;
-  color: #1e293b;
+  border: 1px solid #4b5563;
+  background-color: #1e1e1e;
+  color: #e2e8f0;
   transition: all 0.3s ease;
 }
 
 .input:focus {
   outline: none;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
 }
 
 /* Professional section styles */
@@ -316,7 +316,7 @@ a, button {
   left: 0;
   width: 50%;
   height: 4px;
-  background: linear-gradient(to right, #6366f1, #3b82f6);
+  background: linear-gradient(to right, #8b5cf6, #3b82f6);
   border-radius: 2px;
 }
 
@@ -333,13 +333,13 @@ a, button {
 }
 
 .badge-primary {
-  background-color: #e0e7ff;
-  color: #4f46e5;
+  background-color: #312e81;
+  color: #c7d2fe;
 }
 
 .badge-secondary {
-  background-color: #dbeafe;
-  color: #2563eb;
+  background-color: #1e3a8a;
+  color: #bfdbfe;
 }
 
 /* Professional tooltip */
@@ -351,8 +351,8 @@ a, button {
 .tooltip .tooltip-text {
   visibility: hidden;
   width: 120px;
-  background-color: #1e293b;
-  color: #fff;
+  background-color: #1e1e1e;
+  color: #e2e8f0;
   text-align: center;
   border-radius: 6px;
   padding: 5px;
@@ -373,7 +373,7 @@ a, button {
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: #1e293b transparent transparent transparent;
+  border-color: #1e1e1e transparent transparent transparent;
 }
 
 .tooltip:hover .tooltip-text {
@@ -400,7 +400,7 @@ a, button {
 
 /* Animated gradient background */
 .bg-gradient-animated {
-  background: linear-gradient(-45deg, #6366f1, #3b82f6, #8b5cf6, #ec4899);
+  background: linear-gradient(-45deg, #8b5cf6, #3b82f6, #6d28d9, #db2777);
   background-size: 400% 400%;
   animation: gradient-shift 15s ease infinite;
 }

@@ -63,13 +63,13 @@ const Footer = () => {
       transition={{ duration: 0.5 }}
     >
       {/* Enhanced background elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-indigo-50 opacity-90"></div>
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.07]"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800 opacity-90"></div>
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.1]"></div>
       
       {/* Improved decorative elements */}
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse-slow"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-      <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
+      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-900 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse-slow"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-900 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+      <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-indigo-900 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
       
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         <motion.div
@@ -82,7 +82,7 @@ const Footer = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.5 }}
-            className="inline-block px-6 py-2 mb-4 rounded-full bg-gradient-to-r from-indigo-500/10 to-blue-500/10 text-indigo-800 font-medium text-sm backdrop-blur-sm border border-indigo-100"
+            className="inline-block px-6 py-2 mb-4 rounded-full bg-gradient-to-r from-purple-900/30 to-blue-900/30 text-purple-300 font-medium text-sm backdrop-blur-sm border border-purple-800"
           >
             Contact
           </motion.div>
@@ -93,7 +93,7 @@ const Footer = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-5xl font-extrabold mb-4"
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-600">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-400 to-purple-400">
               Get In Touch
             </span>
           </motion.h2>
@@ -102,7 +102,7 @@ const Footer = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-lg text-gray-700 max-w-2xl mx-auto"
+            className="text-lg text-gray-300 max-w-2xl mx-auto"
           >
             Have a project in mind or want to collaborate? I'm always open to discussing new opportunities and ideas.
           </motion.p>
@@ -115,8 +115,8 @@ const Footer = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
           >
-            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-gray-100/80">
-              <h3 className="text-2xl font-bold mb-6 text-gray-900">Contact Information</h3>
+            <div className="bg-gray-800/80 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-gray-700/80">
+              <h3 className="text-2xl font-bold mb-6 text-gray-100">Contact Information</h3>
               
               <div className="space-y-8">
                 <motion.div 
@@ -205,7 +205,7 @@ const Footer = () => {
                         href={social.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-700 hover:text-white hover:bg-gradient-to-br hover:from-indigo-600 hover:to-blue-600 hover:shadow-indigo-500/30 transition-all duration-300"
+                        className="w-12 h-12 rounded-full bg-gray-800 shadow-lg flex items-center justify-center text-gray-300 hover:text-white hover:bg-gradient-to-br hover:from-purple-600 hover:to-blue-600 hover:shadow-purple-500/30 transition-all duration-300"
                         whileHover={{ y: -5, scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                         initial={{ opacity: 0, y: 20 }}
@@ -229,18 +229,18 @@ const Footer = () => {
             animate={inView ? "visible" : "hidden"}
             transition={{ delay: 0.2 }}
           >
-            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-gray-100/80">
-              <h3 className="text-2xl font-bold mb-6 text-gray-900">Send Me a Message</h3>
+            <div className="bg-gray-800/80 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-gray-700/80">
+              <h3 className="text-2xl font-bold mb-6 text-gray-100">Send Me a Message</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                       Your Name
                     </label>
                     <div className="relative group">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <svg className="h-5 w-5 text-gray-400 group-hover:text-indigo-500 transition-colors duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="h-5 w-5 text-gray-400 group-hover:text-purple-500 transition-colors duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                       </div>
@@ -251,19 +251,19 @@ const Footer = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full py-3 px-4 pl-10 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
-                        placeholder="John Doe"
+                        className="w-full py-3 px-4 pl-10 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-gray-200"
+                        placeholder="Rahul K"
                       />
                     </div>
                   </div>
                   
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
                       Your Email
                     </label>
                     <div className="relative group">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <svg className="h-5 w-5 text-gray-400 group-hover:text-indigo-500 transition-colors duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="h-5 w-5 text-gray-400 group-hover:text-purple-500 transition-colors duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                       </div>
@@ -274,20 +274,20 @@ const Footer = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full py-3 px-4 pl-10 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
-                        placeholder="john@example.com"
+                        className="w-full py-3 px-4 pl-10 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-gray-200"
+                        placeholder="rahul@example.com"
                       />
                     </div>
                   </div>
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
                     Your Message
                   </label>
                   <div className="relative group">
                     <div className="absolute top-3 left-3 flex items-start pointer-events-none">
-                      <svg className="h-5 w-5 text-gray-400 group-hover:text-indigo-500 transition-colors duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-5 w-5 text-gray-400 group-hover:text-purple-500 transition-colors duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                       </svg>
                     </div>
@@ -298,7 +298,7 @@ const Footer = () => {
                       onChange={handleChange}
                       required
                       rows="5"
-                      className="w-full py-3 px-4 pl-10 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
+                      className="w-full py-3 px-4 pl-10 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-gray-200"
                       placeholder="Hello, I'd like to talk about..."
                     ></textarea>
                   </div>
@@ -307,8 +307,8 @@ const Footer = () => {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3 px-6 rounded-lg flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-medium shadow-lg hover:shadow-indigo-500/30 transition-all duration-300"
-                  whileHover={{ scale: 1.02, boxShadow: "0 10px 25px -5px rgba(79, 70, 229, 0.4)" }}
+                  className="w-full py-3 px-6 rounded-lg flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium shadow-lg hover:shadow-purple-500/30 transition-all duration-300"
+                  whileHover={{ scale: 1.02, boxShadow: "0 10px 25px -5px rgba(139, 92, 246, 0.4)" }}
                   whileTap={{ scale: 0.98 }}
                 >
                   {isSubmitting ? (
@@ -333,7 +333,7 @@ const Footer = () => {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="p-4 rounded-lg bg-green-50 text-green-700 text-center border border-green-100"
+                    className="p-4 rounded-lg bg-green-900/30 text-green-300 text-center border border-green-800"
                   >
                     <div className="flex items-center justify-center gap-2">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -348,7 +348,7 @@ const Footer = () => {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="p-4 rounded-lg bg-red-50 text-red-700 text-center border border-red-100"
+                    className="p-4 rounded-lg bg-red-900/30 text-red-300 text-center border border-red-800"
                   >
                     <div className="flex items-center justify-center gap-2">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -367,18 +367,18 @@ const Footer = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-20 pt-8 border-t border-gray-200 text-center"
+          className="mt-20 pt-8 border-t border-gray-700 text-center"
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
-              <p className="text-gray-600 font-medium">
+              <p className="text-gray-400 font-medium">
                 &copy; {new Date().getFullYear()} Rahul Kumar. All rights reserved.
               </p>
             </div>
             <div className="flex space-x-6">
-              <a href="#" className="text-gray-500 hover:text-indigo-600 transition-colors">Privacy Policy</a>
-              <a href="#" className="text-gray-500 hover:text-indigo-600 transition-colors">Terms of Service</a>
-              <a href="#" className="text-gray-500 hover:text-indigo-600 transition-colors">Sitemap</a>
+              <a href="#" className="text-gray-500 hover:text-purple-400 transition-colors">Privacy Policy</a>
+              <a href="#" className="text-gray-500 hover:text-purple-400 transition-colors">Terms of Service</a>
+              <a href="#" className="text-gray-500 hover:text-purple-400 transition-colors">Sitemap</a>
             </div>
           </div>
           <p className="text-gray-500 text-sm mt-4">

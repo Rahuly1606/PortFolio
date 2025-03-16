@@ -66,7 +66,7 @@ function Navbar() {
     <header 
       className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-500 ${
         scrolled 
-          ? 'bg-white/90 backdrop-blur-md shadow-lg py-3' 
+          ? 'bg-gray-900/90 backdrop-blur-md shadow-lg py-3' 
           : 'bg-transparent py-7'
       }`}
     >
@@ -81,8 +81,8 @@ function Navbar() {
         {scrolled && (
           <motion.div 
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.05 }}
-            className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-blue-500/10"
+            animate={{ opacity: 0.1 }}
+            className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-blue-900/20"
           />
         )}
       </div>
@@ -99,7 +99,7 @@ function Navbar() {
           >
             <div className="relative">
               <motion.div
-                className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full opacity-70 group-hover:opacity-100 blur-sm group-hover:blur transition duration-500"
+                className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-500 rounded-full opacity-70 group-hover:opacity-100 blur-sm group-hover:blur transition duration-500"
                 animate={{ 
                   scale: [1, 1.05, 1],
                 }}
@@ -112,14 +112,14 @@ function Navbar() {
               <motion.img
                 alt="Portfolio Logo"
                 src="img.jpeg"
-                className="relative h-10 w-10 rounded-full border-2 border-indigo-500"
+                className="relative h-10 w-10 rounded-full border-2 border-purple-600"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: "spring", stiffness: 300 }}
               />
             </div>
             <div className="overflow-hidden">
               <motion.span 
-                className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent inline-block"
+                className="text-xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent inline-block"
                 whileHover={{ scale: 1.05 }}
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -128,7 +128,7 @@ function Navbar() {
                 Rahul Kumar
               </motion.span>
               <motion.div 
-                className={`h-0.5 w-full bg-gradient-to-r from-indigo-500 to-blue-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300`}
+                className={`h-0.5 w-full bg-gradient-to-r from-purple-500 to-blue-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300`}
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: scrolled ? 1 : 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -141,7 +141,7 @@ function Navbar() {
               <motion.button
                 type="button"
                 onClick={() => setMobileMenuOpen(true)}
-                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 hover:bg-gray-100"
+                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-300 hover:bg-gray-800"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -159,8 +159,8 @@ function Navbar() {
                 onClick={(e) => item.download ? handleDownload(e, item.href) : handleSmoothScroll(e, item.href)}
                 className={`text-sm font-semibold relative px-2 py-1 rounded-md transition-all duration-300 ${
                   item.download 
-                    ? 'bg-gradient-to-r from-indigo-600 to-blue-500 text-white px-4 shadow-md hover:shadow-indigo-500/50' 
-                    : 'text-gray-800 hover:text-indigo-600'
+                    ? 'bg-gradient-to-r from-purple-600 to-blue-500 text-white px-4 shadow-md hover:shadow-purple-500/50' 
+                    : 'text-gray-300 hover:text-purple-400'
                 }`}
                 whileHover={item.download ? { scale: 1.05 } : { scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
@@ -173,7 +173,7 @@ function Navbar() {
                     <motion.span
                       className={`absolute bottom-0 left-0 w-full h-0.5 ${
                         activeSection === item.href.substring(1) 
-                          ? 'bg-indigo-600' 
+                          ? 'bg-purple-500' 
                           : 'bg-transparent'
                       } origin-left`}
                       initial={{ scaleX: 0 }}
@@ -184,7 +184,7 @@ function Navbar() {
                       transition={{ duration: 0.3 }}
                     />
                     <motion.span
-                      className="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-600 origin-left"
+                      className="absolute bottom-0 left-0 w-full h-0.5 bg-purple-500 origin-left"
                       initial={{ scaleX: 0 }}
                       whileHover={{ scaleX: 1 }}
                       transition={{ duration: 0.3 }}
@@ -217,7 +217,7 @@ function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
             />
             <DialogPanel as={motion.div} 
-              className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+              className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-800"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -226,21 +226,21 @@ function Navbar() {
               <div className="flex items-center justify-between">
                 <a href="#home" className="flex items-center gap-2 group" onClick={(e) => handleSmoothScroll(e, '#home')}>
                   <div className="relative">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full opacity-70 group-hover:opacity-100 blur-sm group-hover:blur transition duration-500"></div>
+                    <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-500 rounded-full opacity-70 group-hover:opacity-100 blur-sm group-hover:blur transition duration-500"></div>
                     <img
                       alt="Portfolio Logo"
                       src="img.jpeg"
-                      className="relative h-8 w-8 rounded-full border-2 border-indigo-500"
+                      className="relative h-8 w-8 rounded-full border-2 border-purple-600"
                     />
                   </div>
-                  <span className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">
+                  <span className="text-xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
                     Rahul Kumar
                   </span>
                 </a>
                 <motion.button
                   type="button"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="-m-2.5 rounded-md p-2.5 text-gray-700"
+                  className="-m-2.5 rounded-md p-2.5 text-gray-300"
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -249,7 +249,7 @@ function Navbar() {
                 </motion.button>
               </div>
               <div className="mt-6 flow-root">
-                <div className="-my-6 divide-y divide-gray-500/10">
+                <div className="-my-6 divide-y divide-gray-700">
                   <div className="space-y-2 py-6">
                     {navigation.map((item, index) => (
                       <motion.a
@@ -258,10 +258,10 @@ function Navbar() {
                         onClick={(e) => item.download ? handleDownload(e, item.href) : handleSmoothScroll(e, item.href)}
                         className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold transition-colors duration-200 ${
                           item.download 
-                            ? 'bg-gradient-to-r from-indigo-600 to-blue-500 text-white my-4 shadow-md' 
+                            ? 'bg-gradient-to-r from-purple-600 to-blue-500 text-white my-4 shadow-md' 
                             : activeSection === item.href.substring(1)
-                              ? 'bg-gray-50 text-indigo-600'
-                              : 'text-gray-800 hover:bg-gray-50 hover:text-indigo-600'
+                              ? 'bg-gray-800 text-purple-400'
+                              : 'text-gray-300 hover:bg-gray-800 hover:text-purple-400'
                         }`}
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -281,7 +281,7 @@ function Navbar() {
                             <motion.div
                               initial={{ scale: 0 }}
                               animate={{ scale: 1 }}
-                              className="h-2 w-2 rounded-full bg-indigo-500"
+                              className="h-2 w-2 rounded-full bg-purple-500"
                             />
                           )}
                         </div>
