@@ -13,7 +13,7 @@ function App() {
       description: 'Designed and developed a job portal with features like user authentication, job posting, and resume management.',
       image: 'job_portal.png',
       link: '#',
-      technologies: ['React', 'Node.js', 'MongoDB'],
+      technologies: ['Django', 'HTML', 'PostgreSQL'],
       github: 'https://github.com/Rahuly1606/job-portal'
     },
     {
@@ -21,7 +21,7 @@ function App() {
       description: 'Built a real-time chat app using the MERN stack, Socket.IO, and Cloudinary for media management....',
       image: 'chat.png',
       link: '#',
-      technologies: ['React', 'Socket.IO', 'Express'],
+      technologies: ['React', 'Socket.IO', 'Express','MongoDB'],
       github: 'https://github.com/Rahuly1606/chat-app'
     },
     {

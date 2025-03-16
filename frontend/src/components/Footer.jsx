@@ -130,10 +130,10 @@ const Footer = () => {
                     </svg>
                   </div>
                   <div className="ml-4">
-                    <h4 className="text-lg font-semibold text-gray-900">Email</h4>
+                    <h4 className="text-lg font-semibold text-gray-100">Email</h4>
                     <a 
                       href="mailto:alexrahul1606@gmail.com" 
-                      className="text-gray-600 hover:text-indigo-600 transition-colors inline-flex items-center group/link"
+                      className="text-gray-300 hover:text-purple-400 transition-colors inline-flex items-center group/link"
                     >
                       <span>alexrahul1606@gmail.com</span>
                       <svg 
@@ -161,15 +161,15 @@ const Footer = () => {
                     </svg>
                   </div>
                   <div className="ml-4">
-                    <h4 className="text-lg font-semibold text-gray-900">Location</h4>
-                    <p className="text-gray-600">
+                    <h4 className="text-lg font-semibold text-gray-100">Location</h4>
+                    <p className="text-gray-300">
                       Hyderabad, Telangana, India
                     </p>
                   </div>
                 </motion.div>
                 
                 <div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-4">Connect With Me</h4>
+                  <h4 className="text-lg font-semibold text-gray-100 mb-4">Connect With Me</h4>
                   <div className="flex space-x-4">
                     {[
                       { 

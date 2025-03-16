@@ -9,8 +9,8 @@ html {
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: #121212;
-  color: #e2e8f0;
+  background-color: #0f172a;
+  color: #f1f5f9;
   transition: background-color 0.3s ease, color 0.3s ease;
   line-height: 1.6;
   text-rendering: optimizeLegibility;
@@ -61,12 +61,12 @@ p {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  background-image: linear-gradient(to right, #8b5cf6, #3b82f6);
+  background-image: linear-gradient(to right, #3b82f6, #10b981);
 }
 
 /* Professional glass effect */
 .glass {
-  background: rgba(30, 30, 30, 0.2);
+  background: rgba(15, 23, 42, 0.3);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -99,20 +99,20 @@ a, button {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1e1e1e;
+  background: #1e293b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4b5563;
-  border-radius: 5px;
+  background: #3b82f6;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6b7280;
+  background: #60a5fa;
 }
 
 /* Utility classes */
@@ -153,15 +153,15 @@ a, button {
 
 /* Animated background grid pattern */
 .bg-grid-pattern {
-  background-image: 
-    linear-gradient(to right, rgba(99, 102, 241, 0.15) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(99, 102, 241, 0.15) 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right, rgba(59, 130, 246, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(59, 130, 246, 0.15) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 /* Professional dot pattern */
 .bg-dot-pattern {
-  background-image: radial-gradient(rgba(99, 102, 241, 0.25) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(59, 130, 246, 0.25) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
@@ -220,16 +220,17 @@ a, button {
 
 /* Skill progress bars */
 .skill-progress-bg {
-  background-color: #2d3748;
+  width: 100%;
+  height: 10px;
+  background-color: #1e293b;
   border-radius: 9999px;
-  height: 8px;
   overflow: hidden;
 }
 
 .skill-progress-bar {
   height: 100%;
   border-radius: 9999px;
-  background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+  background: linear-gradient(90deg, #3b82f6, #10b981);
   transition: width 1s ease-in-out;
 }
 
@@ -247,31 +248,34 @@ a, button {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #8b5cf6, #4f46e5);
+  background: linear-gradient(135deg, #3b82f6, #0ea5e9);
   color: white;
-  box-shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.4), 0 2px 4px -1px rgba(139, 92, 246, 0.2);
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.4), 0 2px 4px -1px rgba(59, 130, 246, 0.2);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.4), 0 4px 6px -2px rgba(139, 92, 246, 0.1);
+  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4), 0 4px 6px -2px rgba(59, 130, 246, 0.1);
   transform: translateY(-2px);
 }
 
 .btn-primary:active {
   transform: translateY(0);
-  box-shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.3), 0 2px 4px -1px rgba(139, 92, 246, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3), 0 2px 4px -1px rgba(59, 130, 246, 0.1);
 }
 
 .btn-secondary {
-  background: #1e1e1e;
-  color: #a78bfa;
-  border: 1px solid #4b5563;
+  background: #1e293b;
+  color: #60a5fa;
+  border: 1px solid #334155;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
 }
 
 .btn-secondary:hover {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
+  background: #1e293b;
+  color: #93c5fd;
+  border-color: #60a5fa;
 }
 
 .btn-secondary:active {
@@ -284,16 +288,16 @@ a, button {
   width: 100%;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  border: 1px solid #4b5563;
-  background-color: #1e1e1e;
-  color: #e2e8f0;
+  border: 1px solid #334155;
+  background-color: #1e293b;
+  color: #f1f5f9;
   transition: all 0.3s ease;
 }
 
 .input:focus {
   outline: none;
-  border-color: #8b5cf6;
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
 /* Professional section styles */
@@ -307,6 +311,7 @@ a, button {
   position: relative;
   display: inline-block;
   margin-bottom: 2rem;
+  color: #f0f9ff;
 }
 
 .section-title::after {
@@ -316,7 +321,7 @@ a, button {
   left: 0;
   width: 50%;
   height: 4px;
-  background: linear-gradient(to right, #8b5cf6, #3b82f6);
+  background: linear-gradient(to right, #3b82f6, #0ea5e9);
   border-radius: 2px;
 }
 
@@ -333,13 +338,13 @@ a, button {
 }
 
 .badge-primary {
-  background-color: #312e81;
-  color: #c7d2fe;
+  background-color: #0c4a6e;
+  color: #bae6fd;
 }
 
 .badge-secondary {
-  background-color: #1e3a8a;
-  color: #bfdbfe;
+  background-color: #0f172a;
+  color: #93c5fd;
 }
 
 /* Professional tooltip */
@@ -351,8 +356,8 @@ a, button {
 .tooltip .tooltip-text {
   visibility: hidden;
   width: 120px;
-  background-color: #1e1e1e;
-  color: #e2e8f0;
+  background-color: #0f172a;
+  color: #f1f5f9;
   text-align: center;
   border-radius: 6px;
   padding: 5px;
@@ -373,7 +378,7 @@ a, button {
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: #1e1e1e transparent transparent transparent;
+  border-color: #0f172a transparent transparent transparent;
 }
 
 .tooltip:hover .tooltip-text {
@@ -400,7 +405,7 @@ a, button {
 
 /* Animated gradient background */
 .bg-gradient-animated {
-  background: linear-gradient(-45deg, #8b5cf6, #3b82f6, #6d28d9, #db2777);
+  background: linear-gradient(-45deg, #3b82f6, #0ea5e9, #0284c7, #0369a1);
   background-size: 400% 400%;
   animation: gradient-shift 15s ease infinite;
 }
