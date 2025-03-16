@@ -132,10 +132,10 @@ const Footer = () => {
                   <div className="ml-4">
                     <h4 className="text-lg font-semibold text-gray-900">Email</h4>
                     <a 
-                      href="mailto:rahulkumar.y1606@gmail.com" 
+                      href="mailto:alexrahul1606@gmail.com" 
                       className="text-gray-600 hover:text-indigo-600 transition-colors inline-flex items-center group/link"
                     >
-                      <span>rahulkumar.y1606@gmail.com</span>
+                      <span>alexrahul1606@gmail.com</span>
                       <svg 
                         xmlns="http://www.w3.org/2000/svg" 
                         className="h-4 w-4 ml-1 opacity-0 group-hover/link:opacity-100 transform -translate-x-2 group-hover/link:translate-x-0 transition-all duration-300" 
