@@ -39,6 +39,14 @@ function App() {
       technologies: ['React', 'Firebase', 'CSS'],
       github: 'https://github.com/Rahuly1606/inotebook'
     },
+    {
+      name: 'Virtual Classroom',
+      description: 'A virtual classroom platform that allows teachers to create and manage virtual classrooms, and students to join and participate in live video calls with their teachers and classmates.',
+      image: 'vcroom.png',
+      link: '#',
+      technologies: ['React', 'jitsi', 'tailwind', 'node Js'],
+      github: 'https://github.com/Rahuly1606/Virtual-Classroom'
+    },
   ];
 
   const skills = [
