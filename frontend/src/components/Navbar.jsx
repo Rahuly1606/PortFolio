@@ -17,7 +17,7 @@ function Navbar() {
       }
       
       // Update active section based on scroll position
-      const sections = ['home', 'about', 'projects', 'certificates', 'skills', 'footer'];
+      const sections = ['home', 'about', 'projects', 'certificates', 'skills', 'coding', 'footer'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -44,6 +44,7 @@ function Navbar() {
     { name: 'Projects', href: '#projects' },
     { name: 'Certificates', href: '#certificates' },
     { name: 'Skills', href: '#skills' },
+    { name: 'Competitive Coding', href: '#coding' },
     { name: 'Contact', href: '#footer' },
     { name: 'Resume', href: 'Resume.pdf', download: true },
   ];

@@ -1,0 +1,149 @@
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .algo-line { stroke: #6366f1; stroke-width: 2; stroke-opacity: 0.6; }
+    .algo-dot { fill: #8b5cf6; }
+    .algo-path { stroke: #8b5cf6; stroke-width: 3; stroke-opacity: 0.8; fill: none; }
+    .algo-node { fill: #1e293b; stroke: #6366f1; stroke-width: 2; }
+    .algo-text { fill: #94a3b8; font-family: 'Courier New', monospace; font-size: 12px; text-anchor: middle; }
+    .algo-bg { fill: #0f172a; opacity: 0.3; }
+    @keyframes pulse {
+      0% { stroke-opacity: 0.4; }
+      50% { stroke-opacity: 0.8; }
+      100% { stroke-opacity: 0.4; }
+    }
+    .animated { animation: pulse 3s infinite; }
+  </style>
+  
+  <!-- Background -->
+  <rect width="500" height="500" class="algo-bg" rx="10" ry="10" />
+  
+  <!-- Grid lines -->
+  <g opacity="0.15">
+    <g id="vertical-lines">
+      <line x1="50" y1="50" x2="50" y2="450" class="algo-line" />
+      <line x1="100" y1="50" x2="100" y2="450" class="algo-line" />
+      <line x1="150" y1="50" x2="150" y2="450" class="algo-line" />
+      <line x1="200" y1="50" x2="200" y2="450" class="algo-line" />
+      <line x1="250" y1="50" x2="250" y2="450" class="algo-line" />
+      <line x1="300" y1="50" x2="300" y2="450" class="algo-line" />
+      <line x1="350" y1="50" x2="350" y2="450" class="algo-line" />
+      <line x1="400" y1="50" x2="400" y2="450" class="algo-line" />
+      <line x1="450" y1="50" x2="450" y2="450" class="algo-line" />
+    </g>
+    <g id="horizontal-lines">
+      <line x1="50" y1="50" x2="450" y2="50" class="algo-line" />
+      <line x1="50" y1="100" x2="450" y2="100" class="algo-line" />
+      <line x1="50" y1="150" x2="450" y2="150" class="algo-line" />
+      <line x1="50" y1="200" x2="450" y2="200" class="algo-line" />
+      <line x1="50" y1="250" x2="450" y2="250" class="algo-line" />
+      <line x1="50" y1="300" x2="450" y2="300" class="algo-line" />
+      <line x1="50" y1="350" x2="450" y2="350" class="algo-line" />
+      <line x1="50" y1="400" x2="450" y2="400" class="algo-line" />
+      <line x1="50" y1="450" x2="450" y2="450" class="algo-line" />
+    </g>
+  </g>
+  
+  <!-- Algorithm visualization -->
+  <!-- Binary Tree Structure -->
+  <g>
+    <circle cx="250" cy="100" r="20" class="algo-node" />
+    <text x="250" y="104" class="algo-text">10</text>
+    
+    <circle cx="175" cy="150" r="20" class="algo-node" />
+    <text x="175" y="154" class="algo-text">5</text>
+    
+    <circle cx="325" cy="150" r="20" class="algo-node" />
+    <text x="325" y="154" class="algo-text">15</text>
+    
+    <circle cx="135" cy="200" r="20" class="algo-node" />
+    <text x="135" y="204" class="algo-text">3</text>
+    
+    <circle cx="215" cy="200" r="20" class="algo-node" />
+    <text x="215" y="204" class="algo-text">7</text>
+    
+    <circle cx="285" cy="200" r="20" class="algo-node" />
+    <text x="285" y="204" class="algo-text">12</text>
+    
+    <circle cx="365" cy="200" r="20" class="algo-node" />
+    <text x="365" y="204" class="algo-text">20</text>
+    
+    <!-- Connections -->
+    <line x1="240" y1="115" x2="185" y2="135" class="algo-line animated" />
+    <line x1="260" y1="115" x2="315" y2="135" class="algo-line animated" />
+    
+    <line x1="165" y1="165" x2="145" y2="185" class="algo-line animated" />
+    <line x1="185" y1="165" x2="205" y2="185" class="algo-line animated" />
+    
+    <line x1="315" y1="165" x2="295" y2="185" class="algo-line animated" />
+    <line x1="335" y1="165" x2="355" y2="185" class="algo-line animated" />
+  </g>
+
+  <!-- Array Sorting Visualization -->
+  <g transform="translate(100, 300)">
+    <rect x="0" y="0" width="30" height="60" class="algo-node" />
+    <text x="15" y="35" class="algo-text">7</text>
+    
+    <rect x="40" y="0" width="30" height="50" class="algo-node" />
+    <text x="55" y="30" class="algo-text">5</text>
+    
+    <rect x="80" y="0" width="30" height="90" class="algo-node" />
+    <text x="95" y="50" class="algo-text">9</text>
+    
+    <rect x="120" y="0" width="30" height="40" class="algo-node" />
+    <text x="135" y="25" class="algo-text">3</text>
+    
+    <rect x="160" y="0" width="30" height="70" class="algo-node" />
+    <text x="175" y="40" class="algo-text">8</text>
+    
+    <rect x="200" y="0" width="30" height="30" class="algo-node" />
+    <text x="215" y="20" class="algo-text">1</text>
+    
+    <rect x="240" y="0" width="30" height="80" class="algo-node" />
+    <text x="255" y="45" class="algo-text">8</text>
+    
+    <!-- Array index markers -->
+    <text x="15" y="-10" class="algo-text">0</text>
+    <text x="55" y="-10" class="algo-text">1</text>
+    <text x="95" y="-10" class="algo-text">2</text>
+    <text x="135" y="-10" class="algo-text">3</text>
+    <text x="175" y="-10" class="algo-text">4</text>
+    <text x="215" y="-10" class="algo-text">5</text>
+    <text x="255" y="-10" class="algo-text">6</text>
+    
+    <!-- Sorting comparison arrows -->
+    <path d="M15,70 Q60,100 95,95" class="algo-path animated" />
+    <path d="M135,45 Q175,20 215,35" class="algo-path animated" />
+  </g>
+
+  <!-- Code pattern elements -->
+  <g opacity="0.2">
+    <text x="400" y="280" class="algo-text" style="font-size:10px;">
+      for(int i=0; i&lt;n; i++){
+    </text>
+    <text x="400" y="295" class="algo-text" style="font-size:10px;">
+      &nbsp;&nbsp;if(a[i] &gt; a[i+1]){
+    </text>
+    <text x="400" y="310" class="algo-text" style="font-size:10px;">
+      &nbsp;&nbsp;&nbsp;&nbsp;swap(a[i],a[i+1]);
+    </text>
+    <text x="400" y="325" class="algo-text" style="font-size:10px;">
+      &nbsp;&nbsp;}
+    </text>
+    <text x="400" y="340" class="algo-text" style="font-size:10px;">
+      }
+    </text>
+    
+    <text x="130" y="420" class="algo-text" style="font-size:10px;">
+      class Node {
+    </text>
+    <text x="130" y="435" class="algo-text" style="font-size:10px;">
+      &nbsp;&nbsp;int val;
+    </text>
+    <text x="130" y="450" class="algo-text" style="font-size:10px;">
+      &nbsp;&nbsp;Node *left, *right;
+    </text>
+    <text x="130" y="465" class="algo-text" style="font-size:10px;">
+      }
+    </text>
+  </g>
+</svg>

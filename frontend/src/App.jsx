@@ -2,6 +2,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import MyProjects from './components/MyProjects'; // Import the MyProjects component
+import CodingBadges from './components/CodingBadges'; // Import the CodingBadges component
 import { motion, useAnimation } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
@@ -591,9 +592,8 @@ function App() {
             >
               {/* Key stats */}
               {[
-                { value: "3+", label: "Years Experience" },
-                { value: "20+", label: "Projects Completed" },
-                { value: "15+", label: "Happy Clients" }
+                { value: "1+", label: "Years Experience" },
+                { value: "10+", label: "Projects Completed" }
               ].map((stat, index) => (
                 <motion.div
                   key={index}
@@ -1067,6 +1067,9 @@ function App() {
           </div>
         </div>
       </motion.section>
+
+      {/* Add the CodingBadges component */}
+      <CodingBadges />
 
       <Footer /> {/* Add the Footer component */}
     </div>
