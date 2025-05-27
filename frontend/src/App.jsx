@@ -6,8 +6,14 @@ import CodingBadges from './components/CodingBadges'; // Import the CodingBadges
 import { motion, useAnimation } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { Link } from 'react-router-dom';
 
 function App() {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const projects = [
     {
       name: 'Job Portal',
@@ -82,9 +88,9 @@ function App() {
       link: 'https://coursera.org/verify/react-cert',
     },
     {
-      name: 'Full-Stack Web Development',
-      issuer: 'Udacity',
-      link: 'https://udacity.com/verify/fullstack-cert',
+      name: 'MongoDB Associate Developer',
+      issuer: 'MongoDB University',
+      link: 'https://learn.mongodb.com/c/o0VSCgN9R-OXgM6wiUpI1A',
     },
     {
       name: 'Python for Everybody',
@@ -765,17 +771,15 @@ function App() {
             transition={{ duration: 0.5, delay: 0.8 }}
             className="mt-16 text-center"
           >
-            <motion.a
-              href="#"
+            <Link 
+              to="/certifications"
               className="inline-flex items-center px-8 py-3 rounded-full bg-gray-800 text-purple-400 font-medium border border-gray-700 shadow-md hover:shadow-lg transition-all duration-300"
-              whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.3)" }}
-              whileTap={{ scale: 0.95 }}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg>
               View All Certifications
-            </motion.a>
+            </Link>
           </motion.div>
         </div>
       </motion.section>

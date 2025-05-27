@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: portfolio
+    env: node
+    buildCommand: cd frontend && npm install && npm run build && cd ../server && npm install
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+    healthCheckPath: /
+    autoDeploy: true 
