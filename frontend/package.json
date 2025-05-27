@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:prod": "vite build --mode production",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node server.js"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
@@ -18,7 +20,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.4.0",
-    "react-intersection-observer": "^9.15.1"
+    "react-intersection-observer": "^9.15.1",
+    "react-router-dom": "^7.6.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
