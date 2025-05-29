@@ -27,9 +27,9 @@ function App() {
       name: 'Real Time Chat App',
       description: 'Built a real-time chat app using the MERN stack, Socket.IO, and Cloudinary for media management....',
       image: 'chat.png',
-      link: '#',
+      link: 'https://chat-applications-react-js-xvyj.onrender.com/',
       technologies: ['React', 'Socket.IO', 'Express','MongoDB'],
-      github: 'https://github.com/Rahuly1606/chat-app'
+      github: 'https://github.com/Rahuly1606/Chat-Applications-React-JS-'
     },
     {
       name: 'INoteBook',
@@ -48,6 +48,9 @@ function App() {
       github: 'https://github.com/Rahuly1606/Virtual-Classroom'
     },
   ];
+
+  // Get only the top 3 projects for the main page
+  const topProjects = projects.slice(0, 3);
 
   const skills = [
     { name: 'Java', icon: 'icons/java.png' },
@@ -105,7 +108,20 @@ function App() {
       issuer: 'edX',
       link: 'https://edx.org/verify/python-cert',
     },
+    {
+      name: 'AWS Cloud Practitioner',
+      issuer: 'Amazon Web Services',
+      link: 'https://aws.amazon.com/certification/certified-cloud-practitioner/',
+    },
+    {
+      name: 'JavaScript Advanced Concepts',
+      issuer: 'Udemy',
+      link: 'https://udemy.com/certificate/javascript-advanced',
+    },
   ];
+  
+  // Get only the top 3 certificates for the main page
+  const topCertificates = certificates.slice(0, 3);
 
   const [text, setText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -662,7 +678,7 @@ function App() {
         </div>
       </motion.section>
 
-      <MyProjects projects={projects} projectsInView={projectsInView} projectsRef={projectsRef} />
+      <MyProjects projects={topProjects} projectsInView={projectsInView} projectsRef={projectsRef} />
 
       <motion.section
         id="certificates"
@@ -715,7 +731,7 @@ function App() {
           </motion.div>
 
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-            {certificates.map((certificate, index) => (
+            {topCertificates.map((certificate, index) => (
               <motion.div
                 key={certificate.name}
                 initial={{ opacity: 0, y: 30 }}
@@ -804,6 +820,30 @@ function App() {
           backgroundImage: "url('/code-pattern.svg')",
         }}></div>
         
+        {/* Animated particles */}
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-purple-500 opacity-20"
+            style={{
+              width: Math.random() * 10 + 5,
+              height: Math.random() * 10 + 5,
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, Math.random() * 100 - 50],
+              opacity: [0.1, 0.3, 0.1],
+            }}
+            transition={{
+              duration: Math.random() * 10 + 10,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+        
         <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -841,14 +881,82 @@ function App() {
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Skills Categories Tabs */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex flex-wrap justify-center gap-4 mb-12"
+          >
+            {["All Skills", "Frontend", "Backend", "Languages", "Tools"].map((category, index) => (
+              <motion.button
+                key={category}
+                whileHover={{ scale: 1.05, backgroundColor: "rgba(139, 92, 246, 0.3)" }}
+                whileTap={{ scale: 0.95 }}
+                className={`px-6 py-2 rounded-full ${index === 0 ? 'bg-purple-600/30 text-purple-300 border border-purple-500/50' : 'bg-gray-800 text-gray-300 border border-gray-700'} font-medium text-sm transition-all duration-300`}
+              >
+                {category}
+              </motion.button>
+            ))}
+          </motion.div>
+
+          {/* Featured Skills */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mb-16"
+          >
+            <h3 className="text-2xl font-bold text-gray-100 mb-8 flex items-center">
+              <div className="w-10 h-10 rounded-full bg-purple-900/30 flex items-center justify-center mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              Featured Skills
+            </h3>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+              {[
+                { name: 'React', icon: 'icons/react.png', level: 'Advanced' },
+                { name: 'Node.js', icon: 'icons/nodejs.png', level: 'Advanced' },
+                { name: 'MongoDB', icon: 'icons/mongodb.png', level: 'Intermediate' },
+                { name: 'Python', icon: 'icons/python.png', level: 'Advanced' },
+                { name: 'Tailwind', icon: 'icons/tailwind.png', level: 'Advanced' },
+              ].map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.6 + (index * 0.1) }}
+                  whileHover={{ 
+                    y: -10,
+                    boxShadow: "0 15px 30px -5px rgba(139, 92, 246, 0.3)",
+                    backgroundColor: "rgba(30, 30, 40, 0.9)",
+                    transition: { duration: 0.3 }
+                  }}
+                  className="bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 flex flex-col items-center justify-center border border-gray-700/50 transition-all duration-300"
+                >
+                  <div className="w-16 h-16 rounded-full bg-gray-700/50 flex items-center justify-center mb-4 p-3">
+                    <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain" />
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-100 mb-1">{skill.name}</h4>
+                  <span className="text-xs font-medium px-3 py-1 rounded-full bg-purple-900/30 text-purple-300">{skill.level}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Skill Categories */}
+          <div className="space-y-16">
+            {/* Programming Languages */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-purple-500/30 transition-all duration-500 shadow-lg hover:shadow-purple-500/10"
             >
-              <div className="flex items-center mb-6">
+              <div className="flex items-center mb-8">
                 <div className="w-12 h-12 rounded-full bg-purple-900/30 flex items-center justify-center mr-4">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -857,129 +965,226 @@ function App() {
                 <h3 className="text-2xl font-bold text-gray-100">Programming Languages</h3>
               </div>
               
-              <div className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {programmingLanguages.map((skill, index) => (
                   <motion.div
                     key={skill.name}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.5 + (index * 0.1) }}
-                    className="group"
+                    transition={{ duration: 0.3, delay: 0.7 + (index * 0.1) }}
+                    className="group relative overflow-hidden"
                   >
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center">
-                        <img src={skill.icon} alt={skill.name} className="h-6 w-6 mr-3" />
-                        <h3 className="text-lg font-semibold text-gray-200 group-hover:text-purple-400 transition-colors duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 rounded-lg"></div>
+                    <div className="relative p-4 rounded-lg bg-gray-700/50 border border-gray-600/50 group-hover:border-purple-500/50 transition-colors duration-300">
+                      <div className="flex items-center mb-3">
+                        <img src={skill.icon} alt={skill.name} className="h-8 w-8 mr-3 group-hover:scale-110 transition-transform duration-300" />
+                        <h3 className="text-lg font-semibold text-gray-200 group-hover:text-purple-300 transition-colors duration-300">
                           {skill.name}
                         </h3>
                       </div>
-                      <span className="text-sm font-bold text-purple-400">{skill.progress}%</span>
-                    </div>
-                    <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
-                      <motion.div
-                        className="h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full"
-                        initial={{ width: 0 }}
-                        animate={{ width: `${skill.progress}%` }}
-                        transition={{ duration: 1, delay: 0.7 + (index * 0.1) }}
-                      />
+                      <div className="h-2 bg-gray-600/50 rounded-full overflow-hidden">
+                        <motion.div
+                          className="h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full"
+                          initial={{ width: 0 }}
+                          animate={{ width: `${skill.progress}%` }}
+                          transition={{ duration: 1, delay: 0.8 + (index * 0.1) }}
+                        />
+                      </div>
                     </div>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
+            {/* Frontend Skills */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
+              transition={{ duration: 0.5, delay: 0.7 }}
+              className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-blue-500/30 transition-all duration-500 shadow-lg hover:shadow-blue-500/10"
             >
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 rounded-full bg-purple-900/30 flex items-center justify-center mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="flex items-center mb-8">
+                <div className="w-12 h-12 rounded-full bg-blue-900/30 flex items-center justify-center mr-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-100">Frontend</h3>
+                <h3 className="text-2xl font-bold text-gray-100">Frontend Development</h3>
               </div>
               
-              <div className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {frontendSkills.map((skill, index) => (
                   <motion.div
                     key={skill.name}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.5 + (index * 0.1) }}
-                    className="group"
+                    transition={{ duration: 0.3, delay: 0.8 + (index * 0.1) }}
+                    whileHover={{ 
+                      y: -5,
+                      transition: { duration: 0.3 }
+                    }}
+                    className="bg-gray-700/50 rounded-lg p-5 border border-gray-600/50 hover:border-blue-500/50 transition-all duration-300"
                   >
-                    <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center">
-                        <img src={skill.icon} alt={skill.name} className="h-6 w-6 mr-3" />
-                        <h3 className="text-lg font-semibold text-gray-200 group-hover:text-purple-400 transition-colors duration-300">
+                        <div className="w-10 h-10 rounded-full bg-blue-900/20 flex items-center justify-center mr-3 p-2">
+                          <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain" />
+                        </div>
+                        <h3 className="text-lg font-semibold text-gray-200">
                           {skill.name}
                         </h3>
                       </div>
-                      <span className="text-sm font-bold text-purple-400">{skill.progress}%</span>
+                      <span className="text-sm font-bold text-blue-400">{skill.progress}%</span>
                     </div>
-                    <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
+                    <div className="h-2 bg-gray-600/50 rounded-full overflow-hidden">
                       <motion.div
-                        className="h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full"
+                        className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"
                         initial={{ width: 0 }}
                         animate={{ width: `${skill.progress}%` }}
-                        transition={{ duration: 1, delay: 0.7 + (index * 0.1) }}
+                        transition={{ duration: 1, delay: 0.9 + (index * 0.1) }}
                       />
+                    </div>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {['Responsive', 'Interactive', 'Modern'].map((tag, i) => (
+                        <span key={i} className="text-xs px-2 py-1 bg-gray-800/70 text-gray-300 rounded-md">
+                          {tag}
+                        </span>
+                      ))}
                     </div>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
+            {/* Backend Skills */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
+              transition={{ duration: 0.5, delay: 0.8 }}
+              className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-green-500/30 transition-all duration-500 shadow-lg hover:shadow-green-500/10"
             >
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 rounded-full bg-purple-900/30 flex items-center justify-center mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="flex items-center mb-8">
+                <div className="w-12 h-12 rounded-full bg-green-900/30 flex items-center justify-center mr-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-100">Backend</h3>
+                <h3 className="text-2xl font-bold text-gray-100">Backend Development</h3>
               </div>
               
-              <div className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {backendSkills.map((skill, index) => (
                   <motion.div
                     key={skill.name}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.5 + (index * 0.1) }}
-                    className="group"
+                    transition={{ duration: 0.3, delay: 0.9 + (index * 0.1) }}
+                    className="group relative"
                   >
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center">
-                        <img src={skill.icon} alt={skill.name} className="h-6 w-6 mr-3" />
-                        <h3 className="text-lg font-semibold text-gray-200 group-hover:text-purple-400 transition-colors duration-300">
-                          {skill.name}
-                        </h3>
+                    <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-cyan-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="relative bg-gray-700/50 rounded-xl p-6 border border-gray-600/50 group-hover:border-green-500/50 transition-all duration-300 z-10">
+                      <div className="flex items-center mb-6">
+                        <div className="w-12 h-12 rounded-lg bg-gray-800/80 flex items-center justify-center mr-4 p-2 group-hover:bg-green-900/30 transition-colors duration-300">
+                          <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-gray-200 group-hover:text-green-300 transition-colors duration-300">
+                            {skill.name}
+                          </h3>
+                          <div className="flex items-center mt-1">
+                            {[...Array(5)].map((_, i) => (
+                              <svg 
+                                key={i} 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                className={`h-4 w-4 ${i < skill.progress/20 ? 'text-green-400' : 'text-gray-600'}`} 
+                                fill="currentColor" 
+                                viewBox="0 0 20 20"
+                              >
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                              </svg>
+                            ))}
+                            <span className="ml-2 text-sm text-gray-400">{skill.progress}%</span>
+                          </div>
+                        </div>
                       </div>
-                      <span className="text-sm font-bold text-purple-400">{skill.progress}%</span>
-                    </div>
-                    <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
-                      <motion.div
-                        className="h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full"
-                        initial={{ width: 0 }}
-                        animate={{ width: `${skill.progress}%` }}
-                        transition={{ duration: 1, delay: 0.7 + (index * 0.1) }}
-                      />
+                      
+                      <div className="h-2 bg-gray-600/50 rounded-full overflow-hidden">
+                        <motion.div
+                          className="h-full bg-gradient-to-r from-green-500 to-cyan-500 rounded-full"
+                          initial={{ width: 0 }}
+                          animate={{ width: `${skill.progress}%` }}
+                          transition={{ duration: 1, delay: 1 + (index * 0.1) }}
+                        />
+                      </div>
+                      
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {index === 0 && ['Express', 'API', 'REST'].map((tag, i) => (
+                          <span key={i} className="text-xs px-2 py-1 bg-gray-800/70 text-gray-300 rounded-md">
+                            {tag}
+                          </span>
+                        ))}
+                        {index === 1 && ['MVT', 'Python', 'ORM'].map((tag, i) => (
+                          <span key={i} className="text-xs px-2 py-1 bg-gray-800/70 text-gray-300 rounded-md">
+                            {tag}
+                          </span>
+                        ))}
+                        {index === 2 && ['NoSQL', 'Atlas', 'Aggregation'].map((tag, i) => (
+                          <span key={i} className="text-xs px-2 py-1 bg-gray-800/70 text-gray-300 rounded-md">
+                            {tag}
+                          </span>
+                        ))}
+                        {index === 3 && ['SQL', 'Relational', 'Queries'].map((tag, i) => (
+                          <span key={i} className="text-xs px-2 py-1 bg-gray-800/70 text-gray-300 rounded-md">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
           </div>
+
+          {/* Additional Skills */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.9 }}
+            className="mt-16"
+          >
+            <h3 className="text-2xl font-bold text-gray-100 mb-8 flex items-center">
+              <div className="w-10 h-10 rounded-full bg-indigo-900/30 flex items-center justify-center mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                </svg>
+              </div>
+              Other Skills & Tools
+            </h3>
+            
+            <div className="flex flex-wrap gap-3">
+              {[
+                'Git', 'GitHub', 'Docker', 'AWS', 'Firebase', 
+                'Redux', 'TypeScript', 'Jest', 'Webpack', 'GraphQL',
+                'Sass', 'Figma', 'UI/UX', 'Responsive Design', 'SEO'
+              ].map((skill, index) => (
+                <motion.div
+                  key={skill}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: 1 + (index * 0.05) }}
+                  whileHover={{ 
+                    scale: 1.05,
+                    backgroundColor: "rgba(139, 92, 246, 0.3)",
+                    transition: { duration: 0.2 }
+                  }}
+                  className="px-4 py-2 bg-gray-800/80 text-gray-300 rounded-lg border border-gray-700/50 transition-all duration-300"
+                >
+                  {skill}
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </motion.section>
 

@@ -23,6 +23,16 @@ const CertificationsPage = () => {
       issuer: 'edX',
       link: 'https://edx.org/verify/python-cert',
     },
+    {
+      name: 'AWS Cloud Practitioner',
+      issuer: 'Amazon Web Services',
+      link: 'https://aws.amazon.com/certification/certified-cloud-practitioner/',
+    },
+    {
+      name: 'JavaScript Advanced Concepts',
+      issuer: 'Udemy',
+      link: 'https://udemy.com/certificate/javascript-advanced',
+    },
   ];
 
   // Scroll to top when component mounts
