@@ -169,13 +169,18 @@ function Navbar() {
             <div className="flex lg:hidden">
               <motion.button
                 type="button"
-                onClick={() => setMobileMenuOpen(true)}
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="p-2 rounded-md text-gray-300 hover:bg-gray-800"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
+                aria-expanded={mobileMenuOpen}
               >
-                <span className="sr-only">Open main menu</span>
-                <MenuIcon className="h-6 w-6" aria-hidden="true" />
+                <span className="sr-only">{mobileMenuOpen ? 'Close main menu' : 'Open main menu'}</span>
+                {mobileMenuOpen ? (
+                  <XIcon className="h-6 w-6" aria-hidden="true" />
+                ) : (
+                  <MenuIcon className="h-6 w-6" aria-hidden="true" />
+                )}
               </motion.button>
             </div>
           </div>
@@ -273,34 +278,9 @@ function Navbar() {
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
             >
-              <div className="flex items-center justify-between">
-                <Link to="/" className="flex items-center gap-2 group" onClick={() => setMobileMenuOpen(false)}>
-                  <div className="relative">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-purple-500 rounded-full opacity-70 group-hover:opacity-100 blur-sm group-hover:blur transition duration-500"></div>
-                    <img
-                      alt="Portfolio Logo"
-                      src="/img.jpeg"
-                      className="relative h-8 w-8 rounded-full border-2 border-purple-600"
-                    />
-                  </div>
-                  <span className="text-xl font-bold bg-gradient-to-r from-purple-500 to-purple-400 bg-clip-text text-transparent">
-                    Rahul Kumar
-                  </span>
-                </Link>
-                <motion.button
-                  type="button"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="rounded-md p-2.5 text-gray-300"
-                  whileHover={{ scale: 1.1, rotate: 90 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <span className="sr-only">Close menu</span>
-                  <XIcon className="h-6 w-6" aria-hidden="true" />
-                </motion.button>
-              </div>
-              <div className="mt-6 flow-root">
+              <div className="mt-10 flow-root">
                 <div className="-my-6 divide-y divide-gray-700">
-                  <div className="space-y-2 py-6">
+                  <div className="space-y-4 py-6">
                     {getFilteredNavItems().map((item, index) => (
                       <motion.div key={item.name}>
                         {item.download ? (
