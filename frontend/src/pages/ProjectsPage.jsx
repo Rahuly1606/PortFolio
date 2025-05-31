@@ -93,7 +93,7 @@ const ProjectsPage = () => {
           transition={{ duration: 0.5 }}
         >
           {/* Background elements */}
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-indigo-50 opacity-80"></div>
+          <div className="absolute inset-0 bg-black"></div>
           <div className="absolute inset-0 bg-dot-pattern opacity-[0.15]"></div>
           
           <div className="container mx-auto px-6 lg:px-12 relative z-10">
@@ -107,7 +107,7 @@ const ProjectsPage = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.5 }}
-                className="inline-block px-6 py-2 mb-4 rounded-full bg-indigo-100 text-indigo-800 font-medium text-sm"
+                className="inline-block px-6 py-2 mb-4 rounded-full bg-purple-900/30 text-purple-300 font-medium text-sm"
               >
                 Portfolio
               </motion.div>
@@ -118,7 +118,7 @@ const ProjectsPage = () => {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-5xl font-extrabold mb-4"
               >
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-500">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-purple-500">
                   All My Projects
                 </span>
               </motion.h2>
@@ -127,7 +127,7 @@ const ProjectsPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="text-lg text-gray-700 max-w-2xl mx-auto"
+                className="text-lg text-gray-300 max-w-2xl mx-auto"
               >
                 A comprehensive collection of my work showcasing my skills and experience in web development.
               </motion.p>
@@ -140,7 +140,7 @@ const ProjectsPage = () => {
               >
                 <Link 
                   to="/"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-colors duration-300"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-purple-500 text-white hover:shadow-purple-500/50 transition-all duration-300"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -161,10 +161,10 @@ const ProjectsPage = () => {
                   key={index}
                   variants={itemVariants}
                   whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                  className="card group bg-white backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-100 shadow-soft hover:shadow-glow transition-all duration-500"
+                  className="card group bg-gray-900 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-800 shadow-soft hover:shadow-glow transition-all duration-500"
                 >
                   <div className="relative overflow-hidden h-52">
-                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
                     <img
                       src={project.image}
                       alt={project.name}
@@ -173,7 +173,7 @@ const ProjectsPage = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6 z-20">
                       <div className="flex flex-wrap gap-2 mb-2 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
                         {project.technologies && project.technologies.map((tech, i) => (
-                          <span key={i} className="px-3 py-1 text-xs rounded-full bg-indigo-600/90 text-white backdrop-blur-sm">
+                          <span key={i} className="px-3 py-1 text-xs rounded-full bg-purple-600/90 text-white backdrop-blur-sm">
                             {tech}
                           </span>
                         ))}
@@ -182,7 +182,7 @@ const ProjectsPage = () => {
                         href={project.github || '#'}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-white w-fit transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-200 hover:text-indigo-300"
+                        className="flex items-center gap-2 text-white w-fit transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-200 hover:text-purple-300"
                         whileHover={{ x: 5 }}
                       >
                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -194,16 +194,16 @@ const ProjectsPage = () => {
                   </div>
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors duration-300">
+                      <h3 className="text-xl font-bold text-gray-100 group-hover:text-purple-400 transition-colors duration-300">
                         {project.name}
                       </h3>
-                      <div className="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <div className="w-8 h-8 rounded-full bg-purple-900/30 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                       </div>
                     </div>
-                    <p className="text-gray-600 mb-6 line-clamp-3">{project.description}</p>
+                    <p className="text-gray-400 mb-6 line-clamp-3">{project.description}</p>
                     <div className="flex justify-between items-center">
                       <motion.a
                         href={project.link}
@@ -231,4 +231,4 @@ const ProjectsPage = () => {
   );
 };
 
-export default ProjectsPage; 
+export default ProjectsPage;

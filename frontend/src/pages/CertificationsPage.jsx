@@ -61,10 +61,8 @@ const CertificationsPage = () => {
           transition={{ duration: 0.5 }}
         >
           {/* Background elements */}
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800"></div>
-          <div className="absolute inset-0 opacity-5" style={{ 
-            backgroundImage: "url('/code-pattern.svg')",
-          }}></div>
+          <div className="absolute inset-0 bg-black"></div>
+          <div className="absolute inset-0 opacity-10 bg-grid-pattern"></div>
           
           <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
             <motion.div
@@ -88,7 +86,7 @@ const CertificationsPage = () => {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-5xl font-extrabold"
               >
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-purple-500 glow-text">
                   All My Certifications
                 </span>
               </motion.h2>
@@ -110,7 +108,7 @@ const CertificationsPage = () => {
               >
                 <Link 
                   to="/"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-purple-600 text-white hover:bg-purple-700 transition-colors duration-300"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-purple-500 text-white hover:shadow-purple-500/50 transition-all duration-300"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -129,12 +127,12 @@ const CertificationsPage = () => {
                   transition={{ duration: 0.5, delay: 0.4 + (index * 0.1) }}
                   whileHover={{ 
                     y: -10,
-                    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2)",
+                    boxShadow: "0 20px 25px -5px rgba(139, 92, 246, 0.3), 0 10px 10px -5px rgba(139, 92, 246, 0.2)",
                     transition: { duration: 0.3, ease: "easeOut" }
                   }}
-                  className="group relative bg-gray-800 rounded-2xl overflow-hidden shadow-lg transition-all duration-300"
+                  className="group relative bg-gray-900 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 border border-gray-800 glow-border"
                 >
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-blue-500"></div>
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-purple-500"></div>
                   <div className="p-8">
                     <div className="w-16 h-16 rounded-full bg-purple-900/30 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -7,7 +7,7 @@ const HomeSection = () => {
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(150);
 
-  const words = ["Hi, I'm Rahul Kumar "];
+  const words = ["Hi, I'm Rahul Kumar"];
 
   useEffect(() => {
     const handleTyping = () => {
@@ -147,9 +147,12 @@ const HomeSection = () => {
             </span>
           </motion.div>
           
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-100 mb-4 text-shadow-lg whitespace-nowrap glow-text">
-            {text}<span className="cursor">|</span>
-          </h1>
+          {/* Responsive typing animation container */}
+          <div className="typing-container overflow-hidden">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-100 mb-4 text-shadow-lg glow-text">
+              <span className="typing-text inline-block">{text}</span><span className="cursor">|</span>
+            </h1>
+          </div>
           
           <motion.p
             initial={{ opacity: 0, y: 20 }}

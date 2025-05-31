@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import emailjs from '@emailjs/browser';
 
 const Footer = () => {
   const [ref, inView] = useInView({
@@ -17,19 +18,34 @@ const Footer = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError(false);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Replace these with your actual EmailJS credentials
+      const serviceId = 'YOUR_EMAILJS_SERVICE_ID'; 
+      const templateId = 'YOUR_EMAILJS_TEMPLATE_ID';
+      const publicKey = 'YOUR_EMAILJS_PUBLIC_KEY';
+      
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_name: 'Rahul Kumar',
+        reply_to: formData.email,
+      };
+      
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      
       setSubmitSuccess(true);
       setFormData({ name: '', email: '', message: '' });
       
@@ -37,7 +53,13 @@ const Footer = () => {
       setTimeout(() => {
         setSubmitSuccess(false);
       }, 5000);
-    }, 1500);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setSubmitError(true);
+      setErrorMessage('Failed to send message. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Animation variants
@@ -354,7 +376,7 @@ const Footer = () => {
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                       </svg>
-                      <span>Oops! Something went wrong. Please try again later.</span>
+                      <span>{errorMessage || 'Oops! Something went wrong. Please try again later.'}</span>
                     </div>
                   </motion.div>
                 )}

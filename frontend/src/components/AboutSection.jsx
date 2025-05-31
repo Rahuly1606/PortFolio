@@ -298,13 +298,13 @@ const AboutSection = () => {
                             </div>
                             <div className="ml-16">
                               <p className="text-gray-300 mb-2">KL University, Andhra Pradesh</p>
-                              <p className="text-gray-400 text-sm mb-4">2019 - 2023</p>
+                              <p className="text-gray-400 text-sm mb-4">2023 - 2027</p>
                               <p className="text-gray-300">
                                 Completed my B.Tech with a focus on advanced programming, database systems, and web technologies. Participated in hackathons and coding competitions.
                               </p>
                               <div className="mt-4 flex items-center">
                                 <div className="text-sm px-3 py-1 bg-purple-900/30 text-purple-300 rounded-lg">
-                                  CGPA: 8.5/10
+                                  CGPA: 9.44/10
                                 </div>
                               </div>
                             </div>
@@ -332,14 +332,14 @@ const AboutSection = () => {
                               </div>
                             </div>
                             <div className="ml-16">
-                              <p className="text-gray-300 mb-2">Sri Chaitanya Jr College, Hyderabad</p>
-                              <p className="text-gray-400 text-sm mb-4">2017 - 2019</p>
+                              <p className="text-gray-300 mb-2">RLSY COLLEGE, Bettiah,Bihar</p>
+                              <p className="text-gray-400 text-sm mb-4">2020 - 2022</p>
                               <p className="text-gray-300">
                                 Developed strong analytical and problem-solving skills through rigorous training in mathematics and sciences. Ranked in the top 5% of students.
                               </p>
                               <div className="mt-4 flex items-center">
                                 <div className="text-sm px-3 py-1 bg-purple-900/30 text-purple-300 rounded-lg">
-                                  Percentage: 95.6%
+                                  Percentage: 74.6%
                                 </div>
                               </div>
                             </div>
