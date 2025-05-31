@@ -29,10 +29,10 @@ To make your contact form actually send emails to your Gmail account, follow the
 5. Save the template
 6. Note down the **Template ID** that's generated
 
-## 4. Get Your Public Key
+## 4. Get Your User ID
 
 1. Go to the "Account" tab
-2. Find your **Public Key** in the API keys section
+2. Find your **User ID** in the API keys section (this is your public key)
 
 ## 5. Update Your Code
 
@@ -42,7 +42,7 @@ Open `frontend/src/components/Footer.jsx` and replace the placeholder values wit
 // Replace these with your actual EmailJS credentials
 const serviceId = 'YOUR_EMAILJS_SERVICE_ID';  // e.g., 'portfolio_contact'
 const templateId = 'YOUR_EMAILJS_TEMPLATE_ID'; // e.g., 'template_abc123'
-const publicKey = 'YOUR_EMAILJS_PUBLIC_KEY';   // e.g., 'user_abc123'
+const publicKey = 'YOUR_EMAILJS_USER_ID';   // e.g., 'user_abc123'
 ```
 
 ## 6. Test Your Contact Form
@@ -64,4 +64,4 @@ If emails aren't being received:
 
 ## Security Note
 
-The public key is designed to be used in client-side code, but be aware that anyone with these credentials could potentially send emails through your account up to your monthly limit. For a personal portfolio, this is typically an acceptable risk, but for higher-security applications, you might want to implement a server-side solution. 
+The User ID is designed to be used in client-side code, but be aware that anyone with these credentials could potentially send emails through your account up to your monthly limit. For a personal portfolio, this is typically an acceptable risk, but for higher-security applications, you might want to implement a server-side solution. 

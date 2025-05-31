@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import emailjs from '@emailjs/browser';
+import emailjs from 'emailjs-com';
 
 const Footer = () => {
   const [ref, inView] = useInView({
