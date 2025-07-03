@@ -182,7 +182,7 @@ function App() {
   }, [controls, skillsInView]);
 
   return (
-    <div className="bg-black text-white">
+    <div className="bg-white text-gray-800">
       <Navbar />
       
       {/* Use the new HomeSection component */}

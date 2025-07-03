@@ -8,6 +8,8 @@ const MyProjects = ({ projects }) => {
     triggerOnce: true,
     threshold: 0.1,
   });
+  
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // Animation variants
   const containerVariants = {
@@ -44,14 +46,17 @@ const MyProjects = ({ projects }) => {
       transition={{ duration: 0.5 }}
     >
       {/* Background elements */}
-      <div className="absolute inset-0 bg-black"></div>
-      <div className="absolute inset-0 opacity-10 bg-grid-pattern"></div>
+      <div className="absolute inset-0 bg-white"></div>
+      <div className="absolute inset-0 opacity-5 bg-grid"></div>
       
-      {/* Animated particles */}
-      {[...Array(15)].map((_, i) => (
+      {/* SVG Wave Background - Top */}
+      <div className="absolute top-0 left-0 right-0 h-24 transform rotate-180 bg-wave-pattern bg-repeat-x bg-top bg-contain"></div>
+      
+      {/* Animated particles - with reduced motion check */}
+      {!prefersReducedMotion && [...Array(15)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full bg-purple-500 opacity-20"
+          className="absolute rounded-full bg-orange-500 opacity-10"
           style={{
             width: Math.random() * 8 + 4,
             height: Math.random() * 8 + 4,
@@ -60,7 +65,7 @@ const MyProjects = ({ projects }) => {
           }}
           animate={{
             y: [0, Math.random() * 50 - 25],
-            opacity: [0.1, 0.3, 0.1],
+            opacity: [0.05, 0.2, 0.05],
           }}
           transition={{
             duration: Math.random() * 8 + 8,
@@ -82,7 +87,7 @@ const MyProjects = ({ projects }) => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.5 }}
-            className="inline-block px-6 py-2 mb-4 rounded-full bg-purple-900/30 text-purple-300 font-medium text-sm"
+            className="inline-block px-6 py-2 mb-4 rounded-full glass shadow-soft border border-orange-500/20 text-orange-600 font-medium text-sm"
           >
             Portfolio
           </motion.div>
@@ -93,7 +98,7 @@ const MyProjects = ({ projects }) => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-5xl font-extrabold mb-4"
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-indigo-400 glow-text">
+            <span className="bg-clip-text text-transparent bg-gradient-warm">
               My Projects
             </span>
           </motion.h2>
@@ -102,7 +107,7 @@ const MyProjects = ({ projects }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-lg text-gray-300 max-w-2xl mx-auto"
+            className="text-lg text-gray-700 max-w-2xl mx-auto"
           >
             Here are some of my recent projects that showcase my skills and experience in web development.
           </motion.p>
@@ -119,19 +124,19 @@ const MyProjects = ({ projects }) => {
               key={index}
               variants={itemVariants}
               whileHover={{ y: -10, transition: { duration: 0.3 } }}
-              className="card group bg-gray-900 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-800 glow-border shadow-lg hover:shadow-purple-500/20 transition-all duration-500"
+              className="glass group rounded-2xl overflow-hidden border border-orange-500/20 shadow-lg hover:shadow-orange-500/20 transition-all duration-500"
             >
               <div className="relative overflow-hidden h-52">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-indigo-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                <div className="absolute inset-0 bg-gradient-warm opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-10"></div>
                 <img
                   src={project.image}
                   alt={project.name}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500 flex flex-col justify-end p-6 z-20">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/40 to-transparent opacity-50 group-hover:opacity-70 transition-opacity duration-500 flex flex-col justify-end p-6 z-20">
                   <div className="flex flex-wrap gap-2 mb-2 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
                     {project.technologies && project.technologies.map((tech, i) => (
-                      <span key={i} className="px-3 py-1 text-xs rounded-full bg-purple-600/90 text-white backdrop-blur-sm">
+                      <span key={i} className="px-3 py-1 text-xs rounded-full glass text-orange-600 backdrop-blur-sm border border-orange-500/20">
                         {tech}
                       </span>
                     ))}
@@ -140,7 +145,7 @@ const MyProjects = ({ projects }) => {
                     href={project.github || '#'}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-white w-fit transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-200 hover:text-purple-300"
+                    className="flex items-center gap-2 text-white w-fit transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-200 hover:text-orange-300"
                     whileHover={{ x: 5 }}
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -152,23 +157,23 @@ const MyProjects = ({ projects }) => {
               </div>
               <div className="p-6">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-xl font-bold text-white group-hover:text-purple-400 transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-gray-800 group-hover:text-orange-600 transition-colors duration-300">
                     {project.name}
                   </h3>
-                  <div className="w-8 h-8 rounded-full bg-purple-900/30 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div className="w-8 h-8 rounded-full glass flex items-center justify-center border border-orange-500/20">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
                 </div>
-                <p className="text-gray-300 mb-6 line-clamp-3">{project.description}</p>
+                <p className="text-gray-700 mb-6 line-clamp-3">{project.description}</p>
                 <div className="flex justify-between items-center">
                   <motion.a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-sm py-2 px-4 rounded-lg inline-flex items-center gap-2 group/btn"
-                    whileHover={{ scale: 1.03, boxShadow: "0 8px 20px -4px rgba(139, 92, 246, 0.5)" }}
+                    className="bg-gradient-warm text-white text-sm py-2 px-4 rounded-lg inline-flex items-center gap-2 group/btn"
+                    whileHover={{ scale: 1.03, boxShadow: "0 8px 20px -4px rgba(255, 106, 0, 0.5)" }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <span>View Project</span>
@@ -190,17 +195,17 @@ const MyProjects = ({ projects }) => {
         >
           <motion.div
             className="inline-block"
-            whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(139, 92, 246, 0.4)" }}
+            whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(255, 106, 0, 0.4)" }}
             whileTap={{ scale: 0.95 }}
           >
             <Link
               to="/projects"
-              className="flex items-center gap-2 px-8 py-3 rounded-full bg-black border border-purple-500/30 text-purple-400 hover:border-purple-500/70 transition-all duration-300 glow-border"
+              className="flex items-center gap-2 px-8 py-3 rounded-full glass border border-orange-500/30 text-orange-600 hover:border-orange-500/70 transition-all duration-300"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
-              <span className="font-medium">View All Projects</span>
+              View All Projects
             </Link>
           </motion.div>
         </motion.div>

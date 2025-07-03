@@ -1,34 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Satoshi:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
 @import "tailwindcss";
 
 /* Color variables for easy customization */
 :root {
-  /* Primary color palette */
-  --color-primary: #8b5cf6;
-  --color-primary-light: #a78bfa;
-  --color-primary-dark: #7c3aed;
-  --color-secondary: #6d28d9;
-  --color-secondary-light: #8b5cf6;
-  --color-secondary-dark: #5b21b6;
+  /* Primary color palette - Warm tones, no blue */
+  --color-primary: #FF6A00;
+  --color-primary-light: #FF8C38;
+  --color-primary-dark: #D45800;
+  --color-secondary: #D4145A;
+  --color-secondary-light: #E5417B;
+  --color-secondary-dark: #B60F48;
   
-  /* Background colors */
-  --color-bg-dark: #000000;
-  --color-bg-card: #111111;
-  --color-bg-card-hover: #191919;
+  /* Background colors - Light mode */
+  --color-bg-light: #ffffff;
+  --color-bg-card: #f9f9f9;
+  --color-bg-card-hover: #f0f0f0;
   
-  /* Text colors */
-  --color-text-primary: #f1f5f9;
-  --color-text-secondary: #a78bfa;
-  --color-text-muted: #6b7280;
+  /* Text colors - Light mode */
+  --color-text-primary: #333333;
+  --color-text-secondary: #FF6A00;
+  --color-text-muted: #666666;
   
-  /* Border colors */
-  --color-border-light: rgba(255, 255, 255, 0.05);
-  --color-border-primary: rgba(139, 92, 246, 0.2);
+  /* Border colors - Light mode */
+  --color-border-light: rgba(0, 0, 0, 0.05);
+  --color-border-primary: rgba(255, 106, 0, 0.2);
   
-  /* Gradient definitions */
-  --gradient-primary: linear-gradient(to right, #8b5cf6, #6d28d9);
-  --gradient-secondary: linear-gradient(135deg, #8b5cf6, #6366f1);
-  --gradient-glow: linear-gradient(-45deg, #8b5cf6, #6366f1, #4f46e5, #4338ca);
+  /* Gradient definitions - Warm tones */
+  --gradient-primary: linear-gradient(to right, #FF6A00, #D4145A);
+  --gradient-secondary: linear-gradient(135deg, #FF6A00, #E5417B);
+  --gradient-glow: linear-gradient(-45deg, #FF6A00, #D4145A, #E5417B, #D45800);
 }
 
 /* Global styles */
@@ -38,8 +38,8 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: var(--color-bg-dark);
+  font-family: 'Inter', 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--color-bg-light);
   color: var(--color-text-primary);
   transition: background-color 0.3s ease, color 0.3s ease;
   line-height: 1.6;
@@ -49,7 +49,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', 'Satoshi', sans-serif;
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.025em;
@@ -115,11 +115,11 @@ p {
 
 /* Professional glass effect */
 .glass {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
 }
 
 /* Scroll animations */
@@ -166,11 +166,11 @@ a, button {
 
 /* Utility classes */
 .text-shadow {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .text-shadow-lg {
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.24), 0 2px 4px rgba(0, 0, 0, 0.16);
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
 .hover-lift {
@@ -179,7 +179,7 @@ a, button {
 
 .hover-lift:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px -5px rgba(139, 92, 246, 0.15), 0 8px 10px -6px rgba(139, 92, 246, 0.1);
+  box-shadow: 0 10px 25px -5px rgba(255, 106, 0, 0.15), 0 8px 10px -6px rgba(255, 106, 0, 0.1);
 }
 
 /* Animation delays */
@@ -203,14 +203,14 @@ a, button {
 /* Animated background grid pattern */
 .bg-grid-pattern {
   background-image:
-    linear-gradient(to right, rgba(139, 92, 246, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 106, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 106, 0, 0.1) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 /* Professional dot pattern */
 .bg-dot-pattern {
-  background-image: radial-gradient(rgba(139, 92, 246, 0.15) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255, 106, 0, 0.15) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
@@ -256,7 +256,7 @@ a, button {
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 25px -5px rgba(139, 92, 246, 0.15), 0 10px 10px -5px rgba(139, 92, 246, 0.1);
+  box-shadow: 0 20px 25px -5px rgba(255, 106, 0, 0.15), 0 10px 10px -5px rgba(255, 106, 0, 0.1);
   border: 1px solid var(--color-border-primary);
 }
 
@@ -269,7 +269,7 @@ a, button {
 
 .project-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 25px -5px rgba(139, 92, 246, 0.2), 0 10px 10px -5px rgba(139, 92, 246, 0.15);
+  box-shadow: 0 20px 25px -5px rgba(255, 106, 0, 0.2), 0 10px 10px -5px rgba(255, 106, 0, 0.15);
   border: 1px solid var(--color-border-primary);
 }
 
@@ -305,17 +305,17 @@ a, button {
 .btn-primary {
   background: var(--gradient-primary);
   color: white;
-  box-shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.4), 0 2px 4px -1px rgba(139, 92, 246, 0.2);
+  box-shadow: 0 4px 6px -1px rgba(255, 106, 0, 0.4), 0 2px 4px -1px rgba(255, 106, 0, 0.2);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.4), 0 4px 6px -2px rgba(139, 92, 246, 0.1);
+  box-shadow: 0 10px 15px -3px rgba(255, 106, 0, 0.4), 0 4px 6px -2px rgba(255, 106, 0, 0.1);
   transform: translateY(-2px);
 }
 
 .btn-primary:active {
   transform: translateY(0);
-  box-shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.3), 0 2px 4px -1px rgba(139, 92, 246, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(255, 106, 0, 0.3), 0 2px 4px -1px rgba(255, 106, 0, 0.1);
 }
 
 .btn-secondary {
@@ -352,7 +352,7 @@ a, button {
 .input:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+  box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.2);
 }
 
 /* Professional section styles */
@@ -473,7 +473,7 @@ a, button {
   align-items: center;
   justify-content: center;
   background-color: var(--color-bg-card);
-  border: 1px solid rgba(139, 92, 246, 0.3);
+  border: 1px solid rgba(255, 106, 0, 0.3);
   border-radius: 50%;
   color: var(--color-primary);
   cursor: pointer;
@@ -545,7 +545,7 @@ a, button {
   border-radius: 50%;
   background-color: var(--color-primary);
   border: 3px solid #000000;
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.3);
 }
 
 .timeline-item:last-child {
@@ -554,19 +554,19 @@ a, button {
 
 /* Glow effects */
 .glow {
-  box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 15px rgba(255, 106, 0, 0.5);
 }
 
 .glow-text {
-  text-shadow: 0 0 10px rgba(139, 92, 246, 0.7);
+  text-shadow: 0 0 10px rgba(255, 106, 0, 0.7);
 }
 
 .glow-border {
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(255, 106, 0, 0.3);
+  box-shadow: 0 0 15px rgba(255, 106, 0, 0.2);
 }
 
 .glow-border:hover {
-  border: 1px solid rgba(139, 92, 246, 0.6);
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+  border: 1px solid rgba(255, 106, 0, 0.6);
+  box-shadow: 0 0 20px rgba(255, 106, 0, 0.4);
 }
