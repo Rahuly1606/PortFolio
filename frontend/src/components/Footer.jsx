@@ -113,7 +113,7 @@ const Footer = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.5 }}
-            className="inline-block px-6 py-2 mb-4 rounded-full glass shadow-soft border border-orange-500/20 text-orange-600 font-medium text-sm"
+            className="inline-block px-8 py-3 mb-4 rounded-full glass shadow-soft border border-orange-500/20 text-orange-600 font-medium text-lg"
           >
             Contact
           </motion.div>
@@ -122,7 +122,7 @@ const Footer = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-5xl font-extrabold mb-4"
+            className="text-7xl font-extrabold mb-6"
           >
             <span className="bg-clip-text text-transparent bg-gradient-warm">
               Get In Touch
@@ -166,6 +166,7 @@ const Footer = () => {
                       href="mailto:alexrahul1606@gmail.com" 
                       className="text-gray-700 hover:text-orange-600 transition-colors inline-flex items-center group/link"
                     >
+                      <img src="icons/gmail.png" alt="Email" className="h-4 w-4 mr-2" />
                       <span>alexrahul1606@gmail.com</span>
                       <svg 
                         xmlns="http://www.w3.org/2000/svg" 
@@ -193,7 +194,8 @@ const Footer = () => {
                   </div>
                   <div className="ml-4">
                     <h4 className="text-lg font-semibold text-gray-800">Location</h4>
-                    <p className="text-gray-700">
+                    <p className="text-gray-700 flex items-center">
+                      <img src="icons/location.png" alt="Location" className="h-4 w-4 mr-2" />
                       Hyderabad, Telangana, India
                     </p>
                   </div>
@@ -305,17 +307,21 @@ const Footer = () => {
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full bg-gradient-warm text-white font-medium py-3 px-6 rounded-lg shadow-md flex justify-center items-center ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:shadow-orange-500/40'}`}
+                    className={`w-full bg-gradient-warm text-black font-medium py-4 px-6 rounded-lg shadow-lg flex justify-center items-center gap-2 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:shadow-orange-500/40'}`}
                     whileHover={!isSubmitting ? { scale: 1.02, boxShadow: "0 10px 25px -5px rgba(255, 106, 0, 0.4)" } : {}}
                     whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                   >
                     {isSubmitting ? (
-                      <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                    ) : null}
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    ) : (
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    )}
+                    <span className="text-lg">{isSubmitting ? 'Sending...' : 'Send Message'}</span>
                   </motion.button>
                   
                   {/* Success message */}

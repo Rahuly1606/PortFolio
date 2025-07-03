@@ -49,6 +49,10 @@ const MyProjects = ({ projects }) => {
       <div className="absolute inset-0 bg-white"></div>
       <div className="absolute inset-0 opacity-5 bg-grid"></div>
       
+      {/* Orange background accent spots */}
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse-slow"></div>
+      <div className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-orange-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float"></div>
+      
       {/* SVG Wave Background - Top */}
       <div className="absolute top-0 left-0 right-0 h-24 transform rotate-180 bg-wave-pattern bg-repeat-x bg-top bg-contain"></div>
       
@@ -98,7 +102,7 @@ const MyProjects = ({ projects }) => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-5xl font-extrabold mb-4"
           >
-            <span className="bg-clip-text text-transparent bg-gradient-warm">
+            <span className="text-gray-800 text-shadow-sm">
               My Projects
             </span>
           </motion.h2>
@@ -172,7 +176,7 @@ const MyProjects = ({ projects }) => {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-gradient-warm text-white text-sm py-2 px-4 rounded-lg inline-flex items-center gap-2 group/btn"
+                    className="bg-gradient-warm text-black text-sm py-2 px-4 rounded-lg inline-flex items-center gap-2 group/btn shadow-lg hover:shadow-xl transition-shadow duration-300"
                     whileHover={{ scale: 1.03, boxShadow: "0 8px 20px -4px rgba(255, 106, 0, 0.5)" }}
                     whileTap={{ scale: 0.98 }}
                   >

@@ -22,6 +22,10 @@ const AboutSection = () => {
       <div className="absolute inset-0 bg-white"></div>
       <div className="absolute inset-0 opacity-5 bg-grid"></div>
       
+      {/* Orange background accent spot */}
+      <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse-slow"></div>
+      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-orange-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float"></div>
+      
       {/* Animated particles - with reduced motion check */}
       {!prefersReducedMotion && [...Array(10)].map((_, i) => (
         <motion.div
@@ -251,7 +255,7 @@ const AboutSection = () => {
                             delay: 1.5
                           }}
                         >
-                          <img src="icons/python.png" alt="Python" className="h-8 w-8" />
+                          <img src="icons/git.png" alt="Git" className="h-8 w-8" />
                         </motion.div>
                       </motion.div>
                     </div>
@@ -261,79 +265,56 @@ const AboutSection = () => {
               
               {/* Education Slide */}
               <div className="min-w-full">
-                <div className="max-w-4xl mx-auto">
+                <div className="max-w-3xl mx-auto">
                   <div className="timeline-container">
-                    <motion.div 
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6 }}
-                      className="timeline-item"
-                    >
-                      <div className="glass p-6 rounded-xl shadow-lg border border-orange-500/20">
-                        <h3 className="text-2xl font-bold text-gray-800 mb-2">Master of Computer Applications</h3>
-                        <div className="flex justify-between mb-4">
-                          <p className="text-orange-600 font-semibold">KL University</p>
-                          <p className="text-gray-500">2021 - 2023</p>
+                    {[
+                      {
+                        degree: "Bachelor of Technology in Computer Science",
+                        institution: "KL University",
+                        year: "2023 - 2027",
+                        description: "Focused on core computer science fundamentals, data structures, algorithms, and modern web development technologies.",
+                        achievements: ["GPA: 9.44/10", "Technical Lead for University Hackathon"]
+                      },
+
+                      {
+                        degree: "High School",
+                        institution: "R L S Y College, bettiah",
+                        year: "2020 - 2022",
+                        description: "Focused on Mathematics, Physics, and Computer Science with excellence in academic performance.",
+                        achievements: ["Science Olympiad Finalist"]
+                      }
+                    ].map((education, index) => (
+                      <motion.div 
+                        key={index}
+                        className="timeline-item"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.2 + (index * 0.2) }}
+                      >
+                        <div className="bg-gradient-warm p-[1px] rounded-2xl shadow-xl">
+                          <div className="glass rounded-2xl p-6">
+                            <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                              <h3 className="text-xl font-bold text-gray-800">{education.degree}</h3>
+                              <span className="text-orange-600 font-medium text-sm px-3 py-1 rounded-full bg-orange-100 inline-block mt-2 md:mt-0">
+                                {education.year}
+                              </span>
+                            </div>
+                            <p className="text-gray-600 font-medium mb-3">{education.institution}</p>
+                            <p className="text-gray-700 mb-4">{education.description}</p>
+                            <div className="space-y-2">
+                              <h4 className="font-semibold text-gray-800">Key Achievements:</h4>
+                              <ul className="list-disc list-inside space-y-1">
+                                {education.achievements.map((achievement, i) => (
+                                  <li key={i} className="text-gray-700">
+                                    {achievement}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
                         </div>
-                        <p className="text-gray-700">
-                          Specialized in Full-Stack Development with a focus on modern JavaScript frameworks and cloud technologies.
-                          Completed multiple real-world projects and earned a GPA of 9.4/10.
-                        </p>
-                        <div className="mt-4 flex flex-wrap gap-2">
-                          <span className="text-xs bg-orange-100 text-orange-700 px-3 py-1 rounded-full">React</span>
-                          <span className="text-xs bg-orange-100 text-orange-700 px-3 py-1 rounded-full">Node.js</span>
-                          <span className="text-xs bg-orange-100 text-orange-700 px-3 py-1 rounded-full">Cloud Computing</span>
-                        </div>
-                      </div>
-                    </motion.div>
-                    
-                    <motion.div 
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 0.2 }}
-                      className="timeline-item"
-                    >
-                      <div className="glass p-6 rounded-xl shadow-lg border border-orange-500/20">
-                        <h3 className="text-2xl font-bold text-gray-800 mb-2">Bachelor of Computer Applications</h3>
-                        <div className="flex justify-between mb-4">
-                          <p className="text-orange-600 font-semibold">University of Technology</p>
-                          <p className="text-gray-500">2018 - 2021</p>
-                        </div>
-                        <p className="text-gray-700">
-                          Built a strong foundation in computer science fundamentals, data structures, and algorithms.
-                          Participated in various hackathons and coding competitions.
-                        </p>
-                        <div className="mt-4 flex flex-wrap gap-2">
-                          <span className="text-xs bg-orange-100 text-orange-700 px-3 py-1 rounded-full">Java</span>
-                          <span className="text-xs bg-orange-100 text-orange-700 px-3 py-1 rounded-full">Python</span>
-                          <span className="text-xs bg-orange-100 text-orange-700 px-3 py-1 rounded-full">Data Structures</span>
-                        </div>
-                      </div>
-                    </motion.div>
-                    
-                    <motion.div 
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 0.4 }}
-                      className="timeline-item"
-                    >
-                      <div className="glass p-6 rounded-xl shadow-lg border border-orange-500/20">
-                        <h3 className="text-2xl font-bold text-gray-800 mb-2">Continuous Learning</h3>
-                        <div className="flex justify-between mb-4">
-                          <p className="text-orange-600 font-semibold">Online & Self-Paced</p>
-                          <p className="text-gray-500">2021 - Present</p>
-                        </div>
-                        <p className="text-gray-700">
-                          Continuously expanding my knowledge through online courses, workshops, and hands-on projects.
-                          Recently completed certifications in cloud technologies and advanced JavaScript patterns.
-                        </p>
-                        <div className="mt-4 flex flex-wrap gap-2">
-                          <span className="text-xs bg-orange-100 text-orange-700 px-3 py-1 rounded-full">AWS</span>
-                          <span className="text-xs bg-orange-100 text-orange-700 px-3 py-1 rounded-full">TypeScript</span>
-                          <span className="text-xs bg-orange-100 text-orange-700 px-3 py-1 rounded-full">DevOps</span>
-                        </div>
-                      </div>
-                    </motion.div>
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
               </div>

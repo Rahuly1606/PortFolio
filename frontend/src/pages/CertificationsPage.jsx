@@ -61,8 +61,13 @@ const CertificationsPage = () => {
           transition={{ duration: 0.5 }}
         >
           {/* Background elements */}
-          <div className="absolute inset-0 bg-black"></div>
-          <div className="absolute inset-0 opacity-10 bg-grid-pattern"></div>
+          <div className="absolute inset-0 bg-white"></div>
+          <div className="absolute inset-0 bg-grid opacity-5"></div>
+          
+          {/* Improved decorative elements */}
+          <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse-slow"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-coral-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
+          <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-amber-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float"></div>
           
           <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
             <motion.div
@@ -75,7 +80,7 @@ const CertificationsPage = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.5 }}
-                className="inline-block px-6 py-2 mb-4 rounded-full bg-purple-900/30 text-purple-300 font-medium text-sm"
+                className="inline-block px-6 py-2 mb-4 rounded-full bg-orange-900/30 text-orange-300 font-medium text-sm"
               >
                 Achievements
               </motion.div>
@@ -86,7 +91,7 @@ const CertificationsPage = () => {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-5xl font-extrabold"
               >
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-purple-500 glow-text">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-coral-500 glow-text">
                   All My Certifications
                 </span>
               </motion.h2>
@@ -108,7 +113,7 @@ const CertificationsPage = () => {
               >
                 <Link 
                   to="/"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-purple-500 text-white hover:shadow-purple-500/50 transition-all duration-300"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-orange-600 to-coral-500 text-white hover:shadow-orange-500/50 transition-all duration-300"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -127,20 +132,20 @@ const CertificationsPage = () => {
                   transition={{ duration: 0.5, delay: 0.4 + (index * 0.1) }}
                   whileHover={{ 
                     y: -10,
-                    boxShadow: "0 20px 25px -5px rgba(139, 92, 246, 0.3), 0 10px 10px -5px rgba(139, 92, 246, 0.2)",
+                    boxShadow: "0 20px 25px -5px rgba(255, 106, 0, 0.3), 0 10px 10px -5px rgba(255, 106, 0, 0.2)",
                     transition: { duration: 0.3, ease: "easeOut" }
                   }}
                   className="group relative bg-gray-900 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 border border-gray-800 glow-border"
                 >
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-purple-500"></div>
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-coral-500"></div>
                   <div className="p-8">
-                    <div className="w-16 h-16 rounded-full bg-purple-900/30 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="w-16 h-16 rounded-full bg-orange-900/30 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
                     </div>
                     
-                    <h3 className="text-2xl font-bold text-gray-100 mb-2 group-hover:text-purple-400 transition-colors duration-300">
+                    <h3 className="text-2xl font-bold text-gray-100 mb-2 group-hover:text-orange-400 transition-colors duration-300">
                       {certificate.name}
                     </h3>
                     
@@ -152,7 +157,7 @@ const CertificationsPage = () => {
                       href={certificate.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center text-purple-400 font-medium group/link"
+                      className="inline-flex items-center text-orange-400 font-medium group/link"
                       whileHover={{ x: 5 }}
                     >
                       Verify Certificate

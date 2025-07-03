@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Dialog, DialogPanel } from '@headlessui/react';
+import React, { useState, useEffect, Fragment } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation, Link } from 'react-router-dom';
@@ -165,8 +165,55 @@ function Navbar() {
             </Link>
           </motion.div>
           
-          <div className="flex items-center gap-4 ml-auto">
-            <div className="flex lg:hidden">
+          <div className="flex items-center justify-center gap-4 w-full">
+            {/* Desktop navigation */}
+            <div className="hidden lg:flex lg:gap-x-6 lg:justify-center mx-auto">
+              {getFilteredNavItems().filter(item => !item.download).map((item, index) => (
+                <motion.div key={item.name} className="relative">
+                  <Link
+                    to={item.href}
+                    onClick={(e) => isHomePage && item.href.startsWith('#') && handleSmoothScroll(e, item.href)}
+                    className={`text-sm font-medium transition-colors duration-300 px-3 py-2 rounded-md hover:text-orange-600 relative group ${
+                      activeSection === item.href.substring(1) ? 'text-orange-600 font-semibold' : 'text-gray-700'
+                    }`}
+                  >
+                    {item.name}
+                    <span 
+                      className={`absolute bottom-0 left-0 w-full h-0.5 rounded bg-gradient-warm origin-left transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out ${
+                        activeSection === item.href.substring(1) ? 'scale-x-100' : ''
+                      }`}
+                    ></span>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Resume button for all screen sizes */}
+            <div className="hidden sm:flex">
+              {getFilteredNavItems().filter(item => item.download).map((item) => (
+                <motion.a
+                  key={item.name}
+                  href={item.href}
+                  onClick={(e) => handleDownload(e, item.href)}
+                  className="text-sm font-semibold relative px-4 py-2 rounded-md transition-all duration-300 bg-gradient-warm text-black shadow-md hover:text-orange-600 hover:shadow-orange-500/30"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <span className="flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    {item.name}
+                  </span>
+                </motion.a>
+              ))}
+            </div>
+            
+            {/* Mobile menu button */}
+            <div className="flex lg:hidden ml-auto">
               <motion.button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -182,48 +229,28 @@ function Navbar() {
                   <MenuIcon className="h-6 w-6" aria-hidden="true" />
                 )}
               </motion.button>
-            </div>
           </div>
           
-          <div className="hidden lg:flex lg:gap-x-6 ml-6">
-            {getFilteredNavItems().map((item, index) => (
-              <motion.div key={item.name} className="relative">
-                {item.download ? (
+            {/* Resume button for small mobile only */}
+            <div className="flex sm:hidden">
                   <motion.a
-                    href={item.href}
-                    onClick={(e) => handleDownload(e, item.href)}
-                    className="text-sm font-semibold relative px-4 py-2 rounded-md transition-all duration-300 bg-gradient-warm text-white shadow-md hover:shadow-orange-500/30"
+                href="Resume.pdf"
+                onClick={(e) => handleDownload(e, "Resume.pdf")}
+                className="text-sm font-semibold relative px-4 py-2 rounded-md transition-all duration-300 bg-gradient-warm text-black shadow-md hover:text-orange-600 hover:shadow-orange-500/30"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                transition={{ duration: 0.3 }}
                   >
                     <span className="flex items-center gap-1">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                       </svg>
-                      {item.name}
+                  Resume
                     </span>
                   </motion.a>
-                ) : (
-                  <Link
-                    to={item.href}
-                    onClick={(e) => isHomePage && item.href.startsWith('#') && handleSmoothScroll(e, item.href)}
-                    className={`text-sm font-medium transition-colors duration-300 px-3 py-2 rounded-md hover:text-orange-600 relative group ${
-                      activeSection === item.href.substring(1) ? 'text-orange-600 font-semibold' : 'text-gray-700'
-                    }`}
-                  >
-                    {item.name}
-                    <span 
-                      className={`absolute bottom-0 left-0 w-full h-0.5 rounded bg-gradient-warm origin-left transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out ${
-                        activeSection === item.href.substring(1) ? 'scale-x-100' : ''
-                      }`}
-                    ></span>
-                  </Link>
-                )}
-              </motion.div>
-            ))}
+            </div>
           </div>
         </div>
       </nav>
@@ -235,62 +262,89 @@ function Navbar() {
             as={motion.div}
             static
             open={mobileMenuOpen}
-            onClose={setMobileMenuOpen}
+            onClose={() => setMobileMenuOpen(false)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 lg:hidden"
           >
+            <Transition.Root show={mobileMenuOpen}>
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+          >
             <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" aria-hidden="true" />
+              </Transition.Child>
             
-            <DialogPanel
+              <Transition.Child
               as={motion.div}
+                enter="transform transition ease-in-out duration-300"
+                enterFrom="translate-x-full"
+                enterTo="translate-x-0"
+                leave="transform transition ease-in-out duration-300"
+                leaveFrom="translate-x-0"
+                leaveTo="translate-x-full"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="fixed inset-y-0 right-0 w-full max-w-xs glass overflow-y-auto"
+                transition={{ type: 'spring', damping: 25 }}
+                className="fixed inset-y-0 right-0 z-50 w-full max-w-xs bg-white/95 backdrop-blur-md shadow-xl p-6 overflow-y-auto"
             >
-              <div className="flex items-center justify-between px-6 py-4 border-b border-orange-500/10">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center justify-between mb-8">
+                  <Link
+                    to="/"
+                    onClick={(e) => {
+                      isHomePage && handleSmoothScroll(e, '#home');
+                      setMobileMenuOpen(false);
+                    }}
+                    className="flex items-center gap-2"
+                  >
                   <img
+                      alt="Portfolio Logo"
                     src="/img.jpeg"
-                    alt="Portfolio logo"
                     className="h-8 w-8 rounded-full border-2 border-orange-500"
                   />
                   <span className="text-lg font-bold bg-gradient-to-r from-orange-500 to-coral-500 bg-clip-text text-transparent">
                     Rahul Kumar
                   </span>
-                </div>
+                  </Link>
                 <button
                   type="button"
-                  className="text-gray-700 p-1.5 rounded-md hover:bg-gray-100"
                   onClick={() => setMobileMenuOpen(false)}
+                    className="p-2 rounded-md text-gray-500 hover:text-gray-700"
                 >
+                    <span className="sr-only">Close menu</span>
                   <XIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
               </div>
               
-              <div className="px-2 py-6">
-                <div className="grid gap-y-8">
-                  {getFilteredNavItems().map((item) => (
-                    <div key={item.name} className="-mx-3">
+                <div className="space-y-1">
+                  {getFilteredNavItems().map((item, index) => (
+                    <motion.div
+                      key={item.name}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                    >
                       {item.download ? (
-                        <motion.a
+                        <a
                           href={item.href}
                           onClick={(e) => {
                             handleDownload(e, item.href);
                             setMobileMenuOpen(false);
                           }}
-                          whileHover={{ backgroundColor: 'rgba(255, 106, 0, 0.05)' }}
-                          whileTap={{ scale: 0.98 }}
-                          className="flex items-center gap-2 py-3 px-5 text-base font-medium text-gray-700 rounded-lg hover:bg-orange-50 transition-colors duration-300"
+                          className="flex items-center gap-2 w-full px-4 py-3 rounded-md text-sm font-medium bg-gradient-warm text-black hover:text-orange-600"
                         >
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                           </svg>
                           {item.name}
-                        </motion.a>
+                        </a>
                       ) : (
                         <Link
                           to={item.href}
@@ -305,9 +359,8 @@ function Navbar() {
                           {item.name}
                         </Link>
                       )}
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
               </div>
               
               <div className="px-6 py-6 border-t border-orange-500/10">
@@ -342,7 +395,8 @@ function Navbar() {
                   </motion.a>
                 </div>
               </div>
-            </DialogPanel>
+              </Transition.Child>
+            </Transition.Root>
           </Dialog>
         )}
       </AnimatePresence>

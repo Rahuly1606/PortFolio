@@ -201,8 +201,13 @@ function App() {
         ref={certificatesRef}
       >
         {/* Background elements */}
-        <div className="absolute inset-0 bg-black"></div>
-        <div className="absolute inset-0 opacity-10 bg-grid-pattern"></div>
+        <div className="absolute inset-0 bg-white"></div>
+        <div className="absolute inset-0 bg-grid opacity-5"></div>
+        
+        {/* Improved decorative elements */}
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-coral-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
+        <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-rose-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float"></div>
         
         <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
           <motion.div
@@ -215,7 +220,7 @@ function App() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="inline-block px-6 py-2 mb-4 rounded-full bg-purple-900/30 text-purple-300 font-medium text-sm"
+              className="inline-block px-6 py-2 mb-4 rounded-full bg-orange-900/30 text-orange-300 font-medium text-sm"
             >
               Achievements
             </motion.div>
@@ -226,7 +231,7 @@ function App() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-5xl font-extrabold"
             >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-indigo-400 glow-text">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-coral-400 glow-text">
                 My Certifications
               </span>
             </motion.h2>
@@ -250,24 +255,24 @@ function App() {
                 transition={{ duration: 0.5, delay: 0.4 + (index * 0.1) }}
                 whileHover={{ 
                   y: -10,
-                  boxShadow: "0 20px 25px -5px rgba(139, 92, 246, 0.3), 0 10px 10px -5px rgba(139, 92, 246, 0.2)",
+                  boxShadow: "0 20px 25px -5px rgba(255, 106, 0, 0.3), 0 10px 10px -5px rgba(255, 106, 0, 0.2)",
                   transition: { duration: 0.3, ease: "easeOut" }
                 }}
-                className="group relative bg-gray-900 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 border border-gray-800 glow-border"
+                className="group relative bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 border border-gray-200 glow-border"
               >
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-indigo-500"></div>
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-coral-500"></div>
                 <div className="p-8">
-                  <div className="w-16 h-16 rounded-full bg-purple-900/30 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div className="w-16 h-16 rounded-full bg-orange-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
                   </div>
                   
-                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors duration-300">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-300">
                     {certificate.name}
                   </h3>
                   
-                  <p className="text-gray-400 mb-6">
+                  <p className="text-gray-700 mb-6">
                     Issued by: <span className="font-semibold">{certificate.issuer}</span>
                   </p>
                   
@@ -275,7 +280,7 @@ function App() {
                     href={certificate.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-purple-400 font-medium group/link"
+                    className="inline-flex items-center text-orange-400 font-medium group/link"
                     whileHover={{ x: 5 }}
                   >
                     Verify Certificate
@@ -308,7 +313,7 @@ function App() {
           >
             <Link 
               to="/certifications"
-              className="inline-flex items-center px-8 py-3 rounded-full bg-gray-900 text-purple-400 font-medium border border-purple-500/30 shadow-md hover:shadow-lg hover:border-purple-500/70 transition-all duration-300 glow-border"
+              className="inline-flex items-center px-8 py-3 rounded-full bg-white text-orange-600 font-medium border border-orange-500/30 shadow-md hover:shadow-lg hover:border-orange-500/70 transition-all duration-300 glow-border"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -326,32 +331,13 @@ function App() {
         ref={skillsRef}
       >
         {/* Background elements */}
-        <div className="absolute inset-0 bg-black"></div>
-        <div className="absolute inset-0 opacity-10 bg-grid-pattern"></div>
+        <div className="absolute inset-0 bg-white"></div>
+        <div className="absolute inset-0 bg-grid opacity-5"></div>
         
-        {/* Animated particles */}
-        {[...Array(15)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-purple-500 opacity-20"
-            style={{
-              width: Math.random() * 10 + 5,
-              height: Math.random() * 10 + 5,
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, Math.random() * 100 - 50],
-              opacity: [0.1, 0.3, 0.1],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut",
-            }}
-          />
-        ))}
+        {/* Improved decorative elements */}
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-coral-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
+        <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-amber-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float"></div>
         
         <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
           <motion.div
@@ -364,7 +350,7 @@ function App() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="inline-block px-6 py-2 mb-4 rounded-full bg-purple-900/30 text-purple-300 font-medium text-sm"
+              className="inline-block px-6 py-2 mb-4 rounded-full bg-orange-900/30 text-orange-300 font-medium text-sm"
             >
               Expertise
             </motion.div>
@@ -375,7 +361,7 @@ function App() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-5xl font-extrabold"
             >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-indigo-400 glow-text">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-coral-400 glow-text">
                 My Skills
               </span>
             </motion.h2>
@@ -400,9 +386,9 @@ function App() {
             {["All Skills", "Frontend", "Backend", "Languages", "Tools"].map((category, index) => (
               <motion.button
                 key={category}
-                whileHover={{ scale: 1.05, backgroundColor: "rgba(139, 92, 246, 0.3)" }}
+                whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 106, 0, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-6 py-2 rounded-full ${index === 0 ? 'bg-purple-600/30 text-purple-300 border border-purple-500/50' : 'bg-gray-900 text-gray-300 border border-gray-800'} font-medium text-sm transition-all duration-300`}
+                className={`px-6 py-2 rounded-full ${index === 0 ? 'bg-orange-600/30 text-orange-300 border border-orange-500/50' : 'bg-gray-900 text-gray-300 border border-gray-800'} font-medium text-sm transition-all duration-300`}
               >
                 {category}
               </motion.button>
@@ -416,12 +402,12 @@ function App() {
             transition={{ duration: 0.5, delay: 0.5 }}
             className="mb-16"
           >
-            <h3 className="text-2xl font-bold text-gray-100 mb-8 flex items-center">
-              <div className="w-10 h-10 rounded-full bg-purple-900/30 flex items-center justify-center mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <h3 className="text-2xl font-bold text-black mb-8 flex items-center justify-center">
+              <span className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center mr-3">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
-              </div>
+              </span>
               Featured Skills
             </h3>
             
@@ -440,7 +426,7 @@ function App() {
                   transition={{ duration: 0.3, delay: 0.6 + (index * 0.1) }}
                   whileHover={{ 
                     y: -10,
-                    boxShadow: "0 15px 30px -5px rgba(139, 92, 246, 0.3)",
+                    boxShadow: "0 15px 30px -5px rgba(255, 106, 0, 0.3)",
                     backgroundColor: "rgba(30, 30, 40, 0.9)",
                     transition: { duration: 0.3 }
                   }}
@@ -450,7 +436,7 @@ function App() {
                     <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain" />
                   </div>
                   <h4 className="text-lg font-bold text-gray-100 mb-1">{skill.name}</h4>
-                  <span className="text-xs font-medium px-3 py-1 rounded-full bg-purple-900/30 text-purple-300">{skill.level}</span>
+                  <span className="text-xs font-medium px-3 py-1 rounded-full bg-orange-900/30 text-orange-300">{skill.level}</span>
                 </motion.div>
               ))}
             </div>
@@ -463,11 +449,11 @@ function App() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
-              className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-purple-500/30 transition-all duration-500 shadow-lg hover:shadow-purple-500/10"
+              className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-orange-500/30 transition-all duration-500 shadow-lg hover:shadow-orange-500/10"
             >
               <div className="flex items-center mb-8">
-                <div className="w-12 h-12 rounded-full bg-purple-900/30 flex items-center justify-center mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="w-12 h-12 rounded-full bg-orange-900/30 flex items-center justify-center mr-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                   </svg>
                 </div>
@@ -483,17 +469,17 @@ function App() {
                     transition={{ duration: 0.3, delay: 0.7 + (index * 0.1) }}
                     className="group relative overflow-hidden"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 rounded-lg"></div>
-                    <div className="relative p-4 rounded-lg bg-gray-700/50 border border-gray-600/50 group-hover:border-purple-500/50 transition-colors duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 rounded-lg"></div>
+                    <div className="relative p-4 rounded-lg bg-gray-700/50 border border-gray-600/50 group-hover:border-orange-500/50 transition-colors duration-300">
                       <div className="flex items-center mb-3">
                         <img src={skill.icon} alt={skill.name} className="h-8 w-8 mr-3 group-hover:scale-110 transition-transform duration-300" />
-                        <h3 className="text-lg font-semibold text-gray-200 group-hover:text-purple-300 transition-colors duration-300">
+                        <h3 className="text-lg font-semibold text-gray-200 group-hover:text-orange-300 transition-colors duration-300">
                           {skill.name}
                         </h3>
                       </div>
                       <div className="h-2 bg-gray-600/50 rounded-full overflow-hidden">
                         <motion.div
-                          className="h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full"
+                          className="h-full bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full"
                           initial={{ width: 0 }}
                           animate={{ width: `${skill.progress}%` }}
                           transition={{ duration: 1, delay: 0.8 + (index * 0.1) }}
@@ -510,11 +496,11 @@ function App() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.7 }}
-              className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-blue-500/30 transition-all duration-500 shadow-lg hover:shadow-blue-500/10"
+              className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-yellow-500/30 transition-all duration-500 shadow-lg hover:shadow-yellow-500/10"
             >
               <div className="flex items-center mb-8">
-                <div className="w-12 h-12 rounded-full bg-blue-900/30 flex items-center justify-center mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="w-12 h-12 rounded-full bg-yellow-900/30 flex items-center justify-center mr-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
                 </div>
@@ -532,22 +518,22 @@ function App() {
                       y: -5,
                       transition: { duration: 0.3 }
                     }}
-                    className="bg-gray-700/50 rounded-lg p-5 border border-gray-600/50 hover:border-blue-500/50 transition-all duration-300"
+                    className="bg-gray-700/50 rounded-lg p-5 border border-gray-600/50 hover:border-yellow-500/50 transition-all duration-300"
                   >
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center">
-                        <div className="w-10 h-10 rounded-full bg-blue-900/20 flex items-center justify-center mr-3 p-2">
+                        <div className="w-10 h-10 rounded-full bg-yellow-900/20 flex items-center justify-center mr-3 p-2">
                           <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain" />
                         </div>
                         <h3 className="text-lg font-semibold text-gray-200">
                           {skill.name}
                         </h3>
                       </div>
-                      <span className="text-sm font-bold text-blue-400">{skill.progress}%</span>
+                      <span className="text-sm font-bold text-yellow-400">{skill.progress}%</span>
                     </div>
                     <div className="h-2 bg-gray-600/50 rounded-full overflow-hidden">
                       <motion.div
-                        className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"
+                        className="h-full bg-gradient-to-r from-yellow-500 to-amber-500 rounded-full"
                         initial={{ width: 0 }}
                         animate={{ width: `${skill.progress}%` }}
                         transition={{ duration: 1, delay: 0.9 + (index * 0.1) }}
@@ -570,11 +556,11 @@ function App() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.8 }}
-              className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-green-500/30 transition-all duration-500 shadow-lg hover:shadow-green-500/10"
+              className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-lime-500/30 transition-all duration-500 shadow-lg hover:shadow-lime-500/10"
             >
               <div className="flex items-center mb-8">
-                <div className="w-12 h-12 rounded-full bg-green-900/30 flex items-center justify-center mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="w-12 h-12 rounded-full bg-lime-900/30 flex items-center justify-center mr-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-lime-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
                   </svg>
                 </div>
@@ -590,14 +576,14 @@ function App() {
                     transition={{ duration: 0.3, delay: 0.9 + (index * 0.1) }}
                     className="group relative"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-cyan-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="relative bg-gray-700/50 rounded-xl p-6 border border-gray-600/50 group-hover:border-green-500/50 transition-all duration-300 z-10">
+                    <div className="absolute inset-0 bg-gradient-to-br from-lime-500/20 to-emerald-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="relative bg-gray-700/50 rounded-xl p-6 border border-gray-600/50 group-hover:border-lime-500/50 transition-all duration-300 z-10">
                       <div className="flex items-center mb-6">
-                        <div className="w-12 h-12 rounded-lg bg-gray-800/80 flex items-center justify-center mr-4 p-2 group-hover:bg-green-900/30 transition-colors duration-300">
+                        <div className="w-12 h-12 rounded-lg bg-gray-800/80 flex items-center justify-center mr-4 p-2 group-hover:bg-lime-900/30 transition-colors duration-300">
                           <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain" />
                         </div>
                         <div>
-                          <h3 className="text-xl font-bold text-gray-200 group-hover:text-green-300 transition-colors duration-300">
+                          <h3 className="text-xl font-bold text-gray-200 group-hover:text-lime-300 transition-colors duration-300">
                             {skill.name}
                           </h3>
                           <div className="flex items-center mt-1">
@@ -605,7 +591,7 @@ function App() {
                               <svg 
                                 key={i} 
                                 xmlns="http://www.w3.org/2000/svg" 
-                                className={`h-4 w-4 ${i < skill.progress/20 ? 'text-green-400' : 'text-gray-600'}`} 
+                                className={`h-4 w-4 ${i < skill.progress/20 ? 'text-lime-400' : 'text-gray-600'}`} 
                                 fill="currentColor" 
                                 viewBox="0 0 20 20"
                               >
@@ -619,7 +605,7 @@ function App() {
                       
                       <div className="h-2 bg-gray-600/50 rounded-full overflow-hidden">
                         <motion.div
-                          className="h-full bg-gradient-to-r from-green-500 to-cyan-500 rounded-full"
+                          className="h-full bg-gradient-to-r from-lime-500 to-emerald-500 rounded-full"
                           initial={{ width: 0 }}
                           animate={{ width: `${skill.progress}%` }}
                           transition={{ duration: 1, delay: 1 + (index * 0.1) }}
@@ -662,9 +648,9 @@ function App() {
             transition={{ duration: 0.5, delay: 0.9 }}
             className="mt-16"
           >
-            <h3 className="text-2xl font-bold text-gray-100 mb-8 flex items-center">
-              <div className="w-10 h-10 rounded-full bg-indigo-900/30 flex items-center justify-center mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <h3 className="text-2xl font-bold text-black mb-8 flex items-center">
+              <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                 </svg>
               </div>
@@ -684,10 +670,11 @@ function App() {
                   transition={{ duration: 0.3, delay: 1 + (index * 0.05) }}
                   whileHover={{ 
                     scale: 1.05,
-                    backgroundColor: "rgba(139, 92, 246, 0.3)",
+                    backgroundColor: "rgba(255, 255, 255, 0.9)",
+                    color: "#000000",
                     transition: { duration: 0.2 }
                   }}
-                  className="px-4 py-2 bg-gray-800/80 text-gray-300 rounded-lg border border-gray-700/50 transition-all duration-300"
+                  className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg border border-orange-100 transition-all duration-300"
                 >
                   {skill}
                 </motion.div>
@@ -705,8 +692,13 @@ function App() {
         ref={linksRef}
       >
         {/* Background elements */}
-        <div className="absolute inset-0 bg-black"></div>
-        <div className="absolute inset-0 opacity-10 bg-grid-pattern"></div>
+        <div className="absolute inset-0 bg-white"></div>
+        <div className="absolute inset-0 bg-grid opacity-5"></div>
+        
+        {/* Improved decorative elements */}
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-yellow-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
+        <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-amber-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float"></div>
         
         <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
           <motion.div
@@ -719,7 +711,7 @@ function App() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="inline-block px-6 py-2 mb-4 rounded-full bg-purple-900/30 text-purple-300 font-medium text-sm"
+              className="inline-block px-6 py-2 mb-4 rounded-full bg-orange-100 text-orange-600 font-medium text-sm"
             >
               Coding Profiles
             </motion.div>
@@ -730,7 +722,7 @@ function App() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-5xl font-extrabold"
             >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-indigo-400 glow-text">
+              <span className="text-orange-600 text-shadow-sm">
                 Problem Solving
               </span>
             </motion.h2>
@@ -739,7 +731,7 @@ function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="text-lg text-gray-300 mt-4 max-w-2xl mx-auto"
+              className="text-lg text-gray-700 mt-4 max-w-2xl mx-auto"
             >
               Check out my coding profiles where I solve algorithmic problems and participate in competitions.
             </motion.p>
@@ -757,24 +749,24 @@ function App() {
                 transition={{ duration: 0.5, delay: 0.4 + (index * 0.1) }}
                 whileHover={{ 
                   y: -10,
-                  boxShadow: "0 20px 25px -5px rgba(139, 92, 246, 0.3), 0 10px 10px -5px rgba(139, 92, 246, 0.2)",
+                  boxShadow: "0 20px 25px -5px rgba(255, 106, 0, 0.3), 0 10px 10px -5px rgba(255, 106, 0, 0.2)",
                   transition: { duration: 0.3, ease: "easeOut" }
                 }}
-                className="group bg-gray-900 rounded-2xl p-8 shadow-lg transition-all duration-300 flex flex-col items-center border border-gray-800 glow-border"
+                className="group bg-white rounded-2xl p-8 shadow-lg transition-all duration-300 flex flex-col items-center border border-orange-100 hover:bg-orange-50"
               >
-                <div className="w-20 h-20 rounded-full bg-gray-800 p-4 mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-20 h-20 rounded-full bg-orange-50 p-4 mb-6 group-hover:scale-110 transition-transform duration-300">
                   <img src={link.icon} alt={link.name} className="w-full h-full object-contain" />
                 </div>
                 
-                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors duration-300">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-300">
                   {link.name}
                 </h3>
                 
-                <p className="text-gray-400 text-center mb-6">
+                <p className="text-gray-700 text-center mb-6">
                   {getLinkDescription(link.name)}
                 </p>
                 
-                <div className="mt-auto flex items-center text-purple-400 font-medium">
+                <div className="mt-auto flex items-center text-orange-600 font-medium">
                   <span>Visit Profile</span>
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
