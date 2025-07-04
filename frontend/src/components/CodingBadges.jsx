@@ -482,50 +482,14 @@ const CodingBadges = () => {
               </div>
             </motion.div>
           </motion.div>
-        )}        {/* Call to action */}
+        )}        {/* Call to action - buttons removed */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-16 text-center"
         >
-          <div className="inline-flex flex-wrap justify-center gap-4">
-            <motion.a
-              href="https://leetcode.com/u/klu2300090198/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-gradient-to-r from-orange-600 to-coral-600 hover:from-orange-500 hover:to-coral-500 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300"
-              whileHover={{ y: -5, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(255, 106, 0, 0.5)" }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <img src="/leetcode.png" alt="LeetCode" className="w-5 h-5 object-contain" />
-              View LeetCode Profile
-            </motion.a>
-            
-            <motion.a
-              href="https://www.codechef.com/users/klu2300090198"
-              target="_blank"
-              rel="noopener noreferrer" 
-              className="flex items-center gap-2 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300"
-              whileHover={{ y: -5, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(217, 119, 6, 0.5)" }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <img src="/codechef.jpg" alt="CodeChef" className="w-5 h-5 object-contain rounded-full" />
-              View CodeChef Profile
-            </motion.a>
-            
-            <motion.a
-              href="https://www.hackerrank.com/profile/kl2300090198"
-              target="_blank"
-              rel="noopener noreferrer" 
-              className="flex items-center gap-2 bg-gradient-to-r from-coral-600 to-rose-600 hover:from-coral-500 hover:to-rose-500 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300"
-              whileHover={{ y: -5, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(255, 106, 106, 0.5)" }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <img src="/hackerank.png" alt="HackerRank" className="w-5 h-5 object-contain" />
-              View HackerRank Profile
-            </motion.a>
-          </div>
+          {/* Profile buttons removed as requested */}
         </motion.div>
       </div>
     </motion.section>
