@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Portfolio Color System - Light Blue, Bright Blue, White */
+    --background: 206 42% 95%;
+    /* #E9F1FA */
+    --foreground: 220 14% 20%;
+    /* Dark text for contrast */
+
+    --card: 0 0% 100%;
+    /* Pure white cards */
+    --card-foreground: 220 14% 20%;
+    --card-hover: 0 0% 98%;
+    /* Subtle hover state */
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 14% 20%;
+
+    --primary: 197 100% 45%;
+    /* #00ABE4 - Bright blue */
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 197 100% 55%;
+    /* Lighter blue for gradients */
+    --primary-dark: 197 100% 35%;
+    /* Darker blue for depth */
+
+    --secondary: 206 42% 92%;
+    /* Light blue tint */
+    --secondary-foreground: 220 14% 20%;
+
+    --muted: 206 30% 85%;
+    --muted-foreground: 220 10% 40%;
+
+    --accent: 197 100% 45%;
+    /* Same as primary for consistency */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 206 30% 88%;
+    --input: 206 30% 88%;
+    --ring: 197 100% 45%;
+
+    --radius: 0.75rem;
+
+    /* Glass morphism */
+    --glass: 0 0% 100% / 0.7;
+    --glass-border: 206 30% 90% / 0.5;
+
+    /* Sidebar (if needed) */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 220 14% 20%;
+    --sidebar-primary: 197 100% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 206 42% 92%;
+    --sidebar-accent-foreground: 220 14% 20%;
+    --sidebar-border: 206 30% 88%;
+    --sidebar-ring: 197 100% 45%;
+  }
+
+  .dark {
+    /* Dark mode - keeping similar color scheme but inverted */
+    --background: 220 14% 12%;
+    --foreground: 206 30% 95%;
+
+    --card: 220 14% 16%;
+    --card-foreground: 206 30% 95%;
+    --card-hover: 220 14% 18%;
+
+    --popover: 220 14% 16%;
+    --popover-foreground: 206 30% 95%;
+
+    --primary: 197 100% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 197 100% 55%;
+    --primary-dark: 197 100% 35%;
+
+    --secondary: 220 14% 20%;
+    --secondary-foreground: 206 30% 95%;
+
+    --muted: 220 14% 25%;
+    --muted-foreground: 206 20% 70%;
+
+    --accent: 197 100% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 206 30% 95%;
+
+    --border: 220 14% 25%;
+    --input: 220 14% 25%;
+    --ring: 197 100% 45%;
+
+    --glass: 220 14% 16% / 0.7;
+    --glass-border: 220 14% 25% / 0.5;
+
+    --sidebar-background: 220 14% 14%;
+    --sidebar-foreground: 206 30% 95%;
+    --sidebar-primary: 197 100% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 20%;
+    --sidebar-accent-foreground: 206 30% 95%;
+    --sidebar-border: 220 14% 25%;
+    --sidebar-ring: 197 100% 45%;
+  }
+}
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-secondary;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-dark;
+  }
+
+  /* Accessibility - Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+
+  /* Glass card effect */
+  .glass-card {
+    @apply bg-card/70 backdrop-blur-md border border-glass-border rounded-2xl;
+  }
+
+  /* Primary button variant */
+  .btn-primary {
+    @apply bg-gradient-primary text-primary-foreground px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-card-hover hover:scale-105 active:scale-100;
+  }
+
+  /* Secondary button variant */
+  .btn-secondary {
+    @apply bg-card border-2 border-primary text-primary px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:shadow-card active:scale-95;
+  }
+
+  /* Link styles */
+  .link-hover {
+    @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
+  }
+
+  /* Section padding */
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24;
+  }
+
+  /* Container max width */
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-primary bg-clip-text text-transparent;
+  }
+
+  /* Loading skeleton */
+  .skeleton {
+    @apply animate-shimmer bg-gradient-to-r from-secondary via-muted to-secondary bg-[length:200%_100%];
+  }
+}
