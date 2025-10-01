@@ -68,7 +68,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg bg-secondary/50 hover:bg-secondary transition-colors"
+            className="md:hidden p-3 rounded-lg bg-primary/90 text-primary-foreground hover:bg-primary shadow-md transition-all hover:shadow-lg"
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -83,7 +83,7 @@ const Navbar = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden border-t border-border"
+              className="md:hidden border-t border-border bg-background/95 backdrop-blur-lg"
             >
               <div className="px-2 pt-2 pb-3 space-y-1">
                 {navLinks.map((link) => (
