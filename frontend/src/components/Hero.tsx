@@ -108,9 +108,12 @@ const Hero = () => {
                 size="lg"
                 variant="outline"
                 className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                asChild
               >
-                <Download className="mr-2 h-5 w-5" />
-                Download Resume
+                <a href="/Resume.pdf" download="Resume.pdf">
+                  <Download className="mr-2 h-5 w-5" />
+                  Download Resume
+                </a>
               </Button>
             </motion.div>
           </motion.div>
@@ -130,7 +133,7 @@ const Hero = () => {
               <div className="w-72 h-72 md:w-96 md:h-96 relative">
                 {/* Gradient Ring */}
                 <div className="absolute inset-0 rounded-full gradient-accent opacity-75 blur-2xl" />
-                
+
                 {/* Profile Image Container */}
                 <div className="absolute inset-4 rounded-full glass overflow-hidden border-4 border-primary/30">
                   <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">

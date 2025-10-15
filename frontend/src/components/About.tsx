@@ -96,7 +96,11 @@ const About = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <FileText className="w-5 h-5 text-primary" />
-                  <a href="#" className="text-sm text-primary hover:underline">
+                  <a
+                    href="/Resume.pdf"
+                    download="Resume.pdf"
+                    className="text-sm text-primary hover:underline"
+                  >
                     Download Resume
                   </a>
                 </div>
