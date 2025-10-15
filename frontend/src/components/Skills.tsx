@@ -1,92 +1,94 @@
-import { motion } from 'framer-motion';
-import { Code2, Server, Cloud, Brain, Users, Database } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Code, Palette, Server, Cloud, Zap, Users } from "lucide-react";
 
 const Skills = () => {
   const skillCategories = [
     {
-      title: 'Programming & Core CS',
-      icon: Code2,
-      skills: ['Java', 'Python', 'JavaScript', 'C', 'SQL', 'Data Structures & Algorithms', 'OOP', 'System Design'],
+      icon: Code,
+      title: "Programming & Core CS",
+      skills: ["Java", "Python", "JavaScript", "C", "SQL", "DSA", "OOP", "System Design"],
     },
     {
-      title: 'Frontend',
-      icon: Code2,
-      skills: ['React.js', 'HTML5', 'CSS3', 'Tailwind CSS', 'DaisyUI'],
+      icon: Palette,
+      title: "Frontend",
+      skills: ["React.js", "HTML5", "CSS3", "Tailwind CSS", "DaisyUI"],
     },
     {
-      title: 'Backend & APIs',
       icon: Server,
-      skills: ['Django', 'Node.js/Express', 'Spring Boot', 'RESTful API development'],
+      title: "Backend & APIs",
+      skills: ["Django", "Node.js", "Express", "Spring Boot", "RESTful APIs"],
     },
     {
-      title: 'Cloud, DevOps & Databases',
       icon: Cloud,
-      skills: ['AWS (EC2, S3, Lambda, SageMaker)', 'Azure', 'CI/CD', 'MongoDB', 'MySQL', 'SQLite'],
+      title: "Cloud & Databases",
+      skills: ["AWS (EC2, S3, Lambda)", "Azure", "MongoDB", "MySQL", "SQLite"],
     },
     {
-      title: 'Real-Time & AI',
-      icon: Brain,
-      skills: ['Socket.IO', 'OpenAI APIs', 'NLP', 'SentenceTransformers', 'InsightFace (ArcFace)'],
+      icon: Zap,
+      title: "Real-Time & AI",
+      skills: ["Socket.IO", "OpenAI APIs", "NLP", "SentenceTransformers", "ArcFace"],
     },
     {
-      title: 'Consulting Skills',
       icon: Users,
-      skills: ['Requirements analysis', 'Stakeholder communication', 'Scoping', 'Risk mitigation'],
+      title: "Consulting Skills",
+      skills: ["Requirements Analysis", "Stakeholder Communication", "Scoping", "Risk Mitigation"],
     },
   ];
 
   return (
-    <section id="skills" className="section-padding">
-      <div className="container-max">
+    <section id="skills" className="py-20 relative">
+      <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">
-            Technical <span className="gradient-text">Skills</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Technical <span className="text-gradient">Skills</span>
           </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Comprehensive display of technical competencies
+          </p>
+        </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {skillCategories.map((category, index) => {
-              const Icon = category.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="glass-card p-6 shadow-card hover:shadow-card-hover transition-all duration-300"
-                >
-                  <div className="flex items-center mb-4">
-                    <div className="p-3 bg-primary/10 rounded-lg mr-4">
-                      <Icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-semibold">{category.title}</h3>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {skillCategories.map((category, index) => (
+            <motion.div
+              key={category.title}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              whileHover={{ y: -8 }}
+            >
+              <Card className="glass border-primary/20 h-full hover:shadow-primary transition-all duration-300">
+                <CardHeader>
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                    <category.icon className="w-6 h-6 text-primary" />
                   </div>
-
+                  <CardTitle className="text-lg">{category.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
                   <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill, i) => (
-                      <motion.span
-                        key={i}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3, delay: index * 0.1 + i * 0.05 }}
-                        viewport={{ once: true }}
-                        whileHover={{ scale: 1.05 }}
-                        className="px-3 py-1.5 bg-secondary text-sm font-medium rounded-lg border border-primary/10 hover:border-primary/30 transition-colors"
+                    {category.skills.map((skill) => (
+                      <Badge
+                        key={skill}
+                        variant="secondary"
+                        className="bg-primary/10 text-primary border-primary/20 hover:bg-primary hover:text-primary-foreground transition-colors"
                       >
                         {skill}
-                      </motion.span>
+                      </Badge>
                     ))}
                   </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </motion.div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

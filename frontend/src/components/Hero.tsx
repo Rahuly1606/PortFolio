@@ -1,166 +1,167 @@
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
-import { Download, ChevronDown } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import profilePhoto from '@/assets/My_photo.jpg';
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { Download, ChevronDown } from "lucide-react";
 
 const Hero = () => {
-  const [mounted, setMounted] = useState(false);
-
-  // Mouse parallax effect
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const rotateX = useSpring(useTransform(mouseY, [-300, 300], [5, -5]), {
-    stiffness: 50,
-    damping: 20,
-  });
+  const rotateX = useSpring(useTransform(mouseY, [-300, 300], [15, -15]));
+  const rotateY = useSpring(useTransform(mouseX, [-300, 300], [-15, 15]));
 
-  const rotateY = useSpring(useTransform(mouseX, [-300, 300], [-5, 5]), {
-    stiffness: 50,
-    damping: 20,
-  });
-
-  useEffect(() => {
-    setMounted(true);
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = document.body.getBoundingClientRect();
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      mouseX.set(e.clientX - centerX);
-      mouseY.set(e.clientY - centerY);
-    };
-
-    if (window.matchMedia('(hover: hover)').matches) {
-      window.addEventListener('mousemove', handleMouseMove);
-      return () => window.removeEventListener('mousemove', handleMouseMove);
-    }
-  }, [mouseX, mouseY]);
-
-  const scrollToProjects = () => {
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    mouseX.set(e.clientX - centerX);
+    mouseY.set(e.clientY - centerY);
   };
 
-  if (!mounted) return null;
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    element?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-    <section className="min-h-screen relative flex items-center justify-center overflow-hidden">
-      {/* Animated background gradient */}
-      <div className="absolute inset-0 bg-gradient-subtle opacity-50" />
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Animated Background Orbs */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            x: [0, 100, 0],
+            y: [0, 50, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+            x: [0, -100, 0],
+            y: [0, -50, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute bottom-20 right-10 w-96 h-96 bg-accent/15 rounded-full blur-3xl"
+        />
       </div>
 
-      <div className="container-max section-padding relative z-10">
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Profile Photo with Parallax */}
+          {/* Text Content */}
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6, type: 'spring', stiffness: 100 }}
-            className="flex justify-center lg:justify-start"
-          >
-            <motion.div
-              style={{ rotateX, rotateY }}
-              className="relative"
-            >
-              <div className="absolute inset-0 bg-gradient-primary rounded-full blur-2xl opacity-20 scale-110" />
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-                className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-primary/20 shadow-card-hover"
-              >
-                <img
-                  src={profilePhoto}
-                  alt="Rahul Kumar - Computer Science Student"
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-            </motion.div>
-          </motion.div>
-
-          {/* Hero Content */}
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center lg:text-left"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
           >
             <motion.h1
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+              className="text-5xl md:text-7xl font-bold mb-4"
             >
-              Rahul Kumar
+              Hi, I'm{" "}
+              <span className="text-gradient">Rahul Kumar</span>
             </motion.h1>
 
             <motion.p
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-xl sm:text-2xl text-primary font-semibold mb-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="text-xl md:text-2xl text-muted-foreground mb-2"
             >
               B.Tech in Computer Science & IT
             </motion.p>
 
             <motion.p
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
               className="text-lg text-muted-foreground mb-8"
             >
               Building innovative solutions with modern technologies
             </motion.p>
 
-            {/* CTA Buttons */}
             <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="flex flex-wrap gap-4 justify-center lg:justify-start"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+              className="flex flex-wrap gap-4"
             >
-              <button
-                onClick={scrollToProjects}
-                className="btn-primary group"
+              <Button
+                size="lg"
+                onClick={() => scrollToSection("projects")}
+                className="bg-primary hover:bg-primary-hover text-primary-foreground shadow-primary"
               >
                 View Projects
-                <ChevronDown className="inline-block ml-2 w-5 h-5 group-hover:translate-y-1 transition-transform" />
-              </button>
-
-              <a
-                href="/resume.pdf"
-                download
-                className="btn-secondary group"
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
               >
-                <Download className="inline-block mr-2 w-5 h-5 group-hover:animate-bounce" />
+                <Download className="mr-2 h-5 w-5" />
                 Download Resume
-              </a>
+              </Button>
+            </motion.div>
+          </motion.div>
+
+          {/* 3D Profile Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="flex justify-center lg:justify-end"
+            onMouseMove={handleMouseMove}
+          >
+            <motion.div
+              style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+              className="relative"
+            >
+              <div className="w-72 h-72 md:w-96 md:h-96 relative">
+                {/* Gradient Ring */}
+                <div className="absolute inset-0 rounded-full gradient-accent opacity-75 blur-2xl" />
+                
+                {/* Profile Image Container */}
+                <div className="absolute inset-4 rounded-full glass overflow-hidden border-4 border-primary/30">
+                  <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                    <div className="w-full h-full bg-muted/30 flex items-center justify-center text-6xl font-bold text-primary">
+                      RK
+                    </div>
+                  </div>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         </div>
-      </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.5 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-      >
+        {/* Scroll Indicator */}
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5 }}
-          className="w-6 h-10 border-2 border-primary rounded-full flex justify-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         >
           <motion.div
-            animate={{ y: [2, 20, 2] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-            className="w-1 h-2 bg-primary rounded-full mt-2"
-          />
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="flex flex-col items-center gap-2 cursor-pointer"
+            onClick={() => scrollToSection("about")}
+          >
+            <span className="text-sm text-muted-foreground">Scroll Down</span>
+            <ChevronDown className="w-6 h-6 text-primary" />
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 };

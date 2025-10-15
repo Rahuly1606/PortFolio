@@ -1,9 +1,12 @@
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import ProjectCard from './ProjectCard';
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import ProjectCard from "./ProjectCard";
+import { ArrowRight } from "lucide-react";
 
 const Projects = () => {
+  const navigate = useNavigate();
+
   const featuredProjects = [
     {
       title: 'Face Logbook',
@@ -29,47 +32,52 @@ const Projects = () => {
       liveUrl: 'https://chat-applications-react-js-xvyj.onrender.com/',
       githubUrl: 'https://github.com/Rahuly1606/Chat-Applications-React-JS-',
     },
+
   ];
 
   return (
-    <section id="projects" className="section-padding bg-secondary/30">
-      <div className="container-max">
+    <section id="projects" className="py-20 relative">
+      <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
-            Featured <span className="gradient-text">Projects</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Featured <span className="text-gradient">Projects</span>
           </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Showcasing my best work in web development, from full-stack applications to innovative solutions
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Showcase of my technical work and problem-solving abilities
           </p>
+        </motion.div>
 
-          {/* Project Cards Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {featuredProjects.map((project, index) => (
-              <ProjectCard key={index} {...project} index={index} />
-            ))}
-          </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          {featuredProjects.map((project, index) => (
+            <ProjectCard
+              key={project.title}
+              {...project}
+              delay={index * 0.1}
+            />
+          ))}
+        </div>
 
-          {/* Explore More Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-center"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-center"
+        >
+          <Button
+            size="lg"
+            onClick={() => navigate("/projects")}
+            className="bg-primary hover:bg-primary-hover text-primary-foreground shadow-primary"
           >
-            <Link
-              to="/projects"
-              className="inline-flex items-center gap-2 btn-primary group"
-            >
-              Explore More Projects
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </motion.div>
+            Explore More Projects
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </Button>
         </motion.div>
       </div>
     </section>

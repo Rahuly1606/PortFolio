@@ -1,13 +1,18 @@
-import { motion } from 'framer-motion';
-import { Award, Calendar, ExternalLink, Download } from 'lucide-react';
-import Navbar from '@/components/Navbar';
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import Navbar from "@/components/Navbar";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Award, ExternalLink, ArrowLeft } from "lucide-react";
 
 const CertificatesPage = () => {
+  const navigate = useNavigate();
+
   const allCertificates = [
     {
       title: 'Oracle Cloud Infrastructure Generative AI Professional',
       issuer: 'Oracle Cloud',
-      date: 'Dec 2023',
+      date: 'Sep 2024',
       image: 'oracle.png',
       verificationUrl: 'https://catalog-education.oracle.com/pls/certview/sharebadge?id=20BBA5622A4DC3CB33169DD8BD069D90C785FEB86DE3F1D1BFF0713EF9DD3787',
       certificateImage: 'oracle.png',
@@ -15,15 +20,15 @@ const CertificatesPage = () => {
     {
       title: 'MongoDB Associate Developer',
       issuer: 'MongoDB University',
-      date: 'may 2025',
+      date: 'May 2025',
       image: 'mongodb.png',
       verificationUrl: 'https://www.credly.com/badges/bea62934-bb43-4a5a-87a6-3b4a9dab0c08',
       certificateImage: 'mongodb.png',
     },
     {
-      title: 'Salesforce Certified AI Associate(5184141)',
+      title: 'Salesforce Certified AI Associate',
       issuer: 'Salesforce',
-      date: 'nov 2024',
+      date: 'Nov 2024',
       image: 'salesforce.png',
       verificationUrl: 'https://trailhead.salesforce.com/en/credentials/verification/',
       certificateImage: 'salesforce.png',
@@ -31,7 +36,7 @@ const CertificatesPage = () => {
     {
       title: 'Introduction to CIP',
       issuer: 'OPSWAT Academy',
-      date: 'feb 2025',
+      date: 'Feb 2025',
       image: 'cip.png',
       verificationUrl: 'https://learn.opswatacademy.com/certificate/wrod517NqA',
       certificateImage: 'cip.png',
@@ -47,7 +52,7 @@ const CertificatesPage = () => {
     {
       title: 'Problem Solving (Basic) Certificate',
       issuer: 'HackerRank',
-      date: 'may 2024',
+      date: 'May 2024',
       image: 'hacker.png',
       verificationUrl: 'https://www.hackerrank.com/certificates/32ce923f6145',
       certificateImage: 'hacker.png',
@@ -55,10 +60,10 @@ const CertificatesPage = () => {
     {
       title: 'Artificial Intelligence Essentials V2',
       issuer: 'Coursera',
-      date: 'oct 2024',
-      image: 'courseera1.png',
+      date: 'Oct 2024',
+      image: 'coursera1.png',
       verificationUrl: 'https://www.credly.com/badges/22b0b9ad-0aba-498f-a4e9-8968a1893331/',
-      certificateImage: '/certificates/docker.pdf',
+      certificateImage: '/certificates/coursera.pdf',
     },
     {
       title: 'Python for Data Science',
@@ -71,94 +76,77 @@ const CertificatesPage = () => {
   ];
 
   return (
-    <>
+    <div className="min-h-screen bg-background">
       <Navbar />
-      <div className="min-h-screen pt-20">
-        <section className="section-padding">
-          <div className="container-max">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h1 className="text-4xl sm:text-5xl font-bold text-center mb-4">
-                All <span className="gradient-text">Certificates</span>
-              </h1>
-              <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-                A comprehensive collection of my professional certifications and achievements in technology
-              </p>
 
-              {/* Certificates Grid */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {allCertificates.map((cert, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.05 }}
-                    whileHover={{ y: -5 }}
-                    className="glass-card overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 group"
-                  >
-                    {/* Certificate Image */}
-                    <div className="relative h-48 bg-gradient-subtle flex items-center justify-center overflow-hidden">
-                      <img
-                        src={cert.image}
-                        alt={cert.title}
-                        className="w-32 h-32 object-contain transition-transform duration-300 group-hover:scale-110"
-                      />
-                      <div className="absolute top-3 right-3">
-                        <Award className="w-5 h-5 text-primary" />
-                      </div>
+      <div className="container mx-auto px-4 pt-24 pb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <Button
+            variant="ghost"
+            onClick={() => navigate("/")}
+            className="mb-8"
+          >
+            <ArrowLeft className="mr-2 w-4 h-4" />
+            Back to Home
+          </Button>
 
-                      {/* Overlay on hover */}
-                      <div className="absolute inset-0 bg-background/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <button
-                          onClick={() => window.open(cert.certificateImage, '_blank')}
-                          className="px-4 py-2 bg-gradient-primary text-primary-foreground rounded-lg font-medium transform scale-90 group-hover:scale-100 transition-transform"
-                        >
-                          View Certificate
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* Certificate Content */}
-                    <div className="p-6">
-                      <h3 className="text-lg font-semibold mb-2 line-clamp-2">{cert.title}</h3>
-                      <p className="text-muted-foreground text-sm mb-3">{cert.issuer}</p>
-
-                      <div className="flex items-center text-sm text-muted-foreground mb-4">
-                        <Calendar className="w-4 h-4 mr-2" />
-                        {cert.date}
-                      </div>
-
-                      <div className="flex gap-2">
-                        <a
-                          href={cert.verificationUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-primary text-sm font-medium link-hover"
-                        >
-                          Verify
-                          <ExternalLink className="w-3 h-3" />
-                        </a>
-                        <span className="text-muted-foreground">•</span>
-                        <button
-                          onClick={() => window.open(cert.certificateImage, '_blank')}
-                          className="inline-flex items-center gap-1 text-primary text-sm font-medium link-hover"
-                        >
-                          Download
-                          <Download className="w-3 h-3" />
-                        </button>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+              Professional <span className="text-gradient">Certifications</span>
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              A comprehensive collection of industry-recognized certifications demonstrating expertise
+            </p>
           </div>
-        </section>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {allCertificates.map((cert, index) => (
+              <motion.div
+                key={cert.title}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -8 }}
+              >
+                <Card className="glass border-primary/20 h-full hover:shadow-primary transition-all duration-300">
+                  <CardHeader>
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                      <Award className="w-6 h-6 text-primary" />
+                    </div>
+                    <CardTitle className="text-lg">{cert.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground">Issuer</p>
+                      <p className="text-sm">{cert.issuer}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground">Date</p>
+                      <p className="text-sm">{cert.date}</p>
+                    </div>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="w-full border-primary/30 hover:bg-primary hover:text-primary-foreground"
+                      asChild
+                    >
+                      <a href={cert.verificationUrl} target="_blank" rel="noopener noreferrer">
+                        Verify Certificate
+                        <ExternalLink className="ml-2 w-4 h-4" />
+                      </a>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
-    </>
+    </div>
   );
 };
 

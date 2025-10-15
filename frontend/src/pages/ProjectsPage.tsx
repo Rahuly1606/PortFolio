@@ -1,10 +1,12 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import ProjectCard from '@/components/ProjectCard';
-import Navbar from '@/components/Navbar';
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import Navbar from "@/components/Navbar";
+import ProjectCard from "@/components/ProjectCard";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 
 const ProjectsPage = () => {
-  const [filter, setFilter] = useState('All');
+  const navigate = useNavigate();
 
   const allProjects = [
     {
@@ -53,69 +55,46 @@ const ProjectsPage = () => {
 
   ];
 
-  const categories = ['All', 'Frontend', 'Backend', 'ML'];
-
-  const filteredProjects = filter === 'All'
-    ? allProjects
-    : allProjects.filter(project => project.category === filter);
-
   return (
-    <>
+    <div className="min-h-screen bg-background">
       <Navbar />
-      <div className="min-h-screen pt-20">
-        <section className="section-padding">
-          <div className="container-max">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h1 className="text-4xl sm:text-5xl font-bold text-center mb-4">
-                All <span className="gradient-text">Projects</span>
-              </h1>
-              <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-                Explore my complete portfolio of web development projects, from simple websites to complex applications
-              </p>
+      
+      <div className="container mx-auto px-4 pt-24 pb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <Button
+            variant="ghost"
+            onClick={() => navigate("/")}
+            className="mb-8"
+          >
+            <ArrowLeft className="mr-2 w-4 h-4" />
+            Back to Home
+          </Button>
 
-              {/* Filter Buttons */}
-              <div className="flex flex-wrap justify-center gap-3 mb-12">
-                {categories.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => setFilter(category)}
-                    className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${filter === category
-                      ? 'bg-gradient-primary text-primary-foreground shadow-lg'
-                      : 'bg-secondary hover:bg-primary/10 text-muted-foreground hover:text-primary'
-                      }`}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
-
-              {/* Projects Grid */}
-              <motion.div
-                layout
-                className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-              >
-                {filteredProjects.map((project, index) => (
-                  <motion.div
-                    key={project.title}
-                    layout
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
-                  >
-                    <ProjectCard {...project} index={index} />
-                  </motion.div>
-                ))}
-              </motion.div>
-            </motion.div>
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+              All <span className="text-gradient">Projects</span>
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Explore my complete portfolio of technical projects and innovations
+            </p>
           </div>
-        </section>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {allProjects.map((project, index) => (
+              <ProjectCard
+                key={project.title}
+                {...project}
+                delay={index * 0.1}
+              />
+            ))}
+          </div>
+        </motion.div>
       </div>
-    </>
+    </div>
   );
 };
 
