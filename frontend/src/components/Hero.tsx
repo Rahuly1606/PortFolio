@@ -100,19 +100,28 @@ const Hero = () => {
               <Button
                 size="lg"
                 onClick={() => scrollToSection("projects")}
-                className="bg-primary hover:bg-primary-hover text-primary-foreground shadow-primary"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden group px-8 py-6"
               >
-                View Projects
+                <span className="relative z-10 flex items-center">
+                  <span className="relative">
+                    View Projects
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white/50 group-hover:w-full transition-all duration-300"></span>
+                  </span>
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
               </Button>
               <Button
                 size="lg"
-                variant="outline"
-                className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                className="border-2 border-primary bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden group px-8 py-6"
                 asChild
               >
-                <a href="/Resume.pdf" download="Resume.pdf">
-                  <Download className="mr-2 h-5 w-5" />
-                  Download Resume
+                <a href="/Resume.pdf" download="Resume.pdf" className="flex items-center gap-2">
+                  <Download className="h-5 w-5 group-hover:animate-bounce" />
+                  <span className="relative">
+                    Download Resume
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current group-hover:w-full transition-all duration-300"></span>
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                 </a>
               </Button>
             </motion.div>

@@ -157,10 +157,16 @@ const Contact = () => {
                   </div>
                   <Button
                     type="submit"
-                    className="w-full bg-primary hover:bg-primary-hover text-primary-foreground shadow-primary"
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 relative overflow-hidden group py-6 font-semibold"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? "Sending..." : "Send Message"}
+                    <span className="relative z-10">
+                      <span className="relative">
+                        {isSubmitting ? "Sending..." : "Send Message"}
+                        {!isSubmitting && <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white/50 group-hover:w-full transition-all duration-300"></span>}
+                      </span>
+                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                   </Button>
                 </form>
               </CardContent>

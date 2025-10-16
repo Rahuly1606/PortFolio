@@ -73,10 +73,16 @@ const Projects = () => {
           <Button
             size="lg"
             onClick={() => navigate("/projects")}
-            className="bg-primary hover:bg-primary-hover text-primary-foreground shadow-primary"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden group px-8 py-6 text-base font-semibold"
           >
-            Explore More Projects
-            <ArrowRight className="ml-2 w-5 h-5" />
+            <span className="relative z-10 flex items-center gap-3">
+              <span className="relative">
+                Explore More Projects
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white/50 group-hover:w-full transition-all duration-300"></span>
+              </span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
           </Button>
         </motion.div>
       </div>

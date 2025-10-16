@@ -49,12 +49,12 @@ const About = () => {
         >
           {/* Education Card */}
           <motion.div variants={itemVariants}>
-            <Card className="glass border-primary/20 h-full hover:shadow-primary transition-all duration-300 hover:-translate-y-2">
+            <Card className="glass border-primary/20 h-full hover:shadow-[0_20px_50px_rgba(139,92,246,0.25)] shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-500 hover:-translate-y-2 group">
               <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   <GraduationCap className="w-6 h-6 text-primary" />
                 </div>
-                <CardTitle>Education</CardTitle>
+                <CardTitle className="group-hover:text-primary transition-colors duration-300">Education</CardTitle>
               </CardHeader>
               <CardContent>
                 <h3 className="font-semibold mb-2">B.Tech in Computer Science & IT</h3>
@@ -66,9 +66,9 @@ const About = () => {
 
           {/* About Me Card */}
           <motion.div variants={itemVariants}>
-            <Card className="glass border-primary/20 h-full hover:shadow-primary transition-all duration-300 hover:-translate-y-2">
+            <Card className="glass border-primary/20 h-full hover:shadow-[0_20px_50px_rgba(139,92,246,0.25)] shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-500 hover:-translate-y-2 group">
               <CardHeader>
-                <CardTitle>Who I Am</CardTitle>
+                <CardTitle className="group-hover:text-primary transition-colors duration-300">Who I Am</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground leading-relaxed">
@@ -81,9 +81,9 @@ const About = () => {
 
           {/* Quick Facts Card */}
           <motion.div variants={itemVariants}>
-            <Card className="glass border-primary/20 h-full hover:shadow-primary transition-all duration-300 hover:-translate-y-2">
+            <Card className="glass border-primary/20 h-full hover:shadow-[0_20px_50px_rgba(139,92,246,0.25)] shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-500 hover:-translate-y-2 group">
               <CardHeader>
-                <CardTitle>Quick Facts</CardTitle>
+                <CardTitle className="group-hover:text-primary transition-colors duration-300">Quick Facts</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center gap-3">

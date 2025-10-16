@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Award, ExternalLink, ArrowLeft } from "lucide-react";
+import { ExternalLink, ArrowLeft } from "lucide-react";
 
 const CertificatesPage = () => {
   const navigate = useNavigate();
@@ -13,70 +13,54 @@ const CertificatesPage = () => {
       title: 'Oracle Cloud Infrastructure Generative AI Professional',
       issuer: 'Oracle Cloud',
       date: 'Sep 2024',
-      image: 'oracle.png',
+      description: 'Validates expertise in generative AI on Oracle Cloud Infrastructure',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg',
       verificationUrl: 'https://catalog-education.oracle.com/pls/certview/sharebadge?id=20BBA5622A4DC3CB33169DD8BD069D90C785FEB86DE3F1D1BFF0713EF9DD3787',
-      certificateImage: 'oracle.png',
     },
     {
       title: 'MongoDB Associate Developer',
       issuer: 'MongoDB University',
       date: 'May 2025',
-      image: 'mongodb.png',
+      description: 'Demonstrates proficiency in MongoDB development and database design',
+      logo: 'https://www.vectorlogo.zone/logos/mongodb/mongodb-ar21.svg',
       verificationUrl: 'https://www.credly.com/badges/bea62934-bb43-4a5a-87a6-3b4a9dab0c08',
-      certificateImage: 'mongodb.png',
     },
     {
       title: 'Salesforce Certified AI Associate',
       issuer: 'Salesforce',
       date: 'Nov 2024',
-      image: 'salesforce.png',
+      description: 'Validates foundational knowledge of AI in Salesforce ecosystem',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg',
       verificationUrl: 'https://trailhead.salesforce.com/en/credentials/verification/',
-      certificateImage: 'salesforce.png',
     },
     {
       title: 'Introduction to CIP',
       issuer: 'OPSWAT Academy',
       date: 'Feb 2025',
-      image: 'cip.png',
+      description: 'Critical Infrastructure Protection fundamentals certification',
+      logo: 'https://www.opswat.com/sites/default/files/opswat-logo.svg',
       verificationUrl: 'https://learn.opswatacademy.com/certificate/wrod517NqA',
-      certificateImage: 'cip.png',
-    },
-    {
-      title: 'React Developer Certification',
-      issuer: 'React Training',
-      date: 'Aug 2023',
-      image: 'https://api.dicebear.com/7.x/shapes/svg?seed=react',
-      verificationUrl: 'https://reacttraining.com/verify',
-      certificateImage: '/certificates/react.pdf',
     },
     {
       title: 'Problem Solving (Basic) Certificate',
       issuer: 'HackerRank',
       date: 'May 2024',
-      image: 'hacker.png',
+      description: 'Demonstrates basic problem-solving and algorithmic skills',
+      logo: 'https://hrcdn.net/fcore/assets/brand/logo-new-white-green-a5cb16e0ae.svg',
       verificationUrl: 'https://www.hackerrank.com/certificates/32ce923f6145',
-      certificateImage: 'hacker.png',
     },
     {
       title: 'Artificial Intelligence Essentials V2',
       issuer: 'Coursera',
       date: 'Oct 2024',
-      image: 'coursera1.png',
+      description: 'Foundation in AI concepts and practical applications',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg',
       verificationUrl: 'https://www.credly.com/badges/22b0b9ad-0aba-498f-a4e9-8968a1893331/',
-      certificateImage: '/certificates/coursera.pdf',
-    },
-    {
-      title: 'Python for Data Science',
-      issuer: 'IBM',
-      date: 'May 2023',
-      image: 'https://api.dicebear.com/7.x/shapes/svg?seed=python',
-      verificationUrl: 'https://ibm.com/verify',
-      certificateImage: '/certificates/python.pdf',
     },
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen" style={{ backgroundColor: '#F8F9FA' }}>
       <Navbar />
 
       <div className="container mx-auto px-4 pt-24 pb-20">
@@ -88,17 +72,26 @@ const CertificatesPage = () => {
           <Button
             variant="ghost"
             onClick={() => navigate("/")}
-            className="mb-8"
+            className="mb-8 transition-all duration-300 group"
+            style={{ color: '#6C757D' }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(229, 57, 53, 0.1)';
+              e.currentTarget.style.color = '#E53935';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.color = '#6C757D';
+            }}
           >
-            <ArrowLeft className="mr-2 w-4 h-4" />
+            <ArrowLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
             Back to Home
           </Button>
 
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              Professional <span className="text-gradient">Certifications</span>
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 font-['Montserrat']" style={{ color: '#212529' }}>
+              Professional <span style={{ color: '#E53935' }}>Certifications</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#6C757D' }}>
               A comprehensive collection of industry-recognized certifications demonstrating expertise
             </p>
           </div>
@@ -110,33 +103,68 @@ const CertificatesPage = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -8 }}
+                className="group"
               >
-                <Card className="glass border-primary/20 h-full hover:shadow-primary transition-all duration-300">
-                  <CardHeader>
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                      <Award className="w-6 h-6 text-primary" />
+                <Card
+                  className="h-full bg-white border-0 transition-all duration-300 hover:-translate-y-2 flex flex-col"
+                  style={{
+                    borderRadius: '12px',
+                    boxShadow: '0 4px 8px rgba(0,0,0,0.05)',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = '0 12px 24px rgba(0,0,0,0.12)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.05)';
+                  }}
+                >
+                  <CardHeader className="pb-2 pt-4">
+                    <div className="w-14 h-14 flex items-center justify-center mb-3 bg-white rounded-lg p-2">
+                      <img
+                        src={cert.logo}
+                        alt={`${cert.issuer} logo`}
+                        className="w-full h-full object-contain"
+                      />
                     </div>
-                    <CardTitle className="text-lg">{cert.title}</CardTitle>
+                    <CardTitle className="text-base font-bold font-['Montserrat'] leading-tight min-h-[3rem]" style={{ color: '#212529' }}>
+                      {cert.title}
+                    </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-3">
-                    <div>
-                      <p className="text-sm font-medium text-muted-foreground">Issuer</p>
-                      <p className="text-sm">{cert.issuer}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-muted-foreground">Date</p>
-                      <p className="text-sm">{cert.date}</p>
+                  <CardContent className="flex-1 flex flex-col pt-2 pb-4">
+                    <div className="flex-1 space-y-2">
+                      {cert.description && (
+                        <p className="text-xs min-h-[2rem] leading-tight" style={{ color: '#6C757D' }}>{cert.description}</p>
+                      )}
+                      <div>
+                        <p className="text-xs font-semibold" style={{ color: '#212529' }}>Issuer</p>
+                        <p className="text-xs" style={{ color: '#6C757D' }}>{cert.issuer}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold" style={{ color: '#212529' }}>Issued</p>
+                        <p className="text-xs" style={{ color: '#6C757D' }}>{cert.date}</p>
+                      </div>
                     </div>
                     <Button
                       size="sm"
-                      variant="outline"
-                      className="w-full border-primary/30 hover:bg-primary hover:text-primary-foreground"
+                      className="w-full font-semibold transition-all duration-300 border-0 mt-3 py-2"
+                      style={{
+                        backgroundColor: '#E53935',
+                        color: 'white',
+                        fontSize: '0.813rem',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#CC3333';
+                        e.currentTarget.style.transform = 'scale(1.02)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = '#E53935';
+                        e.currentTarget.style.transform = 'scale(1)';
+                      }}
                       asChild
                     >
-                      <a href={cert.verificationUrl} target="_blank" rel="noopener noreferrer">
-                        Verify Certificate
-                        <ExternalLink className="ml-2 w-4 h-4" />
+                      <a href={cert.verificationUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+                        Verify Credential
+                        <ExternalLink className="w-3.5 h-3.5" />
                       </a>
                     </Button>
                   </CardContent>

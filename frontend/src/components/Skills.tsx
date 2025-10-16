@@ -63,14 +63,14 @@ const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -8 }}
+              whileHover={{ y: -10 }}
             >
-              <Card className="glass border-primary/20 h-full hover:shadow-primary transition-all duration-300">
+              <Card className="glass border-primary/20 h-full hover:shadow-[0_20px_50px_rgba(139,92,246,0.25)] shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-500 group">
                 <CardHeader>
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                     <category.icon className="w-6 h-6 text-primary" />
                   </div>
-                  <CardTitle className="text-lg">{category.title}</CardTitle>
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors duration-300">{category.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
@@ -78,7 +78,7 @@ const Skills = () => {
                       <Badge
                         key={skill}
                         variant="secondary"
-                        className="bg-primary/10 text-primary border-primary/20 hover:bg-primary hover:text-primary-foreground transition-colors"
+                        className="bg-primary/10 text-primary border-primary/20 hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
                       >
                         {skill}
                       </Badge>
