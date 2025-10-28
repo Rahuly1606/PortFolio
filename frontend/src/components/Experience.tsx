@@ -33,34 +33,28 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-20 relative bg-[#F8F9FA]">
-      <div className="w-full px-4">
+    <section id="experience" className="py-32 relative bg-background">
+      <div className="container mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-['Montserrat']" style={{ color: '#212529' }}>
-            Work <span style={{ color: '#E53935' }}>Experience</span>
+          <h2 className="text-5xl md:text-7xl font-display font-bold text-text tracking-tight mb-6">
+            WORK EXPERIENCE
           </h2>
-          <p className="text-lg max-w-2xl mx-auto" style={{ color: '#6C757D' }}>
+          <p className="text-xl text-subtext max-w-2xl">
             Professional background and consulting experience
           </p>
         </motion.div>
 
-        <div className="w-full max-w-7xl mx-auto relative">
+        <div className="max-w-5xl mx-auto relative">
           {/* Vertical Timeline Line */}
-          <div
-            className="absolute left-0 top-0 bottom-0 hidden md:block"
-            style={{
-              width: '2px',
-              background: 'linear-gradient(to bottom, #E53935, rgba(229, 57, 53, 0.3))'
-            }}
-          />
+          <div className="absolute left-0 top-0 bottom-0 hidden md:block w-0.5 bg-gray-200" />
 
-          <div className="space-y-8">
+          <div className="space-y-12">
             {experiences.map((exp, index) => (
               <motion.div
                 key={exp.id}
@@ -68,61 +62,43 @@ const Experience = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative md:pl-12"
+                className="relative md:pl-16"
               >
                 {/* Timeline Dot */}
-                <div
-                  className="absolute left-0 top-8 w-4 h-4 rounded-full border-4 hidden md:block transform -translate-x-[7px]"
-                  style={{
-                    backgroundColor: '#E53935',
-                    borderColor: '#F8F9FA'
-                  }}
-                />
+                <div className="absolute left-0 top-10 w-3 h-3 rounded-full bg-accent border-4 border-background hidden md:block transform -translate-x-[5px]" />
 
-                <Card
-                  className="w-full bg-white border-0 transition-all duration-300 hover:-translate-y-2 group"
-                  style={{
-                    borderRadius: '12px',
-                    boxShadow: '0 4px 8px rgba(0,0,0,0.05)',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = '0 12px 24px rgba(0,0,0,0.12)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.05)';
-                  }}
-                >
-                  <CardHeader>
-                    <div className="flex items-start justify-between flex-wrap gap-4">
+                <Card className="bg-white border-2 border-gray-200 rounded-2xl shadow-soft hover:shadow-lift hover:border-accent transition-all duration-300 hover:-translate-y-1 overflow-hidden group">
+                  <CardHeader className="px-8 pt-8 pb-6">
+                    <div className="flex items-start justify-between flex-wrap gap-6">
                       <div className="flex-1">
-                        <div className="w-16 h-16 flex items-center justify-center mb-4 bg-white rounded-lg p-2">
+                        <div className="w-20 h-20 flex items-center justify-center mb-6 bg-gray-50 rounded-xl p-3 border border-gray-200">
                           <img
                             src={exp.logo}
                             alt={`${exp.company} logo`}
                             className="w-full h-full object-contain"
                           />
                         </div>
-                        <CardTitle className="text-2xl mb-2 font-bold font-['Montserrat']" style={{ color: '#212529' }}>
+                        <CardTitle className="text-2xl md:text-3xl mb-3 font-display font-bold text-text group-hover:text-accent transition-colors duration-300">
                           {exp.title}
                         </CardTitle>
-                        <p className="text-lg font-semibold mb-1" style={{ color: '#E53935' }}>{exp.role}</p>
-                        <p className="text-base" style={{ color: '#6C757D' }}>{exp.company}</p>
+                        <p className="text-lg font-bold text-subtext mb-2">{exp.role}</p>
+                        <p className="text-base text-gray-600 font-medium">{exp.company}</p>
                       </div>
                       <div className="text-right">
-                        <div className="flex items-center gap-2 text-sm mb-1" style={{ color: '#6C757D' }}>
+                        <div className="flex items-center gap-2 text-sm mb-2 text-subtext font-medium">
                           <Calendar className="w-4 h-4" />
                           <span>{exp.duration}</span>
                         </div>
-                        <div className="flex items-center gap-2 text-sm" style={{ color: '#6C757D' }}>
+                        <div className="flex items-center gap-2 text-sm text-subtext font-medium">
                           <MapPin className="w-4 h-4" />
                           <span>{exp.location}</span>
                         </div>
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent>
-                    <h4 className="font-bold mb-3 text-base font-['Montserrat']" style={{ color: '#212529' }}>Key Achievements:</h4>
-                    <ul className="space-y-2">
+                  <CardContent className="px-8 pb-8">
+                    <h4 className="font-bold mb-4 text-base text-text uppercase tracking-wide">Key Achievements:</h4>
+                    <ul className="space-y-3">
                       {exp.achievements.map((achievement, achievementIndex) => (
                         <motion.li
                           key={achievementIndex}
@@ -130,10 +106,10 @@ const Experience = () => {
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: 0.1 * (achievementIndex + 1) }}
-                          className="flex items-start gap-2"
+                          className="flex items-start gap-3"
                         >
-                          <span className="mt-1 text-lg" style={{ color: '#E53935' }}>•</span>
-                          <span className="text-sm" style={{ color: '#6C757D' }}>
+                          <span className="mt-0.5 w-2 h-2 rounded-full bg-accent flex-shrink-0" />
+                          <span className="text-sm text-subtext leading-relaxed font-medium">
                             {achievement}
                           </span>
                         </motion.li>

@@ -16,14 +16,14 @@ const Certificates = () => {
       logo: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg',
       verificationUrl: 'https://learn.microsoft.com/api/credentials/share/en-us/RAHULKUMAR-6909/75D907EC828C9221?sharingId=64CE99F68B678B3B',
     },
-    {
-      title: 'Oracle Cloud Infrastructure Generative AI Professional',
-      issuer: 'Oracle Cloud',
-      date: 'Sep 2024',
-      description: 'Validates expertise in generative AI on Oracle Cloud Infrastructure',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg',
-      verificationUrl: 'https://catalog-education.oracle.com/pls/certview/sharebadge?id=20BBA5622A4DC3CB33169DD8BD069D90C785FEB86DE3F1D1BFF0713EF9DD3787',
-    },
+    // {
+    //   title: 'Oracle Cloud Infrastructure Generative AI Professional',
+    //   issuer: 'Oracle Cloud',
+    //   date: 'Sep 2024',
+    //   description: 'Validates expertise in generative AI on Oracle Cloud Infrastructure',
+    //   logo: 'https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg',
+    //   verificationUrl: 'https://catalog-education.oracle.com/pls/certview/sharebadge?id=20BBA5622A4DC3CB33169DD8BD069D90C785FEB86DE3F1D1BFF0713EF9DD3787',
+    // },
     {
       title: 'MongoDB Associate Developer',
       issuer: 'MongoDB University',
@@ -43,93 +43,68 @@ const Certificates = () => {
   ];
 
   return (
-    <section id="certificates" className="py-20 relative bg-[#F8F9FA]">
-      <div className="container mx-auto px-4">
+    <section id="certificates" className="py-32 relative bg-white">
+      <div className="container mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-['Montserrat']" style={{ color: '#212529' }}>
-            Professional <span style={{ color: '#E53935' }}>Certifications</span>
+          <h2 className="text-5xl md:text-7xl font-display font-bold text-text tracking-tight mb-6">
+            CERTIFICATIONS
           </h2>
-          <p className="text-lg max-w-2xl mx-auto" style={{ color: '#6C757D' }}>
+          <p className="text-xl text-subtext max-w-2xl">
             Demonstrating continuous learning and professional development
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {featuredCertificates.map((cert, index) => (
             <motion.div
               key={cert.title}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
               className="group"
             >
-              <Card
-                className="h-full bg-white border-0 transition-all duration-300 hover:-translate-y-2 flex flex-col"
-                style={{
-                  borderRadius: '12px',
-                  boxShadow: '0 4px 8px rgba(0,0,0,0.05)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 12px 24px rgba(0,0,0,0.12)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.05)';
-                }}
-              >
-                <CardHeader className="pb-2 pt-4">
-                  <div className="w-14 h-14 flex items-center justify-center mb-3 bg-white rounded-lg p-2">
+              <Card className="h-full bg-white border-2 border-gray-200 rounded-2xl shadow-soft hover:shadow-lift hover:border-accent transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden">
+                <CardHeader className="pb-4 pt-6 px-6">
+                  <div className="w-16 h-16 flex items-center justify-center mb-4 bg-gray-50 rounded-xl p-3 border border-gray-200">
                     <img
                       src={cert.logo}
                       alt={`${cert.issuer} logo`}
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <CardTitle className="text-base font-bold font-['Montserrat'] leading-tight min-h-[3rem]" style={{ color: '#212529' }}>
+                  <CardTitle className="text-lg font-bold text-text leading-tight min-h-[3rem] group-hover:text-accent transition-colors duration-300">
                     {cert.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex-1 flex flex-col pt-2 pb-4">
-                  <div className="flex-1 space-y-2">
+                <CardContent className="flex-1 flex flex-col pt-2 pb-6 px-6">
+                  <div className="flex-1 space-y-3">
                     {cert.description && (
-                      <p className="text-xs min-h-[2rem] leading-tight" style={{ color: '#6C757D' }}>{cert.description}</p>
+                      <p className="text-sm text-subtext leading-relaxed font-medium min-h-[2.5rem]">{cert.description}</p>
                     )}
                     <div>
-                      <p className="text-xs font-semibold" style={{ color: '#212529' }}>Issuer</p>
-                      <p className="text-xs" style={{ color: '#6C757D' }}>{cert.issuer}</p>
+                      <p className="text-xs font-bold text-text uppercase tracking-wide mb-1">Issuer</p>
+                      <p className="text-sm text-subtext font-medium">{cert.issuer}</p>
                     </div>
                     <div>
-                      <p className="text-xs font-semibold" style={{ color: '#212529' }}>Issued</p>
-                      <p className="text-xs" style={{ color: '#6C757D' }}>{cert.date}</p>
+                      <p className="text-xs font-bold text-text uppercase tracking-wide mb-1">Issued</p>
+                      <p className="text-sm text-subtext font-medium">{cert.date}</p>
                     </div>
                   </div>
                   <Button
                     size="sm"
-                    className="w-full font-semibold transition-all duration-300 border-0 mt-3 py-2"
-                    style={{
-                      backgroundColor: '#E53935',
-                      color: 'white',
-                      fontSize: '0.813rem',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#CC3333';
-                      e.currentTarget.style.transform = 'scale(1.02)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = '#E53935';
-                      e.currentTarget.style.transform = 'scale(1)';
-                    }}
+                    className="w-full bg-accent hover:bg-accent/90 text-text font-bold rounded-xl mt-4 py-5 transition-all duration-300 hover:-translate-y-0.5 shadow-accent"
                     asChild
                   >
                     <a href={cert.verificationUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
                       Verify Credential
-                      <ExternalLink className="w-3.5 h-3.5" />
+                      <ExternalLink className="w-4 h-4" />
                     </a>
                   </Button>
                 </CardContent>
@@ -148,23 +123,11 @@ const Certificates = () => {
           <Button
             size="lg"
             onClick={() => navigate("/certificates")}
-            className="font-semibold transition-all duration-300 border-0 px-8 py-6"
-            style={{
-              backgroundColor: '#E53935',
-              color: 'white',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#CC3333';
-              e.currentTarget.style.transform = 'scale(1.05)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#E53935';
-              e.currentTarget.style.transform = 'scale(1)';
-            }}
+            className="bg-accent hover:bg-accent/90 text-text font-bold px-10 py-7 text-lg rounded-xl shadow-accent hover:shadow-lift transition-all duration-300 hover:-translate-y-1 group"
           >
             <span className="flex items-center gap-3">
               View All Certificates
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
             </span>
           </Button>
         </motion.div>

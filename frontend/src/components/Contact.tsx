@@ -82,24 +82,24 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 relative">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="py-32 relative bg-background">
+      <div className="container mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Get In <span className="text-gradient">Touch</span>
+          <h2 className="text-5xl md:text-7xl font-display font-bold text-text tracking-tight mb-6">
+            LET'S CONNECT
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-subtext max-w-2xl">
             Have a project in mind? Let's work together to create something amazing
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -107,12 +107,12 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <Card className="glass border-primary/20">
-              <CardHeader>
-                <CardTitle>Send a Message</CardTitle>
+            <Card className="bg-white border-2 border-gray-200 rounded-2xl shadow-soft">
+              <CardHeader className="px-8 pt-8 pb-6">
+                <CardTitle className="text-2xl font-bold text-text">Send a Message</CardTitle>
               </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
+              <CardContent className="px-8 pb-8">
+                <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
                     <Input
                       name="name"
@@ -120,7 +120,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="bg-background/50"
+                      className="bg-gray-50 border-2 border-gray-200 focus:border-accent focus:ring-0 rounded-xl h-12 px-4 font-medium"
                     />
                   </div>
                   <div>
@@ -131,7 +131,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="bg-background/50"
+                      className="bg-gray-50 border-2 border-gray-200 focus:border-accent focus:ring-0 rounded-xl h-12 px-4 font-medium"
                     />
                   </div>
                   <div>
@@ -141,7 +141,7 @@ const Contact = () => {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="bg-background/50"
+                      className="bg-gray-50 border-2 border-gray-200 focus:border-accent focus:ring-0 rounded-xl h-12 px-4 font-medium"
                     />
                   </div>
                   <div>
@@ -152,21 +152,15 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="bg-background/50 resize-none"
+                      className="bg-gray-50 border-2 border-gray-200 focus:border-accent focus:ring-0 rounded-xl px-4 py-3 resize-none font-medium"
                     />
                   </div>
                   <Button
                     type="submit"
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 relative overflow-hidden group py-6 font-semibold"
+                    className="w-full bg-accent hover:bg-accent/90 text-text font-bold rounded-xl py-6 shadow-accent hover:shadow-lift transition-all duration-300 hover:-translate-y-1"
                     disabled={isSubmitting}
                   >
-                    <span className="relative z-10">
-                      <span className="relative">
-                        {isSubmitting ? "Sending..." : "Send Message"}
-                        {!isSubmitting && <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white/50 group-hover:w-full transition-all duration-300"></span>}
-                      </span>
-                    </span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </CardContent>
@@ -181,48 +175,48 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <Card className="glass border-primary/20">
-              <CardHeader>
-                <CardTitle>Contact Information</CardTitle>
+            <Card className="bg-card-dark border-none rounded-2xl shadow-soft">
+              <CardHeader className="px-8 pt-8 pb-6">
+                <CardTitle className="text-2xl font-bold text-white">Contact Information</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <Mail className="w-5 h-5 text-primary" />
+              <CardContent className="px-8 pb-8 space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-6 h-6 text-accent" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Email</p>
-                    <a href="mailto:alexrahul9576@gmail.com" className="text-sm hover:text-primary transition-colors">
+                    <p className="text-sm text-gray-400 mb-1 font-medium">Email</p>
+                    <a href="mailto:alexrahul9576@gmail.com" className="text-white hover:text-accent transition-colors font-medium">
                       alexrahul9576@gmail.com
                     </a>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <Phone className="w-5 h-5 text-primary" />
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-6 h-6 text-accent" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Phone</p>
-                    <p className="text-sm">+91 8789988xxx</p>
+                    <p className="text-sm text-gray-400 mb-1 font-medium">Phone</p>
+                    <p className="text-white font-medium">+91 8789988xxx</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <MapPin className="w-5 h-5 text-primary" />
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-6 h-6 text-accent" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Location</p>
-                    <p className="text-sm">Bihar, India</p>
+                    <p className="text-sm text-gray-400 mb-1 font-medium">Location</p>
+                    <p className="text-white font-medium">Bihar, India</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="glass border-primary/20">
-              <CardHeader>
-                <CardTitle>Social Media</CardTitle>
+            <Card className="bg-card-dark border-none rounded-2xl shadow-soft">
+              <CardHeader className="px-8 pt-8 pb-6">
+                <CardTitle className="text-2xl font-bold text-white">Social Media</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="px-8 pb-8">
                 <div className="flex gap-4">
                   {socialLinks.map((social) => (
                     <a
@@ -230,7 +224,7 @@ const Contact = () => {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:-translate-y-1"
+                      className="w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-accent hover:text-text hover:border-accent transition-all duration-300 hover:-translate-y-1 shadow-soft hover:shadow-lift"
                       aria-label={social.label}
                     >
                       <social.icon className="w-5 h-5" />

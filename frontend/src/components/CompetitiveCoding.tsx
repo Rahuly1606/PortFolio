@@ -40,84 +40,60 @@ const CompetitiveCoding = () => {
   ];
 
   return (
-    <section className="py-20 relative bg-[#F8F9FA]">
-      <div className="container mx-auto px-4">
+    <section className="py-32 relative bg-background">
+      <div className="container mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-['Montserrat']" style={{ color: '#212529' }}>
-            Competitive <span style={{ color: '#E53935' }}>Coding</span>
+          <h2 className="text-5xl md:text-7xl font-display font-bold text-text tracking-tight mb-6">
+            COMPETITIVE CODING
           </h2>
-          <p className="text-lg max-w-2xl mx-auto" style={{ color: '#6C757D' }}>
+          <p className="text-xl text-subtext max-w-2xl">
             Showcasing problem-solving skills and algorithmic thinking
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {platforms.map((platform, index) => (
             <motion.div
               key={platform.name}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
               className="group"
             >
-              <Card
-                className="h-full bg-white border-0 transition-all duration-300 hover:-translate-y-2"
-                style={{
-                  borderRadius: '12px',
-                  boxShadow: '0 4px 8px rgba(0,0,0,0.05)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 12px 24px rgba(0,0,0,0.12)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.05)';
-                }}
-              >
-                <CardHeader className="pb-3">
-                  <div className="w-16 h-16 flex items-center justify-center mb-4 bg-white rounded-lg p-2">
+              <Card className="h-full bg-card-dark border-none rounded-2xl shadow-soft hover:shadow-lift transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                <CardHeader className="pb-4 pt-8 px-6">
+                  <div className="w-20 h-20 flex items-center justify-center mb-5 bg-white/10 rounded-xl p-3 border border-white/20">
                     <img
                       src={platform.logo}
                       alt={`${platform.name} logo`}
                       className="w-full h-full object-contain"
-                      style={{ filter: 'brightness(0.9)' }}
+                      style={{ filter: 'brightness(1.1)' }}
                     />
                   </div>
-                  <CardTitle className="text-xl font-bold font-['Montserrat']" style={{ color: '#212529' }}>
+                  <CardTitle className="text-xl font-display font-bold text-white group-hover:text-accent transition-colors duration-300">
                     {platform.name}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-5 px-6 pb-8">
                   <div>
-                    <p className="text-2xl font-bold mb-2" style={{ color: '#212529' }}>
+                    <p className="text-2xl md:text-3xl font-bold text-white mb-3">
                       {platform.stats}
                     </p>
                     <div className="flex items-center gap-2">
-                      <Trophy className="w-4 h-4" style={{ color: platform.brandColor }} />
-                      <p className="text-sm" style={{ color: '#6C757D' }}>{platform.badge}</p>
+                      <Trophy className="w-5 h-5 text-accent" />
+                      <p className="text-sm text-gray-400 font-medium">{platform.badge}</p>
                     </div>
                   </div>
                   <Button
                     size="sm"
-                    className="w-full font-semibold transition-all duration-300 border-0"
-                    style={{
-                      backgroundColor: '#E53935',
-                      color: 'white',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#CC3333';
-                      e.currentTarget.style.transform = 'scale(1.02)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = '#E53935';
-                      e.currentTarget.style.transform = 'scale(1)';
-                    }}
+                    className="w-full bg-accent hover:bg-accent/90 text-text font-bold rounded-xl py-5 transition-all duration-300 hover:-translate-y-0.5 shadow-accent"
                     asChild
                   >
                     <a href={platform.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
