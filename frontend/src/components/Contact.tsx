@@ -82,29 +82,29 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-32 relative bg-background">
+    <section id="contact" className="py-20 md:py-32 relative bg-background">
       <div className="container mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="mb-20"
+          className="mb-12 md:mb-20"
         >
-          <h2 className="text-5xl md:text-7xl font-display font-bold text-text tracking-tight mb-6">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-text tracking-tight mb-4 md:mb-6">
             LET'S CONNECT
           </h2>
-          <p className="text-xl text-subtext max-w-2xl">
+          <p className="text-lg md:text-xl text-subtext max-w-2xl">
             Have a project in mind? Let's work together to create something amazing
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
           >
             <Card className="bg-white border-2 border-gray-200 rounded-2xl shadow-soft">
@@ -171,7 +171,7 @@ const Contact = () => {
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >

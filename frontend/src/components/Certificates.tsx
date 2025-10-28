@@ -43,32 +43,31 @@ const Certificates = () => {
   ];
 
   return (
-    <section id="certificates" className="py-32 relative bg-white">
+    <section id="certificates" className="py-20 md:py-32 relative bg-white">
       <div className="container mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="mb-20"
+          className="mb-12 md:mb-20"
         >
-          <h2 className="text-5xl md:text-7xl font-display font-bold text-text tracking-tight mb-6">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-text tracking-tight mb-4 md:mb-6">
             CERTIFICATIONS
           </h2>
-          <p className="text-xl text-subtext max-w-2xl">
+          <p className="text-lg md:text-xl text-subtext max-w-2xl">
             Demonstrating continuous learning and professional development
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
           {featuredCertificates.map((cert, index) => (
             <motion.div
-              key={cert.title}
-              initial={{ opacity: 0, y: 30 }}
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-              className="group"
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Card className="h-full bg-white border-2 border-gray-200 rounded-2xl shadow-soft hover:shadow-lift hover:border-accent transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden">
                 <CardHeader className="pb-4 pt-6 px-6">
@@ -123,7 +122,7 @@ const Certificates = () => {
           <Button
             size="lg"
             onClick={() => navigate("/certificates")}
-            className="bg-accent hover:bg-accent/90 text-text font-bold px-10 py-7 text-lg rounded-xl shadow-accent hover:shadow-lift transition-all duration-300 hover:-translate-y-1 group"
+            className="bg-accent hover:bg-accent/90 text-text font-bold px-8 md:px-10 py-6 md:py-7 text-base md:text-lg rounded-xl shadow-accent hover:shadow-lift transition-all duration-300 hover:-translate-y-1 group"
           >
             <span className="flex items-center gap-3">
               View All Certificates

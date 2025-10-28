@@ -33,19 +33,19 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-32 relative bg-background">
+    <section id="experience" className="py-20 md:py-32 relative bg-background">
       <div className="container mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="mb-20"
+          className="mb-12 md:mb-20"
         >
-          <h2 className="text-5xl md:text-7xl font-display font-bold text-text tracking-tight mb-6">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-text tracking-tight mb-4 md:mb-6">
             WORK EXPERIENCE
           </h2>
-          <p className="text-xl text-subtext max-w-2xl">
+          <p className="text-lg md:text-xl text-subtext max-w-2xl">
             Professional background and consulting experience
           </p>
         </motion.div>
@@ -54,13 +54,13 @@ const Experience = () => {
           {/* Vertical Timeline Line */}
           <div className="absolute left-0 top-0 bottom-0 hidden md:block w-0.5 bg-gray-200" />
 
-          <div className="space-y-12">
+          <div className="space-y-8 md:space-y-12">
             {experiences.map((exp, index) => (
               <motion.div
                 key={exp.id}
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="relative md:pl-16"
               >

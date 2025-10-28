@@ -41,7 +41,7 @@ const Projects = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
           className="mb-12 md:mb-20"
         >
@@ -49,7 +49,7 @@ const Projects = () => {
             FEATURED WORK
           </h2>
           <p className="text-lg md:text-xl text-subtext max-w-2xl">
-            Showcase of technical work and problem-solving abilities across various domains
+            Select projects demonstrating technical expertise and problem-solving capabilities
           </p>
         </motion.div>
 
@@ -66,14 +66,14 @@ const Projects = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center"
         >
           <Button
             size="lg"
             onClick={() => navigate("/projects")}
-            className="bg-accent hover:bg-accent/90 text-text font-bold px-8 md:px-10 py-6 md:py-7 text-base md:text-lg rounded-xl shadow-accent hover:shadow-lift transition-all duration-300 hover:-translate-y-1 group"
+            className="bg-text hover:bg-text/90 text-background font-bold px-8 md:px-10 py-6 md:py-7 text-base md:text-lg rounded-xl shadow-soft hover:shadow-lift transition-all duration-300 hover:-translate-y-1 group"
           >
             <span className="flex items-center gap-3">
               Explore More Projects

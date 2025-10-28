@@ -23,19 +23,19 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-32 relative bg-white">
+    <section id="about" className="py-20 md:py-32 relative bg-white">
       <div className="container mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="mb-20"
+          className="mb-12 md:mb-20"
         >
-          <h2 className="text-5xl md:text-7xl font-display font-bold text-text tracking-tight mb-6">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-text tracking-tight mb-4 md:mb-6">
             ABOUT ME
           </h2>
-          <p className="text-xl text-subtext max-w-2xl">
+          <p className="text-lg md:text-xl text-subtext max-w-2xl">
             Passionate about creating innovative solutions and learning new technologies
           </p>
         </motion.div>
@@ -44,8 +44,8 @@ const About = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-8"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
         >
           {/* Education Card */}
           <motion.div variants={itemVariants}>

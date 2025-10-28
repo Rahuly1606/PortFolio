@@ -71,7 +71,7 @@ const CertificatesPage = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <div className="container mx-auto px-6 lg:px-12 pt-32 pb-20">
+      <div className="container mx-auto px-6 lg:px-12 pt-24 md:pt-32 pb-12 md:pb-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -80,22 +80,22 @@ const CertificatesPage = () => {
           <Button
             variant="ghost"
             onClick={() => navigate("/")}
-            className="mb-12 text-subtext hover:text-text hover:bg-accent/10 transition-all duration-300 group rounded-xl"
+            className="mb-8 md:mb-12 text-subtext hover:text-text hover:bg-accent/10 transition-all duration-300 group rounded-xl"
           >
             <ArrowLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
             Back to Home
           </Button>
 
-          <div className="mb-20">
-            <h1 className="text-5xl md:text-7xl font-display font-bold text-text tracking-tight mb-6">
+          <div className="mb-12 md:mb-20">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-text tracking-tight mb-4 md:mb-6">
               CERTIFICATIONS
             </h1>
-            <p className="text-xl text-subtext max-w-2xl">
+            <p className="text-lg md:text-xl text-subtext max-w-2xl">
               A comprehensive collection of industry-recognized certifications demonstrating expertise
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {allCertificates.map((cert, index) => (
               <motion.div
                 key={cert.title}
