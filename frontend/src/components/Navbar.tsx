@@ -3,6 +3,11 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -55,10 +60,43 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 lg:px-12 py-5">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="text-xl font-display font-bold tracking-tight">
-            <span className="text-text">RAHUL KU.</span>
-          </Link>
+          {/* Profile Image with Hover Card */}
+          <HoverCard openDelay={200} closeDelay={100}>
+            <HoverCardTrigger asChild>
+              <Link
+                to="/"
+                className="relative group cursor-pointer"
+              >
+                <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-gray-200 hover:border-accent transition-all duration-300 hover:scale-110 shadow-soft hover:shadow-lift">
+                  <img
+                    src="https://avatars.githubusercontent.com/u/106595150?v=4"
+                    alt="Rahul Kumar"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </Link>
+            </HoverCardTrigger>
+            <HoverCardContent
+              className="w-64 p-0 border-2 border-gray-200 shadow-lift overflow-hidden"
+              side="bottom"
+              align="start"
+              sideOffset={10}
+            >
+              <div className="relative">
+                <div className="w-full h-64 overflow-hidden bg-gray-50">
+                  <img
+                    src="https://avatars.githubusercontent.com/u/106595150?v=4"
+                    alt="Rahul Kumar"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4">
+                  <h3 className="text-white font-display font-bold text-lg">Rahul Kumar</h3>
+                  <p className="text-gray-200 text-sm">Full Stack Developer</p>
+                </div>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">

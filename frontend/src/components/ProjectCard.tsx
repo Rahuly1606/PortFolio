@@ -23,29 +23,23 @@ const ProjectCard = ({
 }: ProjectCardProps) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, delay, ease: "easeOut" }}
-      className="group"
+      transition={{ duration: 0.6, delay }}
+      whileHover={{ y: -10 }}
     >
-      <Card className="bg-card-dark border-none h-full rounded-2xl shadow-soft hover:shadow-lift transition-all duration-300 hover:-translate-y-2 overflow-hidden">
-        <CardHeader className="pb-4 pt-8 px-8">
-          <CardTitle className="text-2xl font-display font-bold text-white mb-3 group-hover:text-accent transition-colors duration-300">
-            {title}
-          </CardTitle>
-          <CardDescription className="text-gray-400 text-base leading-relaxed">
+      <Card className="glass border-primary/20 h-full hover:shadow-[0_20px_50px_rgba(139,92,246,0.25)] shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-500 group">
+        <CardHeader className="pb-4 pt-6">
+          <CardTitle className="text-2xl mb-3 group-hover:text-primary transition-colors duration-300">{title}</CardTitle>
+          <CardDescription className="text-muted-foreground text-base leading-relaxed">
             {description}
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6 pb-8 px-8">
-          <div className="flex flex-wrap gap-2">
+        <CardContent className="space-y-5 pb-6">
+          <div className="flex flex-wrap gap-2.5">
             {techStack.map((tech) => (
-              <Badge
-                key={tech}
-                variant="secondary"
-                className="bg-white/10 text-white border-white/20 hover:bg-accent hover:text-text hover:border-accent transition-all duration-300 px-3 py-1.5 text-sm font-medium rounded-lg"
-              >
+              <Badge key={tech} variant="secondary" className="bg-primary/10 text-primary border-primary/20 hover:bg-primary hover:text-white transition-colors duration-300 px-3 py-1.5 text-sm">
                 {tech}
               </Badge>
             ))}
@@ -54,25 +48,32 @@ const ProjectCard = ({
             {liveUrl && (
               <Button
                 size="default"
-                className="flex-1 bg-accent hover:bg-accent/90 text-text font-bold rounded-xl py-5 transition-all duration-300 hover:-translate-y-0.5 shadow-accent"
+                className="flex-1 bg-primary/10 hover:bg-primary text-primary hover:text-primary-foreground border border-primary/30 shadow-md hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 relative overflow-hidden group/btn py-5"
                 asChild
               >
                 <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
-                  <ExternalLink className="w-4 h-4" />
-                  Live Demo
+                  <ExternalLink className="w-4 h-4 group-hover/btn:rotate-12 transition-transform duration-300" />
+                  <span className="relative">
+                    Live Demo
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current group-hover/btn:w-full transition-all duration-300"></span>
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
                 </a>
               </Button>
             )}
             {githubUrl && (
               <Button
                 size="default"
-                variant="outline"
-                className="flex-1 border-2 border-white/20 text-white hover:bg-white hover:text-text font-bold rounded-xl py-5 transition-all duration-300"
+                className="flex-1 bg-primary/10 hover:bg-primary text-primary hover:text-primary-foreground border border-primary/30 shadow-md hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 relative overflow-hidden group/btn py-5"
                 asChild
               >
                 <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
-                  <Github className="w-4 h-4" />
-                  Code
+                  <Github className="w-4 h-4 group-hover/btn:rotate-12 transition-transform duration-300" />
+                  <span className="relative">
+                    GitHub
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current group-hover/btn:w-full transition-all duration-300"></span>
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
                 </a>
               </Button>
             )}
