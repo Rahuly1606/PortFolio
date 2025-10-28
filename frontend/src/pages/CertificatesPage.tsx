@@ -17,14 +17,14 @@ const CertificatesPage = () => {
       logo: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg',
       verificationUrl: 'https://learn.microsoft.com/api/credentials/share/en-us/RAHULKUMAR-6909/75D907EC828C9221?sharingId=64CE99F68B678B3B',
     },
-    {
-      title: 'Oracle Cloud Infrastructure Generative AI Professional',
-      issuer: 'Oracle Cloud',
-      date: 'Sep 2024',
-      description: 'Validates expertise in generative AI on Oracle Cloud Infrastructure',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg',
-      verificationUrl: 'https://catalog-education.oracle.com/pls/certview/sharebadge?id=20BBA5622A4DC3CB33169DD8BD069D90C785FEB86DE3F1D1BFF0713EF9DD3787',
-    },
+    // {
+    //   title: 'Oracle Cloud Infrastructure Generative AI Professional',
+    //   issuer: 'Oracle Cloud',
+    //   date: 'Sep 2024',
+    //   description: 'Validates expertise in generative AI on Oracle Cloud Infrastructure',
+    //   logo: 'https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg',
+    //   verificationUrl: 'https://catalog-education.oracle.com/pls/certview/sharebadge?id=20BBA5622A4DC3CB33169DD8BD069D90C785FEB86DE3F1D1BFF0713EF9DD3787',
+    // },
     {
       title: 'MongoDB Associate Developer',
       issuer: 'MongoDB University',
