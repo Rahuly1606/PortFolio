@@ -9,6 +9,14 @@ const Certificates = () => {
 
   const featuredCertificates = [
     {
+      title: 'GitHub Foundations',
+      issuer: 'Microsoft Learn',
+      date: 'Oct 2025',
+      description: 'Demonstrates foundational knowledge of GitHub, version control, and collaboration practices',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg',
+      verificationUrl: 'https://learn.microsoft.com/api/credentials/share/en-us/RAHULKUMAR-6909/75D907EC828C9221?sharingId=64CE99F68B678B3B',
+    },
+    {
       title: 'Oracle Cloud Infrastructure Generative AI Professional',
       issuer: 'Oracle Cloud',
       date: 'Sep 2024',
