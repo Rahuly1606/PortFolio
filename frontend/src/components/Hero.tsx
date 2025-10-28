@@ -1,178 +1,149 @@
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Download, ChevronDown } from "lucide-react";
+import { Download, ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 
 const Hero = () => {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const rotateX = useSpring(useTransform(mouseY, [-300, 300], [15, -15]));
-  const rotateY = useSpring(useTransform(mouseX, [-300, 300], [-15, 15]));
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    mouseX.set(e.clientX - centerX);
-    mouseY.set(e.clientY - centerY);
-  };
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Animated Background Orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 100, 0],
-            y: [0, 50, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            x: [0, -100, 0],
-            y: [0, -50, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute bottom-20 right-10 w-96 h-96 bg-accent/15 rounded-full blur-3xl"
-        />
-      </div>
+    <section className="h-screen flex items-center justify-center relative bg-background overflow-hidden pt-20">
+      {/* Subtle Grid Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
+      <div className="container mx-auto px-6 lg:px-12 relative z-10 py-12">
+        <div className="max-w-5xl mx-auto">
+          {/* Main Content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-center space-y-6"
           >
+            {/* Status Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-soft border border-gray-200"
+            >
+              <span className="w-2 h-2 bg-success rounded-full animate-pulse" />
+              <span className="text-sm font-medium text-subtext">Available for opportunities</span>
+            </motion.div>
+
+            {/* Main Heading */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-5xl md:text-7xl font-bold mb-4"
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold text-text tracking-tight leading-none"
             >
-              Hi, I'm{" "}
-              <span className="text-gradient">Rahul Kumar</span>
+              <span className="block md:inline">RAHUL</span>
+              <span className="block md:inline md:ml-4">
+                <span className="text-subtext">KUMAR</span>
+              </span>
             </motion.h1>
 
+            {/* Subtitle */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-xl md:text-2xl text-muted-foreground mb-2"
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="text-lg md:text-xl text-subtext max-w-2xl mx-auto font-medium"
             >
-              B.Tech in Computer Science & IT
+              Full-Stack Developer crafting elegant solutions with modern technologies.
+              <br />
+              <span className="text-gray-600">B.Tech in Computer Science & IT</span>
             </motion.p>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-              className="text-lg text-muted-foreground mb-8"
-            >
-              Building innovative solutions with modern technologies
-            </motion.p>
-
+            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
-              className="flex flex-wrap gap-4"
+              transition={{ delay: 0.7, duration: 0.8 }}
+              className="flex flex-wrap items-center justify-center gap-3 pt-2"
             >
               <Button
                 size="lg"
                 onClick={() => scrollToSection("projects")}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden group px-8 py-6"
+                className="bg-accent hover:bg-accent/90 text-text font-bold px-6 py-5 text-base rounded-xl shadow-accent hover:shadow-lift transition-all duration-300 hover:-translate-y-1"
               >
-                <span className="relative z-10 flex items-center">
-                  <span className="relative">
-                    View Projects
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white/50 group-hover:w-full transition-all duration-300"></span>
-                  </span>
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                View Work
               </Button>
+
               <Button
                 size="lg"
-                className="border-2 border-primary bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden group px-8 py-6"
+                variant="outline"
+                onClick={() => scrollToSection("contact")}
+                className="border-2 border-text text-text hover:bg-text hover:text-background font-bold px-6 py-5 text-base rounded-xl transition-all duration-300"
+              >
+                <Mail className="w-4 h-4 mr-2" />
+                Get in Touch
+              </Button>
+
+              <Button
+                size="lg"
+                variant="ghost"
+                className="text-subtext hover:text-text font-medium px-6 py-5 text-base rounded-xl transition-all duration-300"
                 asChild
               >
                 <a href="/Resume.pdf" download="Resume.pdf" className="flex items-center gap-2">
-                  <Download className="h-5 w-5 group-hover:animate-bounce" />
-                  <span className="relative">
-                    Download Resume
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current group-hover:w-full transition-all duration-300"></span>
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                  <Download className="w-4 h-4 mr-2" />
+                  Resume
                 </a>
               </Button>
             </motion.div>
-          </motion.div>
 
-          {/* 3D Profile Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="flex justify-center lg:justify-end"
-            onMouseMove={handleMouseMove}
-          >
+            {/* Social Links */}
             <motion.div
-              style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-              className="relative"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9, duration: 0.8 }}
+              className="flex items-center justify-center gap-3 pt-4"
             >
-              <div className="w-72 h-72 md:w-96 md:h-96 relative">
-                {/* Gradient Ring */}
-                <div className="absolute inset-0 rounded-full gradient-accent opacity-75 blur-2xl" />
+              <a
+                href="https://github.com/Rahuly1606"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 text-text hover:bg-text hover:text-background transition-all duration-300 hover:-translate-y-1 shadow-soft hover:shadow-lift"
+              >
+                <Github className="w-4 h-4" />
+              </a>
+              <a
+                href="https://linkedin.com/in/yourprofile"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 text-text hover:bg-text hover:text-background transition-all duration-300 hover:-translate-y-1 shadow-soft hover:shadow-lift"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+            </motion.div>
 
-                {/* Profile Image Container */}
-                <div className="absolute inset-4 rounded-full glass overflow-hidden border-4 border-primary/30">
-                  <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                    <div className="w-full h-full bg-muted/30 flex items-center justify-center text-6xl font-bold text-primary">
-                      RK
-                    </div>
-                  </div>
-                </div>
-              </div>
+            {/* Scroll Indicator */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+              className="pt-8"
+            >
+              <button
+                onClick={() => scrollToSection("about")}
+                className="group flex flex-col items-center gap-2 text-subtext hover:text-text transition-colors duration-300"
+              >
+                <span className="text-xs font-medium uppercase tracking-wider">Scroll to explore</span>
+                <motion.div
+                  animate={{ y: [0, 8, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                  className="w-8 h-8 flex items-center justify-center rounded-full border-2 border-subtext group-hover:border-text transition-colors duration-300"
+                >
+                  <ArrowDown className="w-4 h-4" />
+                </motion.div>
+              </button>
             </motion.div>
           </motion.div>
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="flex flex-col items-center gap-2 cursor-pointer"
-            onClick={() => scrollToSection("about")}
-          >
-            <span className="text-sm text-muted-foreground">Scroll Down</span>
-            <ChevronDown className="w-6 h-6 text-primary" />
-          </motion.div>
-        </motion.div>
       </div>
     </section>
   );

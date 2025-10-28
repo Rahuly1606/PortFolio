@@ -23,19 +23,19 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-20 relative">
-      <div className="container mx-auto px-4">
+    <section id="about" className="py-20 md:py-32 relative bg-white">
+      <div className="container mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="mb-12 md:mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            About <span className="text-gradient">Me</span>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-text tracking-tight mb-4 md:mb-6">
+            ABOUT ME
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-subtext max-w-2xl">
             Passionate about creating innovative solutions and learning new technologies
           </p>
         </motion.div>
@@ -44,34 +44,34 @@ const About = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-6"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
         >
           {/* Education Card */}
           <motion.div variants={itemVariants}>
-            <Card className="glass border-primary/20 h-full hover:shadow-[0_20px_50px_rgba(139,92,246,0.25)] shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-500 hover:-translate-y-2 group">
-              <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <GraduationCap className="w-6 h-6 text-primary" />
+            <Card className="bg-white border-2 border-gray-200 h-full rounded-2xl shadow-soft hover:shadow-lift hover:border-accent transition-all duration-300 hover:-translate-y-1 group overflow-hidden">
+              <CardHeader className="pb-6 pt-8 px-8">
+                <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
+                  <GraduationCap className="w-7 h-7 text-text" />
                 </div>
-                <CardTitle className="group-hover:text-primary transition-colors duration-300">Education</CardTitle>
+                <CardTitle className="text-xl font-bold text-text group-hover:text-accent transition-colors duration-300">Education</CardTitle>
               </CardHeader>
-              <CardContent>
-                <h3 className="font-semibold mb-2">B.Tech in Computer Science & IT</h3>
-                <p className="text-muted-foreground mb-1">K L University</p>
-                <p className="text-sm text-muted-foreground">2023 - 2027</p>
+              <CardContent className="px-8 pb-8">
+                <h3 className="font-bold text-text mb-2">B.Tech in Computer Science & IT</h3>
+                <p className="text-subtext mb-1 font-medium">K L University</p>
+                <p className="text-sm text-gray-600 font-medium">2023 - 2027</p>
               </CardContent>
             </Card>
           </motion.div>
 
-          {/* About Me Card */}
+          {/* About Me Card - Dark variant */}
           <motion.div variants={itemVariants}>
-            <Card className="glass border-primary/20 h-full hover:shadow-[0_20px_50px_rgba(139,92,246,0.25)] shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-500 hover:-translate-y-2 group">
-              <CardHeader>
-                <CardTitle className="group-hover:text-primary transition-colors duration-300">Who I Am</CardTitle>
+            <Card className="bg-card-dark border-none h-full rounded-2xl shadow-soft hover:shadow-lift transition-all duration-300 hover:-translate-y-1 group overflow-hidden">
+              <CardHeader className="pb-6 pt-8 px-8">
+                <CardTitle className="text-xl font-bold text-white group-hover:text-accent transition-colors duration-300">Who I Am</CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed">
+              <CardContent className="px-8 pb-8">
+                <p className="text-gray-300 leading-relaxed font-medium">
                   Passionate full-stack developer focused on building scalable applications
                   with modern technologies. Eager to learn and contribute to innovative projects.
                 </p>
@@ -81,25 +81,25 @@ const About = () => {
 
           {/* Quick Facts Card */}
           <motion.div variants={itemVariants}>
-            <Card className="glass border-primary/20 h-full hover:shadow-[0_20px_50px_rgba(139,92,246,0.25)] shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-500 hover:-translate-y-2 group">
-              <CardHeader>
-                <CardTitle className="group-hover:text-primary transition-colors duration-300">Quick Facts</CardTitle>
+            <Card className="bg-white border-2 border-gray-200 h-full rounded-2xl shadow-soft hover:shadow-lift hover:border-accent transition-all duration-300 hover:-translate-y-1 group overflow-hidden">
+              <CardHeader className="pb-6 pt-8 px-8">
+                <CardTitle className="text-xl font-bold text-text group-hover:text-accent transition-colors duration-300">Quick Facts</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
+              <CardContent className="px-8 pb-8 space-y-4">
                 <div className="flex items-center gap-3">
-                  <MapPin className="w-5 h-5 text-primary" />
-                  <span className="text-muted-foreground">Bihar, India</span>
+                  <MapPin className="w-5 h-5 text-accent" />
+                  <span className="text-subtext font-medium">Bihar, India</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Mail className="w-5 h-5 text-primary" />
-                  <span className="text-sm text-muted-foreground">alexrahul9576@gmail.com</span>
+                  <Mail className="w-5 h-5 text-accent" />
+                  <span className="text-sm text-subtext font-medium">alexrahul9576@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <FileText className="w-5 h-5 text-primary" />
+                  <FileText className="w-5 h-5 text-accent" />
                   <a
                     href="/Resume.pdf"
                     download="Resume.pdf"
-                    className="text-sm text-primary hover:underline"
+                    className="text-sm text-text hover:text-accent font-medium transition-colors duration-300"
                   >
                     Download Resume
                   </a>
