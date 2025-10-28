@@ -60,7 +60,7 @@ const Certificates = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 mb-12 md:mb-16 max-w-6xl mx-auto">
           {featuredCertificates.map((cert, index) => (
             <motion.div
               key={index}
@@ -69,41 +69,41 @@ const Certificates = () => {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="h-full bg-white border-2 border-gray-200 rounded-2xl shadow-soft hover:shadow-lift hover:border-accent transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden">
-                <CardHeader className="pb-4 pt-6 px-6">
-                  <div className="w-16 h-16 flex items-center justify-center mb-4 bg-gray-50 rounded-xl p-3 border border-gray-200">
+              <Card className="h-full bg-white border-2 border-gray-200 rounded-xl shadow-soft hover:shadow-lift hover:border-accent transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden">
+                <CardHeader className="pb-3 pt-4 px-5">
+                  <div className="w-12 h-12 flex items-center justify-center mb-3 bg-gray-50 rounded-lg p-2 border border-gray-200">
                     <img
                       src={cert.logo}
                       alt={`${cert.issuer} logo`}
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <CardTitle className="text-lg font-bold text-text leading-tight min-h-[3rem] group-hover:text-accent transition-colors duration-300">
+                  <CardTitle className="text-base font-bold text-text leading-tight group-hover:text-accent transition-colors duration-300">
                     {cert.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex-1 flex flex-col pt-2 pb-6 px-6">
-                  <div className="flex-1 space-y-3">
+                <CardContent className="flex-1 flex flex-col pt-1 pb-4 px-5">
+                  <div className="flex-1 space-y-2">
                     {cert.description && (
-                      <p className="text-sm text-subtext leading-relaxed font-medium min-h-[2.5rem]">{cert.description}</p>
+                      <p className="text-xs text-subtext leading-relaxed font-medium line-clamp-2">{cert.description}</p>
                     )}
                     <div>
-                      <p className="text-xs font-bold text-text uppercase tracking-wide mb-1">Issuer</p>
-                      <p className="text-sm text-subtext font-medium">{cert.issuer}</p>
+                      <p className="text-xs font-bold text-text uppercase tracking-wide mb-0.5">Issuer</p>
+                      <p className="text-xs text-subtext font-medium">{cert.issuer}</p>
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-text uppercase tracking-wide mb-1">Issued</p>
-                      <p className="text-sm text-subtext font-medium">{cert.date}</p>
+                      <p className="text-xs font-bold text-text uppercase tracking-wide mb-0.5">Issued</p>
+                      <p className="text-xs text-subtext font-medium">{cert.date}</p>
                     </div>
                   </div>
                   <Button
                     size="sm"
-                    className="w-full bg-accent hover:bg-accent/90 text-text font-bold rounded-xl mt-4 py-5 transition-all duration-300 hover:-translate-y-0.5 shadow-accent"
+                    className="w-full bg-accent hover:bg-accent/90 text-text font-bold rounded-lg mt-3 py-4 text-xs transition-all duration-300 hover:-translate-y-0.5 shadow-accent"
                     asChild
                   >
                     <a href={cert.verificationUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
                       Verify Credential
-                      <ExternalLink className="w-4 h-4" />
+                      <ExternalLink className="w-3 h-3" />
                     </a>
                   </Button>
                 </CardContent>
