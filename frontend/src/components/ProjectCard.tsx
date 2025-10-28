@@ -67,7 +67,7 @@ const ProjectCard = ({
               <Button
                 size="default"
                 variant="outline"
-                className="flex-1 border-2 border-white/20 text-white hover:bg-white hover:text-text font-bold rounded-xl py-5 transition-all duration-300"
+                className="flex-1 border-2 border-white/20 text-text bg-white hover:bg-accent hover:text-text hover:border-accent font-bold rounded-xl py-5 transition-all duration-300"
                 asChild
               >
                 <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
