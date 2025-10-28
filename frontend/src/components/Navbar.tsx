@@ -3,6 +3,11 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -55,12 +60,67 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 lg:px-12 py-5">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="text-xl font-display font-bold tracking-tight">
-            <span className="text-text">RAHUL KU.</span>
-          </Link>
+          {/* Profile Image with Hover Card */}
+          <HoverCard openDelay={200} closeDelay={100}>
+            <HoverCardTrigger asChild>
+              <Link
+                to="/"
+                className="group relative flex items-center justify-center"
+              >
+                <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-gray-200 group-hover:border-accent transition-all duration-300 shadow-soft group-hover:shadow-accent cursor-pointer transform group-hover:scale-105">
+                  <img
+                    src="/profile.jpg"
+                    alt="Rahul Kumar"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = "https://ui-avatars.com/api/?name=Rahul+Kumar&background=E9F460&color=0B0B0B&size=200&bold=true";
+                    }}
+                  />
+                </div>
+              </Link>
+            </HoverCardTrigger>
+            <HoverCardContent
+              className="w-64 sm:w-72 p-0 border-2 border-gray-200 shadow-lift overflow-hidden bg-white"
+              sideOffset={8}
+              align="start"
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="relative"
+              >
+                {/* Profile Image */}
+                <div className="relative w-full h-48 sm:h-56 bg-gradient-to-br from-accent/10 to-gray-50 flex items-center justify-center p-4">
+                  <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-white shadow-lift">
+                    <img
+                      src="/profile.jpg"
+                      alt="Rahul Kumar"
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = "https://ui-avatars.com/api/?name=Rahul+Kumar&background=E9F460&color=0B0B0B&size=400&bold=true";
+                      }}
+                    />
+                  </div>
+                </div>
 
-          {/* Desktop Navigation */}
+                {/* Profile Info */}
+                <div className="p-4 sm:p-5 space-y-2">
+                  <h3 className="text-lg sm:text-xl font-display font-bold text-text">
+                    RAHUL KUMAR
+                  </h3>
+                  <p className="text-xs sm:text-sm text-subtext font-medium">
+                    Full Stack Developer & AI Enthusiast
+                  </p>
+                  <p className="text-xs text-gray-600 pt-1">
+                    Building scalable applications with modern technologies
+                  </p>
+                </div>
+              </motion.div>
+            </HoverCardContent>
+          </HoverCard>          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <button
