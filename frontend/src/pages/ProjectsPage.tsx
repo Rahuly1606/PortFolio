@@ -1,12 +1,24 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import ProjectCard from "@/components/ProjectCard";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { ProjectCardSkeleton } from "@/components/skeletons/ProjectsSkeleton";
 
 const ProjectsPage = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate page load
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const allProjects = [
     {
@@ -87,13 +99,17 @@ const ProjectsPage = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {allProjects.map((project, index) => (
-              <ProjectCard
-                key={project.title}
-                {...project}
-                delay={index * 0.1}
-              />
-            ))}
+            {isLoading
+              ? Array.from({ length: 6 }).map((_, index) => (
+                <ProjectCardSkeleton key={index} />
+              ))
+              : allProjects.map((project, index) => (
+                <ProjectCard
+                  key={project.title}
+                  {...project}
+                  delay={index * 0.1}
+                />
+              ))}
           </div>
         </motion.div>
       </div>

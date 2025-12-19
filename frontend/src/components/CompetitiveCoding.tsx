@@ -1,9 +1,21 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExternalLink, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import CompetitiveCodingSkeleton from "./skeletons/CompetitiveCodingSkeleton";
 
 const CompetitiveCoding = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate data loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 950);
+
+    return () => clearTimeout(timer);
+  }, []);
   const platforms = [
     {
       name: "LeetCode",
@@ -38,6 +50,10 @@ const CompetitiveCoding = () => {
       brandColor: "#1F8ACB",
     },
   ];
+
+  if (isLoading) {
+    return <CompetitiveCodingSkeleton />;
+  }
 
   return (
     <section id="competitive-coding" className="py-20 md:py-32 relative bg-background">

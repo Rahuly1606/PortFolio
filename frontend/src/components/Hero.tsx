@@ -1,12 +1,29 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Download, ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import HeroSkeleton from "./skeletons/HeroSkeleton";
 
 const Hero = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate initial page load
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({ behavior: "smooth" });
   };
+
+  if (isLoading) {
+    return <HeroSkeleton />;
+  }
 
   return (
     <section className="h-screen flex items-center justify-center relative bg-background overflow-hidden pt-20">

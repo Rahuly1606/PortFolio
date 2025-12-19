@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -6,8 +6,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Instagram } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import ContactSkeleton from "./skeletons/ContactSkeleton";
 
 const Contact = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,6 +18,15 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+
+  useEffect(() => {
+    // Simulate initial load
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -80,6 +91,10 @@ const Contact = () => {
     { icon: Twitter, label: "Twitter", href: "https://x.com/ALEX_RAHUL_07" },
     { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/rahul.ftz/" },
   ];
+
+  if (isLoading) {
+    return <ContactSkeleton />;
+  }
 
   return (
     <section id="contact" className="py-20 md:py-32 relative bg-background">

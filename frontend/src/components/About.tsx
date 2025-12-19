@@ -1,8 +1,20 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { GraduationCap, MapPin, Mail, FileText } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import AboutSkeleton from "./skeletons/AboutSkeleton";
 
 const About = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate data loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 700);
+
+    return () => clearTimeout(timer);
+  }, []);
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -21,6 +33,10 @@ const About = () => {
       transition: { duration: 0.6 },
     },
   };
+
+  if (isLoading) {
+    return <AboutSkeleton />;
+  }
 
   return (
     <section id="about" className="py-20 md:py-32 relative bg-white">

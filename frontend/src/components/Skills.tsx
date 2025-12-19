@@ -1,9 +1,21 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Code, Palette, Server, Cloud, Zap, Users } from "lucide-react";
+import SkillsSkeleton from "./skeletons/SkillsSkeleton";
 
 const Skills = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate data loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 900);
+
+    return () => clearTimeout(timer);
+  }, []);
   const skillCategories = [
     {
       icon: Code,
@@ -36,6 +48,10 @@ const Skills = () => {
       skills: ["Requirements Analysis", "Stakeholder Communication", "Scoping", "Risk Mitigation"],
     },
   ];
+
+  if (isLoading) {
+    return <SkillsSkeleton />;
+  }
 
   return (
     <section id="skills" className="py-20 md:py-32 relative bg-white">

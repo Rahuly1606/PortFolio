@@ -1,6 +1,8 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, MapPin } from "lucide-react";
+import ExperienceSkeleton from "./skeletons/ExperienceSkeleton";
 
 interface ExperienceItem {
   id: number;
@@ -14,6 +16,17 @@ interface ExperienceItem {
 }
 
 const Experience = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate data loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 850);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // Experiences ordered from newest to oldest (new ones will appear at the top)
   const experiences: ExperienceItem[] = [
     {
@@ -31,6 +44,10 @@ const Experience = () => {
       ],
     },
   ];
+
+  if (isLoading) {
+    return <ExperienceSkeleton />;
+  }
 
   return (
     <section id="experience" className="py-20 md:py-32 relative bg-background">

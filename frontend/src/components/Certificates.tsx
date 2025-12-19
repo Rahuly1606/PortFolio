@@ -1,11 +1,23 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, ArrowRight } from "lucide-react";
+import { CertificatesSkeleton } from "./skeletons/CertificatesSkeleton";
 
 const Certificates = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate data loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 900);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const featuredCertificates = [
     {
@@ -41,6 +53,10 @@ const Certificates = () => {
       verificationUrl: 'https://trailhead.salesforce.com/en/credentials/verification/',
     },
   ];
+
+  if (isLoading) {
+    return <CertificatesSkeleton />;
+  }
 
   return (
     <section id="certificates" className="py-20 md:py-32 relative bg-white">

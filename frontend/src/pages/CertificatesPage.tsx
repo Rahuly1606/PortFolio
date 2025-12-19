@@ -1,12 +1,24 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, ArrowLeft } from "lucide-react";
+import { CertificateCardSkeleton } from "@/components/skeletons/CertificatesSkeleton";
 
 const CertificatesPage = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate page load
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const allCertificates = [
     {
@@ -96,55 +108,59 @@ const CertificatesPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-            {allCertificates.map((cert, index) => (
-              <motion.div
-                key={cert.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-                className="group"
-              >
-                <Card className="h-full bg-white border-2 border-gray-200 rounded-xl shadow-soft hover:shadow-lift hover:border-accent transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden">
-                  <CardHeader className="pb-3 pt-4 px-5">
-                    <div className="w-12 h-12 flex items-center justify-center mb-3 bg-gray-50 rounded-lg p-2 border border-gray-200">
-                      <img
-                        src={cert.logo}
-                        alt={`${cert.issuer} logo`}
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                    <CardTitle className="text-base font-bold text-text leading-tight group-hover:text-accent transition-colors duration-300">
-                      {cert.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex-1 flex flex-col pt-1 pb-4 px-5">
-                    <div className="flex-1 space-y-2">
-                      {cert.description && (
-                        <p className="text-xs text-subtext leading-relaxed font-medium line-clamp-2">{cert.description}</p>
-                      )}
-                      <div>
-                        <p className="text-xs font-bold text-text uppercase tracking-wide mb-0.5">Issuer</p>
-                        <p className="text-xs text-subtext font-medium">{cert.issuer}</p>
+            {isLoading
+              ? Array.from({ length: 6 }).map((_, index) => (
+                <CertificateCardSkeleton key={index} />
+              ))
+              : allCertificates.map((cert, index) => (
+                <motion.div
+                  key={cert.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+                  className="group"
+                >
+                  <Card className="h-full bg-white border-2 border-gray-200 rounded-xl shadow-soft hover:shadow-lift hover:border-accent transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden">
+                    <CardHeader className="pb-3 pt-4 px-5">
+                      <div className="w-12 h-12 flex items-center justify-center mb-3 bg-gray-50 rounded-lg p-2 border border-gray-200">
+                        <img
+                          src={cert.logo}
+                          alt={`${cert.issuer} logo`}
+                          className="w-full h-full object-contain"
+                        />
                       </div>
-                      <div>
-                        <p className="text-xs font-bold text-text uppercase tracking-wide mb-0.5">Issued</p>
-                        <p className="text-xs text-subtext font-medium">{cert.date}</p>
+                      <CardTitle className="text-base font-bold text-text leading-tight group-hover:text-accent transition-colors duration-300">
+                        {cert.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex-1 flex flex-col pt-1 pb-4 px-5">
+                      <div className="flex-1 space-y-2">
+                        {cert.description && (
+                          <p className="text-xs text-subtext leading-relaxed font-medium line-clamp-2">{cert.description}</p>
+                        )}
+                        <div>
+                          <p className="text-xs font-bold text-text uppercase tracking-wide mb-0.5">Issuer</p>
+                          <p className="text-xs text-subtext font-medium">{cert.issuer}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs font-bold text-text uppercase tracking-wide mb-0.5">Issued</p>
+                          <p className="text-xs text-subtext font-medium">{cert.date}</p>
+                        </div>
                       </div>
-                    </div>
-                    <Button
-                      size="sm"
-                      className="w-full bg-accent hover:bg-accent/90 text-text font-bold rounded-lg mt-3 py-4 text-xs transition-all duration-300 hover:-translate-y-0.5 shadow-accent"
-                      asChild
-                    >
-                      <a href={cert.verificationUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
-                        Verify Credential
-                        <ExternalLink className="w-3 h-3" />
-                      </a>
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+                      <Button
+                        size="sm"
+                        className="w-full bg-accent hover:bg-accent/90 text-text font-bold rounded-lg mt-3 py-4 text-xs transition-all duration-300 hover:-translate-y-0.5 shadow-accent"
+                        asChild
+                      >
+                        <a href={cert.verificationUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+                          Verify Credential
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
           </div>
         </motion.div>
       </div>

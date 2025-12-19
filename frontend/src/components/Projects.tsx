@@ -1,11 +1,23 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import ProjectCard from "./ProjectCard";
 import { ArrowRight } from "lucide-react";
+import { ProjectsSkeleton } from "./skeletons/ProjectsSkeleton";
 
 const Projects = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate data loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 800);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const featuredProjects = [
     {
@@ -34,6 +46,10 @@ const Projects = () => {
     },
 
   ];
+
+  if (isLoading) {
+    return <ProjectsSkeleton />;
+  }
 
   return (
     <section id="projects" className="py-20 md:py-32 relative bg-background">
