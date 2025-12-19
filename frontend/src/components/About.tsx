@@ -39,7 +39,7 @@ const About = () => {
   }
 
   return (
-    <section id="about" className="py-20 md:py-32 relative bg-white">
+    <section id="about" className="py-20 md:py-32 relative">
       <div className="container mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

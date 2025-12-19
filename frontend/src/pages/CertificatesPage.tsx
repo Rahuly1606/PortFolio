@@ -80,7 +80,7 @@ const CertificatesPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navbar />
 
       <div className="container mx-auto px-6 lg:px-12 pt-24 md:pt-32 pb-12 md:pb-20">
