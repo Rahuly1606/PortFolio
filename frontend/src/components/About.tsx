@@ -73,15 +73,15 @@ export function About() {
 
             <div className="mt-6 grid grid-cols-3 gap-3 text-center">
               <div className="rounded-xl bg-secondary p-3">
-                <p className="font-display text-2xl font-bold">3+</p>
+                <p className="font-display text-2xl font-bold">10+</p>
                 <p className="text-[10px] text-muted-foreground uppercase">Projects</p>
               </div>
               <div className="rounded-xl bg-secondary p-3">
-                <p className="font-display text-2xl font-bold">330+</p>
+                <p className="font-display text-2xl font-bold">450+</p>
                 <p className="text-[10px] text-muted-foreground uppercase">DSA</p>
               </div>
               <div className="rounded-xl bg-accent p-3">
-                <p className="font-display text-2xl font-bold">3</p>
+                <p className="font-display text-2xl font-bold">6+</p>
                 <p className="text-[10px] uppercase">Certs</p>
               </div>
             </div>
