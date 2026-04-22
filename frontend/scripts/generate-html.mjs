@@ -5,10 +5,11 @@ const assetsDir = join(process.cwd(), 'dist', 'client', 'assets');
 const files = readdirSync(assetsDir);
 
 const cssFile = files.find(f => f.endsWith('.css'));
-const jsFile = files.find(f => f.startsWith('index-') && f.endsWith('.js'));
+const jsFile = files.find(f => f.endsWith('.js'));
 
 if (!cssFile || !jsFile) {
   console.error('❌ Could not find CSS or JS files');
+  console.error('Available files:', files);
   process.exit(1);
 }
 
