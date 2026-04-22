@@ -77,7 +77,7 @@ export function About() {
                 <p className="text-[10px] text-muted-foreground uppercase">Projects</p>
               </div>
               <div className="rounded-xl bg-secondary p-3">
-                <p className="font-display text-2xl font-bold">450+</p>
+                <p className="font-display text-2xl font-bold">1000+</p>
                 <p className="text-[10px] text-muted-foreground uppercase">DSA</p>
               </div>
               <div className="rounded-xl bg-accent p-3">
