@@ -2,13 +2,23 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, MeshDistortMaterial, Environment } from "@react-three/drei";
 import { Suspense, useRef } from "react";
 import type { Mesh } from "three";
+import * as THREE from "three";
 
 function Knot() {
   const ref = useRef<Mesh>(null);
-  useFrame((state) => {
+  const timerRef = useRef<THREE.Timer | null>(null);
+
+  useFrame(() => {
     if (!ref.current) return;
-    ref.current.rotation.x = state.clock.elapsedTime * 0.15;
-    ref.current.rotation.y = state.clock.elapsedTime * 0.2;
+
+    // Use THREE.Timer if available, otherwise use state.clock
+    if (!timerRef.current && typeof THREE.Timer !== "undefined") {
+      timerRef.current = new THREE.Timer();
+    }
+
+    const elapsed = timerRef.current ? timerRef.current.getElapsed() : performance.now() / 1000;
+    ref.current.rotation.x = elapsed * 0.15;
+    ref.current.rotation.y = elapsed * 0.2;
   });
   return (
     <Float speed={1.4} rotationIntensity={0.4} floatIntensity={0.8}>
