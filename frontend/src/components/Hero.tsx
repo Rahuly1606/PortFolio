@@ -1,17 +1,17 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Github, Linkedin, Twitter, Instagram, Download } from "lucide-react";
-import { Hero3D } from "./Hero3D";
+import { HeroVisual } from "./HeroVisual";
 import { SOCIAL_LINKS } from "@/lib/portfolio-data";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen pt-20 pb-16 overflow-hidden">
+    <section className="relative min-h-screen pt-20 pb-16 overflow-hidden flex flex-col justify-between">
       <div className="absolute inset-0 grid-pattern opacity-60" />
       <div className="absolute -top-32 -right-32 h-[500px] w-[500px] rounded-full bg-accent/30 blur-3xl" />
       <div className="absolute bottom-0 -left-32 h-[400px] w-[400px] rounded-full bg-success/10 blur-3xl" />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex-1 flex items-center">
+        <div className="w-full grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -110,18 +110,7 @@ export function Hero() {
             </motion.div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="relative h-[600px] lg:h-[700px] overflow-hidden"
-          >
-            <Hero3D />
-            <div className="absolute bottom-4 right-4 glass rounded-2xl px-4 py-3 border border-border">
-              <p className="text-xs text-muted-foreground">Built with</p>
-              <p className="font-display font-semibold text-sm">React · Three.js</p>
-            </div>
-          </motion.div>
+          <HeroVisual />
         </div>
       </div>
 
@@ -130,7 +119,7 @@ export function Hero() {
         <div className="flex marquee-track gap-12 whitespace-nowrap text-background font-display text-2xl uppercase">
           {Array.from({ length: 2 }).map((_, i) => (
             <div key={i} className="flex gap-12 shrink-0">
-              {["React", "TypeScript", "Node.js", "Python", "AWS", "MongoDB", "Three.js", "Tailwind"].map(
+              {["React", "TypeScript", "Node.js", "Python", "AWS", "MongoDB", "PostgreSQL", "Tailwind"].map(
                 (s) => (
                   <span key={s} className="flex items-center gap-12">
                     {s}
