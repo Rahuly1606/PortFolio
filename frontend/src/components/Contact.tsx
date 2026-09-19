@@ -4,6 +4,7 @@ import { Github, Linkedin, Twitter, Instagram, Send, Mail, MapPin } from "lucide
 import { toast } from "sonner";
 import { SectionHeading } from "./SectionHeading";
 import { SOCIAL_LINKS } from "@/lib/portfolio-data";
+import { onSpotlightMove } from "@/lib/motion";
 
 export function Contact() {
   const [loading, setLoading] = useState(false);
@@ -35,7 +36,7 @@ export function Contact() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-2 rounded-2xl bg-card-dark text-background p-8 relative overflow-hidden"
           >
-            <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-accent/30 blur-3xl" />
+            <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-accent/30 blur-3xl blob-drift" />
             <h3 className="font-display text-2xl font-bold">Contact info</h3>
             <p className="mt-2 text-sm text-background/70">
               Available for freelance, internships, and collaborations.
@@ -58,17 +59,18 @@ export function Contact() {
 
             <div className="mt-8 flex gap-3">
               {[
-                { icon: Github, href: SOCIAL_LINKS.github },
-                { icon: Linkedin, href: SOCIAL_LINKS.linkedin },
-                { icon: Twitter, href: SOCIAL_LINKS.twitter },
-                { icon: Instagram, href: SOCIAL_LINKS.instagram },
-              ].map(({ icon: Icon, href }) => (
+                { icon: Github, href: SOCIAL_LINKS.github, label: "GitHub" },
+                { icon: Linkedin, href: SOCIAL_LINKS.linkedin, label: "LinkedIn" },
+                { icon: Twitter, href: SOCIAL_LINKS.twitter, label: "Twitter / X" },
+                { icon: Instagram, href: SOCIAL_LINKS.instagram, label: "Instagram" },
+              ].map(({ icon: Icon, href, label }) => (
                 <a
                   key={href}
                   href={href}
                   target="_blank"
                   rel="noreferrer"
-                  className="h-10 w-10 grid place-items-center rounded-xl bg-background/10 hover:bg-accent hover:text-accent-foreground transition-colors"
+                  aria-label={label}
+                  className="h-10 w-10 grid place-items-center rounded-xl bg-background/10 hover:bg-accent hover:text-accent-foreground hover:scale-110 hover:-translate-y-0.5 transition-all duration-300"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -134,9 +136,14 @@ export function Contact() {
             </div>
             <button
               disabled={loading}
-              className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-foreground text-accent px-6 py-3.5 text-sm font-semibold hover:bg-accent hover:text-accent-foreground transition-colors disabled:opacity-60"
+              className="press group w-full inline-flex items-center justify-center gap-2 rounded-xl bg-foreground text-accent px-6 py-3.5 text-sm font-semibold hover:bg-accent hover:text-accent-foreground disabled:opacity-60 disabled:pointer-events-none"
             >
-              {loading ? "Sending..." : "Send message"} <Send className="h-4 w-4" />
+              {loading ? "Sending..." : "Send message"}{" "}
+              <Send
+                className={`h-4 w-4 transition-transform duration-300 ${
+                  loading ? "animate-pulse" : "group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                }`}
+              />
             </button>
           </motion.form>
         </div>

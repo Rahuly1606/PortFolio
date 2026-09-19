@@ -1,13 +1,15 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Trophy } from "lucide-react";
-import { SectionHeading } from "./SectionHeading";
 import { COMPETITIVE } from "@/lib/portfolio-data";
+import { useReveal } from "@/lib/motion";
 
 export function Competitive() {
+  const { container, item } = useReveal();
+
   return (
     <section className="relative py-24 sm:py-32 bg-card-dark text-background overflow-hidden">
       <div className="absolute inset-0 grid-pattern-dark opacity-60" />
-      <div className="absolute -top-40 left-1/2 h-[400px] w-[400px] rounded-full bg-accent/15 blur-3xl -translate-x-1/2" />
+      <div className="absolute -top-40 left-1/2 h-[400px] w-[400px] rounded-full bg-accent/15 blur-3xl -translate-x-1/2 blob-drift" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -26,18 +28,21 @@ export function Competitive() {
           </h2>
         </motion.div>
 
-        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {COMPETITIVE.map((c, i) => (
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-60px" }}
+          className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
+        >
+          {COMPETITIVE.map((c) => (
             <motion.a
               key={c.platform}
               href={c.url}
               target="_blank"
               rel="noreferrer"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="group relative rounded-2xl border border-background/15 bg-background/5 backdrop-blur p-6 hover:border-accent transition-all hover:-translate-y-2"
+              variants={item}
+              className="group relative rounded-2xl border border-background/15 bg-background/5 backdrop-blur p-6 hover:border-accent transition-all duration-300 hover:-translate-y-2"
             >
               <div
                 className="absolute top-0 right-0 h-24 w-24 rounded-full blur-2xl opacity-30 group-hover:opacity-60 transition-opacity"
@@ -61,7 +66,7 @@ export function Competitive() {
               </div>
             </motion.a>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

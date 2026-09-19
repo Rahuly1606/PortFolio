@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 // Flat string of the full code block
 const FULL_CODE = `const developer = {
@@ -76,6 +76,7 @@ const PAUSE_EMPTY = 500;  // ms pause when fully erased
 export function HeroVisual() {
   const [displayed, setDisplayed] = useState("");
   const [erasing, setErasing]     = useState(false);
+  const reduce = useReducedMotion();
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
@@ -116,12 +117,13 @@ export function HeroVisual() {
             key={b.label}
             className={`absolute z-20 rounded-full border px-2.5 py-1 text-[11px] font-medium backdrop-blur-sm whitespace-nowrap ${b.color} ${b.pos}`}
             initial={{ opacity: 0, scale: 0.7 }}
-            animate={{ opacity: 1, scale: 1, y: [0, -5, 0] }}
+            animate={{ opacity: 1, scale: 1, y: reduce ? 0 : [0, -5, 0] }}
             transition={{
               opacity: { delay: 0.6 + i * 0.1, duration: 0.4 },
               scale:   { delay: 0.6 + i * 0.1, duration: 0.4 },
-              y:       { delay: 0.6 + i * 0.1, duration: 3 + i * 0.4, repeat: Infinity, ease: "easeInOut" },
+              y:       reduce ? { duration: 0 } : { delay: 0.6 + i * 0.1, duration: 3 + i * 0.4, repeat: Infinity, ease: "easeInOut" },
             }}
+            whileHover={{ scale: 1.12, y: reduce ? 0 : -8 }}
           >
             {b.label}
           </motion.span>

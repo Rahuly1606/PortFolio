@@ -29,14 +29,22 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Rahul Kumar — Full-Stack Developer & Engineer" },
+      {
+        name: "description",
+        content:
+          "Portfolio of Rahul Kumar — Full-Stack Developer crafting elegant, scalable products with React, Node, AI and cloud.",
+      },
+      { name: "author", content: "Rahul Kumar" },
+      { name: "theme-color", content: "#0B0B0B" },
+      { property: "og:title", content: "Rahul Kumar — Full-Stack Developer" },
+      {
+        property: "og:description",
+        content: "Modern full-stack portfolio with featured projects, skills, and experience.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Rahul Kumar — Full-Stack Developer" },
     ],
     links: [
       {

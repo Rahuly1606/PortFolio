@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Briefcase, MapPin } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import { EXPERIENCE } from "@/lib/portfolio-data";
+import { onSpotlightMove } from "@/lib/motion";
 
 export function Experience() {
   return (
@@ -39,7 +40,10 @@ export function Experience() {
               </div>
 
               <div className="mt-4 sm:mt-0 sm:pl-12">
-                <div className="rounded-2xl border border-border bg-card p-6 hover-lift hover:border-accent">
+                <div
+                  onMouseMove={onSpotlightMove}
+                  className="spotlight rounded-2xl border border-border bg-card p-6 hover-lift hover:border-accent"
+                >
                   <Briefcase className="h-5 w-5 text-accent-foreground bg-accent rounded-lg p-1 box-content" />
                   <ul className="mt-4 space-y-3">
                     {e.achievements.map((a, idx) => (
