@@ -108,6 +108,17 @@ export const CERTIFICATES = [
 
 export const EXPERIENCE = [
   {
+    role: "System Engineer (Digital)",
+    company: "Tata Consultancy Services (TCS)",
+    duration: "Upcoming",
+    location: "India",
+    achievements: [
+      "Secured an offer for the prestigious Digital role through rigorous technical assessments.",
+      "Recognized for strong programming fundamentals and aptitude for advanced technologies.",
+      "Preparing to contribute to enterprise-scale digital transformation and software engineering initiatives.",
+    ],
+  },
+  {
     role: "AI/ML Track Intern",
     company: "Infosys Springboard",
     duration: "June 2023 — August 2023",
