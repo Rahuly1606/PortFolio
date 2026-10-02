@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
@@ -15,6 +15,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("");
+  const headerRef = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, {
@@ -59,8 +60,54 @@ export function Navbar() {
     };
   }, [open]);
 
+  // Close mobile menu when clicking outside or pressing Escape
+  useEffect(() => {
+    if (!open) return;
+
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside, { passive: true });
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open]);
+
   return (
-    <motion.header
+    <>
+      {/* Backdrop overlay: clicking the normal page closes the mobile menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            key="mobile-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setOpen(false)}
+            onTouchStart={() => setOpen(false)}
+            className="fixed inset-0 z-40 bg-black/25 backdrop-blur-[2px] md:hidden cursor-pointer"
+            aria-hidden="true"
+          />
+        )}
+      </AnimatePresence>
+
+      <motion.header
+        ref={headerRef}
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -185,5 +232,6 @@ export function Navbar() {
         </AnimatePresence>
       </div>
     </motion.header>
+    </>
   );
 }
