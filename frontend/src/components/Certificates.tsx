@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { Award, ExternalLink } from "lucide-react";
+import { Award, ExternalLink, CheckCircle2 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { SectionHeading } from "./SectionHeading";
 import { CERTIFICATES } from "@/lib/portfolio-data";
 import { useReveal, onSpotlightMove } from "@/lib/motion";
 
 export function Certificates() {
-  const { container, item } = useReveal();
+  const { container, item } = useReveal(0.08);
 
   return (
     <section id="certificates" className="relative py-24 sm:py-32">
@@ -19,9 +19,10 @@ export function Certificates() {
           />
           <Link
             to="/certificates"
-            className="inline-flex items-center gap-1 text-sm font-semibold hover:gap-2 transition-all"
+            className="group inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors"
           >
-            View all <ExternalLink className="h-4 w-4" />
+            View all
+            <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </div>
 
@@ -30,7 +31,7 @@ export function Certificates() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-60px" }}
-          className="mt-12 grid md:grid-cols-3 gap-6"
+          className="mt-14 grid md:grid-cols-3 gap-5"
         >
           {CERTIFICATES.slice(0, 3).map((c) => (
             <motion.a
@@ -40,21 +41,32 @@ export function Certificates() {
               rel="noreferrer"
               variants={item}
               onMouseMove={onSpotlightMove}
-              className="spotlight group rounded-2xl border border-border bg-card p-6 hover-lift hover:border-accent"
+              className="spotlight group rounded-2xl border border-border bg-card p-6 hover-lift hover:border-accent/60 flex flex-col"
             >
               <div className="flex items-start justify-between">
-                <div className="h-11 w-11 rounded-xl bg-foreground text-accent grid place-items-center transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
+                <div className="h-11 w-11 rounded-xl bg-foreground text-accent grid place-items-center transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
                   <Award className="h-5 w-5" />
                 </div>
-                <ExternalLink className="h-4 w-4 text-muted-foreground transition-all duration-300 group-hover:text-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ExternalLink className="h-4 w-4 text-muted-foreground/50 transition-all duration-300 group-hover:text-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </div>
-              <p className="mt-5 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                {c.issuer} · {c.date}
-              </p>
-              <h3 className="mt-2 font-display text-lg font-semibold leading-tight">
+
+              <div className="mt-5 flex items-center gap-1.5">
+                <CheckCircle2 className="h-3.5 w-3.5 text-success shrink-0" />
+                <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  {c.issuer} · {c.date}
+                </p>
+              </div>
+
+              <h3 className="mt-2 font-display text-lg font-semibold leading-tight flex-1">
                 {c.title}
               </h3>
-              <p className="mt-3 text-sm text-subtext">{c.description}</p>
+              <p className="mt-3 text-sm text-subtext leading-relaxed">{c.description}</p>
+
+              <div className="mt-5 pt-4 border-t border-border">
+                <span className="text-xs font-semibold text-accent group-hover:underline">
+                  View credential →
+                </span>
+              </div>
             </motion.a>
           ))}
         </motion.div>

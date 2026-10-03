@@ -6,15 +6,15 @@ function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <p className="font-display text-[10rem] font-bold leading-none text-foreground/8 select-none">404</p>
+        <h1 className="-mt-8 font-display text-4xl font-bold tracking-tight">Page not found</h1>
+        <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
           The page you're looking for doesn't exist or has been moved.
         </p>
-        <div className="mt-6">
+        <div className="mt-8">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="press inline-flex items-center justify-center rounded-xl bg-foreground text-background px-6 py-3 text-sm font-semibold hover:bg-accent hover:text-accent-foreground transition-colors"
           >
             Go home
           </Link>
