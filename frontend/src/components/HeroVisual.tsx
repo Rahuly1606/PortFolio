@@ -1,6 +1,9 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
 import { Code2, Cpu, Globe, Layers, Zap, GitBranch } from "lucide-react";
+import { MiniActivityFeed } from "@/components/ActivityCard";
+import { fetchAllActivity } from "@/lib/activity-api";
 
 /* ── Typing code snippet ── */
 const FULL_CODE = `const dev = {
@@ -85,12 +88,22 @@ function OrbitRing({ reduce }: { reduce: boolean | null }) {
 }
 
 /* ── Live activity feed ── */
-const ACTIVITIES = [
-  { text: "Pushed to main",         time: "2m ago",  dot: "bg-emerald-400" },
-  { text: "Deployed to Vercel",     time: "15m ago", dot: "bg-sky-400" },
-  { text: "Solved LeetCode #1547",  time: "1h ago",  dot: "bg-yellow-400" },
-  { text: "Opened PR #42",          time: "3h ago",  dot: "bg-purple-400" },
-];
+function LiveActivityFeed() {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["activity"],
+    queryFn:  fetchAllActivity,
+    staleTime: 5 * 60 * 1000,
+    retry: 1,
+  });
+
+  return (
+    <MiniActivityFeed
+      stats={data ?? []}
+      loading={isLoading}
+      error={isError}
+    />
+  );
+}
 
 export function HeroVisual() {
   const [displayed, setDisplayed] = useState("");
@@ -231,28 +244,9 @@ export function HeroVisual() {
         initial={{ opacity: 0, y: -20, x: -16 }}
         animate={{ opacity: 1, y: 0, x: 0 }}
         transition={{ duration: 0.65, delay: 0.9, ease }}
-        className="absolute top-0 left-0 z-20 w-[200px] rounded-xl border border-border bg-card/95 backdrop-blur-sm shadow-soft overflow-hidden"
+        className="absolute top-0 left-0 z-20 w-[200px]"
       >
-        <div className="px-3 py-2.5 border-b border-border">
-          <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">Live Activity</p>
-        </div>
-        <ul className="divide-y divide-border">
-          {ACTIVITIES.map((a, i) => (
-            <motion.li
-              key={i}
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.1 + i * 0.1, duration: 0.3 }}
-              className="flex items-start gap-2 px-3 py-2"
-            >
-              <span className={`mt-1.5 h-1.5 w-1.5 rounded-full shrink-0 ${a.dot}`} />
-              <div>
-                <p className="text-[11px] font-medium text-foreground leading-tight">{a.text}</p>
-                <p className="text-[10px] text-muted-foreground">{a.time}</p>
-              </div>
-            </motion.li>
-          ))}
-        </ul>
+        <LiveActivityFeed />
       </motion.div>
 
       {/* ── Skill badge — top-right ── */}
