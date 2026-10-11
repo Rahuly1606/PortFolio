@@ -34,7 +34,7 @@ function charColor(code: string, idx: number): string {
   for (const kw of ["const", "true", "false"]) {
     const s = code.lastIndexOf(kw, idx);
     if (s !== -1 && idx < s + kw.length && (s === 0 || /\W/.test(code[s - 1])))
-      return kw === "const" ? "text-[#e9f460]" : "text-purple-400";
+      return kw === "const" ? "text-teal-300" : "text-purple-400";
   }
   if (/^[a-zA-Z_$]+$/.test(code.slice(lineStart, idx + 1).trimStart()) && code[idx + 1] === ":") return "text-sky-400";
   if (ch !== "(" && code[idx + 1] === "(") return "text-yellow-300";
@@ -57,11 +57,11 @@ function OrbitRing({ reduce }: { reduce: boolean | null }) {
   return (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
       {/* Ring 1 */}
-      <div className="absolute h-[260px] w-[260px] rounded-full border border-border/40" />
+      <div className="absolute h-[260px] w-[260px] rounded-full border border-black/10" />
       {/* Ring 2 — dashed */}
       <div
         className="absolute h-[310px] w-[310px] rounded-full"
-        style={{ border: "1px dashed oklch(0.88 0.006 95 / 0.3)" }}
+        style={{ border: "1px dashed rgba(0, 0, 0, 0.12)" }}
       />
 
       {/* Orbiting icons */}
@@ -153,7 +153,7 @@ export function HeroVisual() {
             animate={reduce ? {} : { scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           />
-          <div className="relative h-24 w-24 rounded-full bg-card-dark border-2 border-accent/60 grid place-items-center overflow-hidden shadow-[0_0_0_4px_oklch(0.975_0.006_95),0_0_0_6px_oklch(0.94_0.18_110/0.3)]">
+          <div className="relative h-24 w-24 rounded-full bg-card-dark border-2 border-accent/60 grid place-items-center overflow-hidden shadow-[0_0_0_4px_rgba(255,255,255,0.9),0_0_0_6px_oklch(0.94_0.18_110/0.4)]">
             <span className="font-display text-4xl font-bold text-accent select-none">R</span>
           </div>
           {/* Online dot */}
@@ -175,7 +175,7 @@ export function HeroVisual() {
             { v: "1000+", l: "DSA" },
             { v: "7+",    l: "Certs" },
           ].map((s) => (
-            <div key={s.l} className="rounded-lg bg-secondary border border-border py-2 px-1">
+            <div key={s.l} className="rounded-lg bg-black/[0.03] border border-black/10 py-2 px-1">
               <p className="font-display text-sm font-bold">{s.v}</p>
               <p className="text-[9px] text-muted-foreground uppercase tracking-wide">{s.l}</p>
             </div>
@@ -183,7 +183,7 @@ export function HeroVisual() {
         </div>
 
         {/* Status pill */}
-        <div className="mt-3 flex items-center justify-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-[11px] font-medium text-muted-foreground">
+        <div className="mt-3 flex items-center justify-center gap-1.5 rounded-full glass-panel px-3 py-1.5 text-[11px] font-medium text-muted-foreground">
           <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
           Open to opportunities
         </div>
@@ -221,7 +221,7 @@ export function HeroVisual() {
                     <motion.span
                       animate={{ opacity: [1, 0, 1] }}
                       transition={{ duration: 0.85, repeat: Infinity }}
-                      className="inline-block w-[6px] h-[11px] bg-[#e9f460] align-middle ml-px rounded-[1px]"
+                      className="inline-block w-[6px] h-[11px] bg-teal-300 align-middle ml-px rounded-[1px]"
                     />
                   )}
                 </span>

@@ -40,18 +40,18 @@ function CertificatesPage() {
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             className="mt-8"
           >
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground shadow-soft mb-5">
+            <div className="inline-flex items-center gap-2 rounded-full glass-panel px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-5">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
               </span>
               Certifications
             </div>
-            <h1 className="font-display text-5xl sm:text-6xl font-bold tracking-tight leading-[1.05]">
+            <h1 className="font-display text-5xl sm:text-6xl font-bold tracking-tight leading-[1.05] text-foreground">
               Verified{" "}
               <span className="relative inline-block">
                 <span className="relative z-10">Credentials</span>
-                <span className="absolute inset-x-0 bottom-1 h-[0.2em] bg-accent z-0 rounded-sm" />
+                <span className="absolute inset-x-0 bottom-1 h-[0.2em] bg-gradient-to-r from-accent to-accent-glow z-0 rounded-sm" />
               </span>
             </h1>
             <p className="mt-4 text-subtext max-w-xl text-lg">
@@ -73,10 +73,10 @@ function CertificatesPage() {
                 rel="noreferrer"
                 variants={item}
                 onMouseMove={onSpotlightMove}
-                className="spotlight group rounded-2xl border border-border bg-card p-6 hover-lift hover:border-accent/60 flex flex-col"
+                className="spotlight group rounded-2xl glass-panel p-6 hover-lift hover:border-accent/60 flex flex-col"
               >
                 <div className="flex items-start justify-between">
-                  <div className="h-11 w-11 rounded-xl bg-foreground text-accent grid place-items-center transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
+                  <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-accent to-accent-glow text-accent-foreground grid place-items-center transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
                     <Award className="h-5 w-5" />
                   </div>
                   <ExternalLink className="h-4 w-4 text-muted-foreground/50 transition-all duration-300 group-hover:text-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -89,12 +89,12 @@ function CertificatesPage() {
                   </p>
                 </div>
 
-                <h3 className="mt-2 font-display text-lg font-semibold leading-tight flex-1">
+                <h3 className="mt-2 font-display text-lg font-semibold leading-tight flex-1 text-foreground">
                   {c.title}
                 </h3>
                 <p className="mt-3 text-sm text-subtext leading-relaxed">{c.description}</p>
 
-                <div className="mt-5 pt-4 border-t border-border">
+                <div className="mt-5 pt-4 border-t border-black/10">
                   <span className="text-xs font-semibold text-accent group-hover:underline">
                     View credential →
                   </span>

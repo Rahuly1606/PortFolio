@@ -41,10 +41,10 @@ export function Certificates() {
               rel="noreferrer"
               variants={item}
               onMouseMove={onSpotlightMove}
-              className="spotlight group rounded-2xl border border-border bg-card p-6 hover-lift hover:border-accent/60 flex flex-col"
+              className="spotlight group rounded-2xl glass-panel p-6 hover-lift hover:border-accent/60 flex flex-col"
             >
               <div className="flex items-start justify-between">
-                <div className="h-11 w-11 rounded-xl bg-foreground text-accent grid place-items-center transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
+                <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-accent to-accent-glow text-accent-foreground grid place-items-center transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
                   <Award className="h-5 w-5" />
                 </div>
                 <ExternalLink className="h-4 w-4 text-muted-foreground/50 transition-all duration-300 group-hover:text-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -57,12 +57,12 @@ export function Certificates() {
                 </p>
               </div>
 
-              <h3 className="mt-2 font-display text-lg font-semibold leading-tight flex-1">
+              <h3 className="mt-2 font-display text-lg font-semibold leading-tight flex-1 text-foreground">
                 {c.title}
               </h3>
               <p className="mt-3 text-sm text-subtext leading-relaxed">{c.description}</p>
 
-              <div className="mt-5 pt-4 border-t border-border">
+              <div className="mt-5 pt-4 border-t border-black/10">
                 <span className="text-xs font-semibold text-accent group-hover:underline">
                   View credential →
                 </span>

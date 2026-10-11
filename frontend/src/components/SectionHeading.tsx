@@ -19,14 +19,14 @@ export function SectionHeading({
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       className={align === "center" ? "text-center max-w-2xl mx-auto" : "max-w-2xl"}
     >
-      <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-widest shadow-soft text-muted-foreground">
+      <div className="inline-flex items-center gap-2 rounded-full glass-panel px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
         <span className="relative flex h-1.5 w-1.5">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
           <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
         </span>
         {eyebrow}
       </div>
-      <h2 className="mt-4 font-display text-4xl sm:text-5xl font-bold tracking-tight leading-[1.05]">
+      <h2 className="mt-4 font-display text-4xl sm:text-5xl font-bold tracking-tight leading-[1.05] text-foreground">
         {title}
       </h2>
       <motion.div

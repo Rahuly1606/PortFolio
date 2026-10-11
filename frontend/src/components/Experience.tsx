@@ -6,7 +6,7 @@ import { onSpotlightMove } from "@/lib/motion";
 
 export function Experience() {
   return (
-    <section id="experience" className="relative py-24 sm:py-32 bg-secondary/30">
+    <section id="experience" className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Experience"
@@ -23,23 +23,23 @@ export function Experience() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.55, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
               onMouseMove={onSpotlightMove}
-              className="spotlight group rounded-2xl border border-border bg-card hover-lift hover:border-foreground/25 overflow-hidden"
+              className="spotlight group rounded-2xl glass-panel hover-lift hover:border-accent/40 overflow-hidden"
             >
-              <div className="grid lg:grid-cols-[280px_1fr] divide-y lg:divide-y-0 lg:divide-x divide-border">
+              <div className="grid lg:grid-cols-[280px_1fr] divide-y lg:divide-y-0 lg:divide-x divide-black/10">
                 {/* Left: meta */}
                 <div className="p-7 flex flex-col justify-between gap-4">
                   <div>
-                    <div className="inline-flex items-center gap-1.5 rounded-md bg-secondary px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                    <div className="inline-flex items-center gap-1.5 rounded-md bg-black/[0.03] border border-black/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
                       {e.duration}
                     </div>
-                    <h3 className="mt-4 font-display text-xl font-bold leading-tight">{e.role}</h3>
+                    <h3 className="mt-4 font-display text-xl font-bold leading-tight text-foreground">{e.role}</h3>
                     <p className="mt-1.5 text-sm font-semibold text-subtext">{e.company}</p>
                     <p className="mt-2 inline-flex items-center gap-1.5 text-xs text-muted-foreground">
                       <MapPin className="h-3 w-3" />
                       {e.location}
                     </p>
                   </div>
-                  <div className="h-10 w-10 rounded-xl bg-accent grid place-items-center group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                  <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-accent to-accent-glow grid place-items-center group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                     <Briefcase className="h-5 w-5 text-accent-foreground" />
                   </div>
                 </div>

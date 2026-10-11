@@ -19,10 +19,10 @@ const TECH_MARQUEE = [
 ];
 
 const STATS = [
-  { value: "10+",   label: "Projects",       icon: FolderGit2, color: "text-sky-500",     bg: "bg-sky-500/10",     border: "border-sky-500/20",     glow: "group-hover:shadow-[0_0_24px_oklch(0.65_0.2_250/0.25)]",  bar: "bg-sky-500"     },
-  { value: "1000+", label: "DSA Solved",     icon: Code2,      color: "text-yellow-500",  bg: "bg-yellow-500/10",  border: "border-yellow-500/20",  glow: "group-hover:shadow-[0_0_24px_oklch(0.94_0.18_110/0.3)]",  bar: "bg-yellow-500"  },
-  { value: "7+",    label: "Certifications", icon: BadgeCheck,  color: "text-emerald-500", bg: "bg-emerald-500/10", border: "border-emerald-500/20", glow: "group-hover:shadow-[0_0_24px_oklch(0.68_0.18_145/0.25)]", bar: "bg-emerald-500" },
-  { value: "2+",    label: "Internships",    icon: Briefcase,  color: "text-purple-500",  bg: "bg-purple-500/10",  border: "border-purple-500/20",  glow: "group-hover:shadow-[0_0_24px_oklch(0.6_0.2_300/0.25)]",   bar: "bg-purple-500"  },
+  { value: "10+",   label: "Projects",       icon: FolderGit2, color: "text-sky-600",     bg: "bg-sky-400/15",     border: "border-sky-400/30",     glow: "group-hover:shadow-[0_0_30px_rgba(56,189,248,0.25)]",  bar: "bg-sky-500"     },
+  { value: "1000+", label: "DSA Solved",     icon: Code2,      color: "text-foreground",  bg: "bg-accent/20",      border: "border-accent/40",      glow: "group-hover:shadow-[0_0_30px_oklch(0.94_0.18_110/0.4)]", bar: "bg-accent"      },
+  { value: "7+",    label: "Certifications", icon: BadgeCheck,  color: "text-emerald-600", bg: "bg-emerald-400/15", border: "border-emerald-400/30", glow: "group-hover:shadow-[0_0_30px_rgba(74,222,128,0.25)]", bar: "bg-emerald-500" },
+  { value: "2+",    label: "Internships",    icon: Briefcase,  color: "text-violet-600",  bg: "bg-violet-400/15",  border: "border-violet-400/30",  glow: "group-hover:shadow-[0_0_30px_rgba(167,139,250,0.25)]",   bar: "bg-violet-500"  },
 ];
 
 const SOCIALS = [
@@ -96,7 +96,7 @@ function StatCard({
       initial={{ opacity: 0, y: 20, scale: 0.9 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={`group relative flex flex-col items-center gap-2 px-3 py-4 rounded-2xl border ${border} bg-card cursor-default overflow-hidden transition-all duration-300 hover:-translate-y-1.5 ${glow}`}
+      className={`group relative flex flex-col items-center gap-2 px-3 py-4 rounded-2xl glass-panel cursor-default overflow-hidden transition-all duration-300 hover:-translate-y-1.5 ${glow}`}
     >
       {/* Hover bg fill */}
       <div className={`absolute inset-0 ${bg} opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl`} />
@@ -148,7 +148,7 @@ export function Hero() {
       const rect = el.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width)  * 100;
       const y = ((e.clientY - rect.top)  / rect.height) * 100;
-      glowRef.current.style.background = `radial-gradient(600px circle at ${x}% ${y}%, oklch(0.94 0.18 110 / 0.10), transparent 60%)`;
+      glowRef.current.style.background = `radial-gradient(600px circle at ${x}% ${y}%, oklch(0.94 0.18 110 / 0.08), transparent 60%)`;
     };
     el.addEventListener("mousemove", onMove);
     return () => el.removeEventListener("mousemove", onMove);
@@ -168,18 +168,18 @@ export function Hero() {
       <div ref={glowRef} className="absolute inset-0 pointer-events-none transition-all duration-300" />
       {/* 4. Soft vignette edges */}
       <div className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 80% 60% at 50% 50%, transparent 40%, oklch(0.975 0.006 95 / 0.6) 100%)" }}
+        style={{ background: "radial-gradient(ellipse 80% 60% at 50% 40%, transparent 45%, oklch(0.975 0.006 95 / 0.75) 100%)" }}
       />
 
       {/* ── Ambient blobs ── */}
       <motion.div
         className="absolute -top-48 -right-48 h-[700px] w-[700px] rounded-full bg-accent/15 blur-[120px] pointer-events-none"
-        animate={reduce ? {} : { scale: [1, 1.08, 1], opacity: [0.15, 0.22, 0.15] }}
+        animate={reduce ? {} : { scale: [1, 1.08, 1], opacity: [0.15, 0.25, 0.15] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute bottom-0 -left-48 h-[600px] w-[600px] rounded-full bg-success/8 blur-[100px] pointer-events-none"
-        animate={reduce ? {} : { scale: [1, 1.06, 1], opacity: [0.08, 0.14, 0.08] }}
+        className="absolute bottom-0 -left-48 h-[600px] w-[600px] rounded-full bg-accent-glow/12 blur-[100px] pointer-events-none"
+        animate={reduce ? {} : { scale: [1, 1.06, 1], opacity: [0.1, 0.18, 0.1] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 3 }}
       />
 
@@ -195,7 +195,7 @@ export function Hero() {
               initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.05, ease }}
-              className="inline-flex items-center gap-2.5 self-start rounded-full border border-border bg-card/90 backdrop-blur px-4 py-2 text-xs font-medium shadow-soft"
+              className="inline-flex items-center gap-2.5 self-start rounded-full glass-panel px-4 py-2 text-xs font-medium text-foreground"
             >
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
@@ -240,7 +240,7 @@ export function Hero() {
                   ))}
                   {/* Accent underline sweep */}
                   <motion.span
-                    className="absolute inset-x-0 bottom-1 h-[0.2em] bg-accent z-0 rounded-sm origin-left"
+                    className="absolute inset-x-0 bottom-1 h-[0.2em] bg-gradient-to-r from-accent to-accent-glow z-0 rounded-sm origin-left"
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
                     transition={{ duration: 0.7, delay: 0.85, ease }}
@@ -286,20 +286,20 @@ export function Hero() {
             >
               <a
                 href="#work"
-                className="btn-shine press group inline-flex items-center gap-2 rounded-xl bg-foreground text-background px-6 py-3.5 text-sm font-semibold shadow-soft hover:bg-accent hover:text-accent-foreground"
+                className="btn-shine press group inline-flex items-center gap-2 rounded-xl bg-gradient-to-br from-accent to-accent-glow text-accent-foreground px-6 py-3.5 text-sm font-semibold shadow-[0_8px_30px_oklch(0.94_0.18_110/0.35)] hover:shadow-[0_10px_40px_oklch(0.94_0.18_110/0.5)] transition-shadow"
               >
                 View Projects
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
               <a
                 href="#contact"
-                className="btn-shine press inline-flex items-center gap-2 rounded-xl border border-border bg-card px-6 py-3.5 text-sm font-semibold hover:border-foreground/40 hover:bg-secondary"
+                className="btn-shine press inline-flex items-center gap-2 rounded-xl glass-panel px-6 py-3.5 text-sm font-semibold text-foreground hover:bg-black/[0.04] transition-colors"
               >
                 Get in Touch
               </a>
               <a
                 href="#"
-                className="press group inline-flex items-center gap-2 rounded-xl border border-border px-4 py-3.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:border-foreground/30 hover:bg-secondary"
+                className="press group inline-flex items-center gap-2 rounded-xl border border-black/12 px-4 py-3.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:border-black/25 hover:bg-black/[0.04] transition-colors"
               >
                 <Download className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" />
                 Resume
@@ -326,7 +326,7 @@ export function Hero() {
                   transition={{ duration: 0.35, delay: 1.1 + i * 0.07, ease: [0.34, 1.56, 0.64, 1] }}
                   whileHover={{ scale: 1.15, y: -2 }}
                   whileTap={{ scale: 0.92 }}
-                  className="h-9 w-9 grid place-items-center rounded-lg border border-border bg-card text-muted-foreground hover:bg-foreground hover:text-accent hover:border-foreground transition-colors duration-200"
+                  className="h-9 w-9 grid place-items-center rounded-lg glass-panel text-muted-foreground hover:text-accent hover:bg-black/5 transition-colors duration-200"
                 >
                   <Icon className="h-4 w-4" />
                 </motion.a>
@@ -338,7 +338,7 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4, delay: 1.2 }}
-              className="mt-9 pt-7 border-t border-border"
+              className="mt-9 pt-7 border-t border-black/10"
             >
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {STATS.map((s, i) => (
@@ -373,7 +373,7 @@ export function Hero() {
 
       {/* ── Marquee strip ── */}
       <div
-        className="relative overflow-hidden border-t border-border bg-card-dark py-4"
+        className="relative overflow-hidden border-y border-black/8 bg-muted/50 py-4"
         style={{
           maskImage: "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
           WebkitMaskImage: "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
@@ -383,7 +383,7 @@ export function Hero() {
           {[0, 1].map((i) => (
             <div key={i} className="flex gap-10 shrink-0">
               {TECH_MARQUEE.map((s) => (
-                <span key={s} className="flex items-center gap-10 font-display text-lg font-semibold uppercase tracking-widest text-background/60">
+                <span key={s} className="flex items-center gap-10 font-display text-lg font-semibold uppercase tracking-widest text-foreground/50">
                   {s}
                   <span className="text-accent text-xs">◆</span>
                 </span>

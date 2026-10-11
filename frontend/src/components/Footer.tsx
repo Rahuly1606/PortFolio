@@ -5,7 +5,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-card-dark text-background overflow-hidden">
+    <footer className="relative overflow-hidden border-t border-black/8">
       {/* Top accent line */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
 
@@ -14,21 +14,21 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2.5">
-              <div className="h-9 w-9 rounded-xl bg-accent text-accent-foreground grid place-items-center font-display font-bold text-lg">
+              <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-accent to-accent-glow text-accent-foreground grid place-items-center font-display font-bold text-lg">
                 R
               </div>
-              <span className="font-display font-semibold text-lg">
-                Rahul<span className="text-background/40">.dev</span>
+              <span className="font-display font-semibold text-lg text-foreground">
+                Rahul<span className="text-muted-foreground">.dev</span>
               </span>
             </div>
-            <p className="mt-3 text-sm text-background/55 leading-relaxed max-w-xs">
+            <p className="mt-3 text-sm text-subtext leading-relaxed max-w-xs">
               Full-Stack Developer crafting elegant, scalable products with modern web, AI, and cloud technologies.
             </p>
           </div>
 
           {/* Quick links */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-background/40 mb-4">
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
               Navigation
             </p>
             <ul className="space-y-2">
@@ -36,7 +36,7 @@ export function Footer() {
                 <li key={l}>
                   <a
                     href={`/#${l.toLowerCase()}`}
-                    className="text-sm text-background/60 hover:text-background transition-colors"
+                    className="text-sm text-subtext hover:text-foreground transition-colors"
                   >
                     {l}
                   </a>
@@ -47,7 +47,7 @@ export function Footer() {
 
           {/* Social */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-background/40 mb-4">
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
               Connect
             </p>
             <div className="flex flex-col gap-2">
@@ -62,7 +62,7 @@ export function Footer() {
                   href={href}
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-center gap-2 text-sm text-background/60 hover:text-background transition-colors"
+                  className="group inline-flex items-center gap-2 text-sm text-subtext hover:text-foreground transition-colors"
                 >
                   <Icon className="h-4 w-4" />
                   {label}
@@ -74,11 +74,11 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 pt-6 border-t border-background/10 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-background/40">
+        <div className="mt-10 pt-6 border-t border-black/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-muted-foreground">
             © {year} Rahul Kumar. All rights reserved.
           </p>
-          <p className="text-xs text-background/30">
+          <p className="text-xs text-muted-foreground/70">
             Built with React · TypeScript · Tailwind CSS
           </p>
         </div>

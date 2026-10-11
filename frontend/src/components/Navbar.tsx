@@ -76,7 +76,7 @@ export function Navbar() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={() => setOpen(false)}
-            className="fixed inset-0 z-40 bg-black/20 backdrop-blur-[2px] md:hidden"
+            className="fixed inset-0 z-40 bg-background/50 backdrop-blur-sm md:hidden"
             aria-hidden="true"
           />
         )}
@@ -91,18 +91,18 @@ export function Navbar() {
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div
-            className={`flex items-center justify-between rounded-2xl border px-5 py-3 transition-all duration-300 ${
+            className={`flex items-center justify-between rounded-2xl px-5 py-3 transition-all duration-300 ${
               scrolled || open
-                ? "bg-card/96 backdrop-blur-xl shadow-soft border-border"
-                : "bg-background/50 backdrop-blur-md border-transparent"
+                ? "glass-panel shadow-lift"
+                : "border border-black/5 bg-white/40 backdrop-blur-md"
             }`}
           >
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2.5 group">
-              <div className="h-9 w-9 rounded-xl bg-foreground text-accent grid place-items-center font-display font-bold text-base transition-all duration-300 group-hover:rotate-6 group-hover:scale-105">
+              <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-accent to-accent-glow text-accent-foreground grid place-items-center font-display font-bold text-base shadow-[0_4px_16px_oklch(0.94_0.18_110/0.4)] transition-all duration-300 group-hover:rotate-6 group-hover:scale-105">
                 R
               </div>
-              <span className="font-display font-semibold text-[15px] tracking-tight">
+              <span className="font-display font-semibold text-[15px] tracking-tight text-foreground">
                 Rahul<span className="text-muted-foreground">.dev</span>
               </span>
             </Link>
@@ -125,7 +125,7 @@ export function Navbar() {
             <div className="hidden md:flex items-center gap-3">
               <a
                 href="/#contact"
-                className="press inline-flex items-center gap-2 rounded-xl bg-foreground text-accent px-4 py-2 text-sm font-semibold shadow-soft hover:shadow-lift hover:bg-accent hover:text-accent-foreground transition-colors"
+                className="press btn-shine inline-flex items-center gap-2 rounded-xl bg-gradient-to-br from-accent to-accent-glow text-accent-foreground px-4 py-2 text-sm font-semibold shadow-[0_4px_20px_oklch(0.94_0.18_110/0.35)] hover:shadow-[0_6px_28px_oklch(0.94_0.18_110/0.5)] transition-shadow"
               >
                 Hire me
               </a>
@@ -133,7 +133,7 @@ export function Navbar() {
 
             {/* Mobile toggle */}
             <button
-              className="md:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
+              className="md:hidden p-2 rounded-lg text-foreground hover:bg-black/5 transition-colors"
               onClick={() => setOpen((v) => !v)}
               aria-label="Toggle menu"
               aria-expanded={open}
@@ -181,7 +181,7 @@ export function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                className="md:hidden mt-2 rounded-2xl border border-border bg-card/96 backdrop-blur-xl p-3 flex flex-col gap-1 shadow-lift"
+                className="md:hidden mt-2 rounded-2xl glass-panel p-3 flex flex-col gap-1 shadow-lift"
               >
                 {NAV_LINKS.map((l, i) => (
                   <motion.a
@@ -191,7 +191,7 @@ export function Navbar() {
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.04 + i * 0.04, duration: 0.25 }}
-                    className="px-4 py-3 text-sm font-medium rounded-xl hover:bg-secondary transition-colors"
+                    className="px-4 py-3 text-sm font-medium text-foreground rounded-xl hover:bg-black/5 transition-colors"
                   >
                     {l.label}
                   </motion.a>
@@ -202,7 +202,7 @@ export function Navbar() {
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.04 + NAV_LINKS.length * 0.04, duration: 0.25 }}
-                  className="press mt-1 px-4 py-3 text-sm font-semibold rounded-xl bg-foreground text-accent text-center"
+                  className="press mt-1 px-4 py-3 text-sm font-semibold rounded-xl bg-gradient-to-br from-accent to-accent-glow text-accent-foreground text-center"
                 >
                   Hire me
                 </motion.a>

@@ -7,8 +7,8 @@ export function Competitive() {
   const { container, item } = useReveal(0.08);
 
   return (
-    <section className="relative py-24 sm:py-32 bg-card-dark text-background overflow-hidden">
-      <div className="absolute inset-0 grid-pattern-dark opacity-50 pointer-events-none" />
+    <section className="relative py-24 sm:py-32 overflow-hidden">
+      <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
       <div className="absolute -top-48 left-1/2 h-[500px] w-[500px] rounded-full bg-accent/12 blur-[80px] -translate-x-1/2 blob-drift pointer-events-none" />
       <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-success/8 blur-3xl pointer-events-none" />
 
@@ -21,16 +21,16 @@ export function Competitive() {
           className="flex flex-col sm:flex-row sm:items-end justify-between gap-6"
         >
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-background/15 bg-background/8 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-widest">
+            <div className="inline-flex items-center gap-2 rounded-full glass-panel px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
               <Trophy className="h-3 w-3 text-accent" />
               Competitive Coding
             </div>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl font-bold tracking-tight leading-[1.05]">
+            <h2 className="mt-4 font-display text-4xl sm:text-5xl font-bold tracking-tight leading-[1.05] text-foreground">
               Sharpening edge on{" "}
-              <span className="text-accent">global arenas</span>.
+              <span className="text-gradient-accent">global arenas</span>.
             </h2>
           </div>
-          <div className="flex items-center gap-2 text-background/50 text-sm">
+          <div className="flex items-center gap-2 text-muted-foreground text-sm">
             <TrendingUp className="h-4 w-4" />
             <span>Actively competing</span>
           </div>
@@ -50,7 +50,7 @@ export function Competitive() {
               target="_blank"
               rel="noreferrer"
               variants={item}
-              className="group relative rounded-2xl border border-background/12 bg-background/6 backdrop-blur p-6 hover:border-accent/60 hover:-translate-y-2 transition-all duration-300 overflow-hidden"
+              className="group relative rounded-2xl glass-panel p-6 hover:border-accent/50 hover:-translate-y-2 transition-all duration-300 overflow-hidden"
             >
               {/* Color glow */}
               <div
@@ -66,16 +66,16 @@ export function Competitive() {
                 <span className="font-display text-sm font-bold" style={{ color: c.color }}>
                   {c.platform}
                 </span>
-                <ExternalLink className="h-4 w-4 text-background/40 group-hover:text-accent transition-colors" />
+                <ExternalLink className="h-4 w-4 text-muted-foreground/50 group-hover:text-accent transition-colors" />
               </div>
 
-              <p className="relative stat-number text-5xl text-background">{c.stat}</p>
-              <p className="relative mt-2 text-xs text-background/55 uppercase tracking-widest">
+              <p className="relative stat-number text-5xl text-foreground">{c.stat}</p>
+              <p className="relative mt-2 text-xs text-muted-foreground uppercase tracking-widest">
                 {c.label}
               </p>
 
-              <div className="relative mt-6 pt-4 border-t border-background/10">
-                <div className="inline-flex items-center gap-1.5 rounded-md border border-background/15 bg-background/8 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider">
+              <div className="relative mt-6 pt-4 border-t border-black/10">
+                <div className="inline-flex items-center gap-1.5 rounded-md bg-black/[0.03] border border-black/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-foreground">
                   <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: c.color }} />
                   {c.badge}
                 </div>

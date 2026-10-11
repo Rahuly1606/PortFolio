@@ -7,12 +7,12 @@ import { useReveal, onSpotlightMove } from "@/lib/motion";
 const ICONS = { Code, Palette, Server, Cloud, Zap, Users };
 
 const ACCENT_CLASSES = [
-  "bg-accent",
-  "bg-foreground text-background",
-  "bg-accent",
-  "bg-foreground text-background",
-  "bg-accent",
-  "bg-foreground text-background",
+  "bg-gradient-to-br from-accent to-accent-glow text-accent-foreground",
+  "bg-accent/15 text-foreground",
+  "bg-gradient-to-br from-accent to-accent-glow text-accent-foreground",
+  "bg-accent/15 text-foreground",
+  "bg-gradient-to-br from-accent to-accent-glow text-accent-foreground",
+  "bg-accent/15 text-foreground",
 ];
 
 export function Skills() {
@@ -42,20 +42,20 @@ export function Skills() {
                 key={s.title}
                 variants={item}
                 onMouseMove={onSpotlightMove}
-                className="spotlight group rounded-2xl border border-border bg-card p-6 hover-lift hover:border-foreground/25 flex flex-col"
+                className="spotlight group rounded-2xl glass-panel p-6 hover-lift hover:border-accent/40 flex flex-col"
               >
                 <div className="flex items-start justify-between">
                   <div className={`h-11 w-11 rounded-xl ${iconClass} grid place-items-center group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
                     <Icon className="h-5 w-5" />
                   </div>
-                  <span className="text-[11px] font-semibold text-muted-foreground bg-secondary rounded-md px-2 py-1 uppercase tracking-wider">
+                  <span className="text-[11px] font-semibold text-muted-foreground bg-black/[0.03] border border-black/10 rounded-md px-2 py-1 uppercase tracking-wider">
                     {String(idx + 1).padStart(2, "0")}
                   </span>
                 </div>
-                <h3 className="mt-5 font-display text-lg font-semibold">{s.title}</h3>
+                <h3 className="mt-5 font-display text-lg font-semibold text-foreground">{s.title}</h3>
                 <div className="mt-4 flex flex-wrap gap-1.5 flex-1">
                   {s.items.map((tag) => (
-                    <span key={tag} className="tag group-hover:border-foreground/20">
+                    <span key={tag} className="tag">
                       {tag}
                     </span>
                   ))}

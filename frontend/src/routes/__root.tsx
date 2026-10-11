@@ -18,14 +18,14 @@ function NotFoundComponent() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <p className="font-display text-[10rem] font-bold leading-none text-foreground/8 select-none">404</p>
-        <h1 className="-mt-8 font-display text-4xl font-bold tracking-tight">Page not found</h1>
+        <h1 className="-mt-8 font-display text-4xl font-bold tracking-tight text-foreground">Page not found</h1>
         <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
           The page you're looking for doesn't exist or has been moved.
         </p>
         <div className="mt-8">
           <Link
             to="/"
-            className="press inline-flex items-center justify-center rounded-xl bg-foreground text-background px-6 py-3 text-sm font-semibold hover:bg-accent hover:text-accent-foreground transition-colors"
+            className="press btn-shine inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-accent to-accent-glow text-accent-foreground px-6 py-3 text-sm font-semibold shadow-[0_8px_30px_oklch(0.94_0.18_110/0.35)] transition-shadow"
           >
             Go home
           </Link>
@@ -47,7 +47,7 @@ export const Route = createRootRoute({
           "Portfolio of Rahul Kumar — Full-Stack Developer crafting elegant, scalable products with React, Node, AI and cloud.",
       },
       { name: "author", content: "Rahul Kumar" },
-      { name: "theme-color", content: "#0B0B0B" },
+      { name: "theme-color", content: "#f8f6f1" },
       { property: "og:title", content: "Rahul Kumar — Full-Stack Developer" },
       {
         property: "og:description",

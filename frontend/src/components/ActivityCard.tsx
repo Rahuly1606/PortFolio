@@ -66,14 +66,14 @@ export function MiniActivityFeed({
 
   return (
     <div
-      className="w-full rounded-xl border border-border bg-card/95 backdrop-blur-sm shadow-soft overflow-hidden cursor-pointer group"
+      className="w-full rounded-xl glass-panel overflow-hidden cursor-pointer group"
       onClick={() => navigate({ to: "/activity" })}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => e.key === "Enter" && navigate({ to: "/activity" })}
       aria-label="View full activity feed"
     >
-      <div className="flex items-center justify-between px-3 py-2.5 border-b border-border">
+      <div className="flex items-center justify-between px-3 py-2.5 border-b border-black/10">
         <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
           Live Activity
         </p>
@@ -84,13 +84,13 @@ export function MiniActivityFeed({
       </div>
 
       {loading ? (
-        <div className="divide-y divide-border">
+        <div className="divide-y divide-black/10">
           {[0, 1, 2, 3].map((i) => (
             <div key={i} className="flex items-start gap-2 px-3 py-2 animate-pulse">
-              <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-border shrink-0" />
+              <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-black/10 shrink-0" />
               <div className="flex-1 space-y-1">
-                <div className="h-2.5 bg-border rounded w-3/4" />
-                <div className="h-2 bg-border rounded w-1/3" />
+                <div className="h-2.5 bg-black/10 rounded w-3/4" />
+                <div className="h-2 bg-black/10 rounded w-1/3" />
               </div>
             </div>
           ))}
@@ -100,7 +100,7 @@ export function MiniActivityFeed({
           Could not load activity
         </div>
       ) : (
-        <ul className="divide-y divide-border">
+        <ul className="divide-y divide-black/10">
           {feed.map((item, i) => {
             const meta = PLATFORM_META[item.platform];
             return (
@@ -146,16 +146,16 @@ export function PlatformCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
-      className="rounded-2xl border border-border bg-card overflow-hidden"
+      className="rounded-2xl glass-panel overflow-hidden"
     >
       {/* Header */}
-      <div className={`flex items-center justify-between px-5 py-4 border-b border-border ${meta.bg}`}>
+      <div className={`flex items-center justify-between px-5 py-4 border-b border-black/10 ${meta.bg}`}>
         <div className="flex items-center gap-3">
           <div className={`h-9 w-9 rounded-xl ${meta.bg} border ${meta.border} grid place-items-center`}>
             <Icon className={`h-4 w-4 ${meta.text}`} />
           </div>
           <div>
-            <p className="font-display text-sm font-bold">{meta.label}</p>
+            <p className="font-display text-sm font-bold text-foreground">{meta.label}</p>
             <p className="text-[11px] text-muted-foreground">@{stats.handle}</p>
           </div>
         </div>
@@ -166,7 +166,7 @@ export function PlatformCard({
       </div>
 
       {/* Badge + profile link */}
-      <div className="flex items-center justify-between px-5 py-2.5 border-b border-border bg-secondary/30">
+      <div className="flex items-center justify-between px-5 py-2.5 border-b border-black/10 bg-black/[0.02]">
         <span className={`inline-flex items-center gap-1.5 rounded-md border ${meta.border} ${meta.bg} px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider ${meta.text}`}>
           <span className={`h-1.5 w-1.5 rounded-full ${meta.dot}`} />
           {stats.badge}
@@ -183,7 +183,7 @@ export function PlatformCard({
       </div>
 
       {/* Activity list */}
-      <ul className="divide-y divide-border">
+      <ul className="divide-y divide-black/10">
         {stats.items.length === 0 ? (
           <li className="px-5 py-4 text-sm text-muted-foreground text-center">
             No recent activity
@@ -200,7 +200,7 @@ export function PlatformCard({
                 href={item.url}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-start gap-3 px-5 py-3 hover:bg-secondary/50 transition-colors group/item"
+                className="flex items-start gap-3 px-5 py-3 hover:bg-black/[0.03] transition-colors group/item"
               >
                 <span className={`mt-1.5 h-2 w-2 rounded-full shrink-0 ${meta.dot} opacity-60 group-hover/item:opacity-100 transition-opacity`} />
                 <div className="flex-1 min-w-0">
@@ -232,29 +232,29 @@ export function PlatformCard({
 
 export function PlatformCardSkeleton() {
   return (
-    <div className="rounded-2xl border border-border bg-card overflow-hidden animate-pulse">
-      <div className="flex items-center justify-between px-5 py-4 border-b border-border bg-secondary/30">
+    <div className="rounded-2xl glass-panel overflow-hidden animate-pulse">
+      <div className="flex items-center justify-between px-5 py-4 border-b border-black/10 bg-black/[0.02]">
         <div className="flex items-center gap-3">
-          <div className="h-9 w-9 rounded-xl bg-border" />
+          <div className="h-9 w-9 rounded-xl bg-black/10" />
           <div className="space-y-1.5">
-            <div className="h-3 w-20 bg-border rounded" />
-            <div className="h-2.5 w-14 bg-border rounded" />
+            <div className="h-3 w-20 bg-black/10 rounded" />
+            <div className="h-2.5 w-14 bg-black/10 rounded" />
           </div>
         </div>
         <div className="space-y-1.5 text-right">
-          <div className="h-5 w-12 bg-border rounded ml-auto" />
-          <div className="h-2.5 w-16 bg-border rounded" />
+          <div className="h-5 w-12 bg-black/10 rounded ml-auto" />
+          <div className="h-2.5 w-16 bg-black/10 rounded" />
         </div>
       </div>
-      <div className="divide-y divide-border">
+      <div className="divide-y divide-black/10">
         {[0, 1, 2, 3].map((i) => (
           <div key={i} className="flex items-start gap-3 px-5 py-3">
-            <div className="mt-1.5 h-2 w-2 rounded-full bg-border shrink-0" />
+            <div className="mt-1.5 h-2 w-2 rounded-full bg-black/10 shrink-0" />
             <div className="flex-1 space-y-1.5">
-              <div className="h-3 bg-border rounded w-4/5" />
-              <div className="h-2.5 bg-border rounded w-2/5" />
+              <div className="h-3 bg-black/10 rounded w-4/5" />
+              <div className="h-2.5 bg-black/10 rounded w-2/5" />
             </div>
-            <div className="h-2.5 w-10 bg-border rounded shrink-0" />
+            <div className="h-2.5 w-10 bg-black/10 rounded shrink-0" />
           </div>
         ))}
       </div>
@@ -275,7 +275,7 @@ export function RefreshButton({
     <button
       onClick={onClick}
       disabled={loading}
-      className="press inline-flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:border-foreground/30 hover:bg-secondary disabled:opacity-50 disabled:pointer-events-none transition-colors"
+      className="press inline-flex items-center gap-2 rounded-xl glass-panel px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:border-accent/40 disabled:opacity-50 disabled:pointer-events-none transition-colors"
     >
       <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
       {loading ? "Refreshing…" : "Refresh"}

@@ -54,7 +54,7 @@ function ActivityPage() {
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             className="mt-8"
           >
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground shadow-soft mb-5">
+            <div className="inline-flex items-center gap-2 rounded-full glass-panel px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-5">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-success" />
@@ -64,11 +64,11 @@ function ActivityPage() {
 
             <div className="flex items-end justify-between gap-4 flex-wrap">
               <div>
-                <h1 className="font-display text-4xl sm:text-5xl font-bold tracking-tight leading-[1.05]">
+                <h1 className="font-display text-4xl sm:text-5xl font-bold tracking-tight leading-[1.05] text-foreground">
                   Coding{" "}
                   <span className="relative inline-block">
                     <span className="relative z-10">Activity</span>
-                    <span className="absolute inset-x-0 bottom-1 h-[0.2em] bg-accent z-0 rounded-sm" />
+                    <span className="absolute inset-x-0 bottom-1 h-[0.2em] bg-gradient-to-r from-accent to-accent-glow z-0 rounded-sm" />
                   </span>
                 </h1>
                 <p className="mt-3 text-subtext max-w-xl">
@@ -85,15 +85,15 @@ function ActivityPage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="mt-10 rounded-2xl border border-border bg-card overflow-hidden"
+              className="mt-10 rounded-2xl glass-panel overflow-hidden"
             >
-              <div className="flex items-center gap-2 px-5 py-3.5 border-b border-border bg-secondary/30">
+              <div className="flex items-center gap-2 px-5 py-3.5 border-b border-black/10 bg-black/[0.02]">
                 <Activity className="h-4 w-4 text-muted-foreground" />
                 <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                   Recent across all platforms
                 </p>
               </div>
-              <ul className="divide-y divide-border">
+              <ul className="divide-y divide-black/10">
                 {recentFeed.map((item, i) => (
                   <motion.li
                     key={`${item.id}-${i}`}
@@ -105,7 +105,7 @@ function ActivityPage() {
                       href={item.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex items-center gap-3 px-5 py-3 hover:bg-secondary/40 transition-colors group/row"
+                      className="flex items-center gap-3 px-5 py-3 hover:bg-black/[0.03] transition-colors group/row"
                     >
                       <span className={`h-2 w-2 rounded-full shrink-0 ${item.dot}`} />
                       <span className="text-sm font-medium text-foreground truncate flex-1 group-hover/row:text-accent transition-colors">
@@ -125,11 +125,11 @@ function ActivityPage() {
             {isLoading ? (
               [0, 1, 2, 3].map((i) => <PlatformCardSkeleton key={i} />)
             ) : isError ? (
-              <div className="md:col-span-2 rounded-2xl border border-border bg-card p-10 text-center">
+              <div className="md:col-span-2 rounded-2xl glass-panel p-10 text-center">
                 <p className="text-muted-foreground">Failed to load activity data.</p>
                 <button
                   onClick={() => refetch()}
-                  className="mt-4 press inline-flex items-center gap-2 rounded-xl bg-foreground text-background px-5 py-2.5 text-sm font-semibold hover:bg-accent hover:text-accent-foreground transition-colors"
+                  className="mt-4 press inline-flex items-center gap-2 rounded-xl bg-gradient-to-br from-accent to-accent-glow text-accent-foreground px-5 py-2.5 text-sm font-semibold shadow-[0_6px_24px_oklch(0.94_0.18_110/0.35)] transition-shadow"
                 >
                   Try again
                 </button>

@@ -34,37 +34,37 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-2 rounded-2xl bg-card-dark text-background p-8 relative overflow-hidden"
+            className="lg:col-span-2 rounded-2xl glass-panel text-foreground p-8 relative overflow-hidden hover-lift"
           >
             <div className="absolute -top-12 -right-12 h-48 w-48 rounded-full bg-accent/20 blur-3xl blob-drift pointer-events-none" />
             <div className="absolute bottom-0 left-0 h-32 w-32 rounded-full bg-success/10 blur-2xl pointer-events-none" />
 
             <div className="relative">
-              <div className="h-11 w-11 rounded-xl bg-accent grid place-items-center">
+              <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-accent to-accent-glow grid place-items-center">
                 <MessageSquare className="h-5 w-5 text-accent-foreground" />
               </div>
               <h3 className="mt-5 font-display text-2xl font-bold">Contact info</h3>
-              <p className="mt-2 text-sm text-background/65 leading-relaxed">
+              <p className="mt-2 text-sm text-subtext leading-relaxed">
                 Available for freelance, internships, and collaborations.
               </p>
 
               <ul className="mt-8 space-y-4">
                 <li className="flex items-center gap-3 text-sm">
-                  <span className="h-9 w-9 rounded-lg bg-background/10 grid place-items-center shrink-0">
+                  <span className="h-9 w-9 rounded-lg bg-black/[0.03] border border-black/10 grid place-items-center shrink-0">
                     <Mail className="h-4 w-4 text-accent" />
                   </span>
-                  <span className="text-background/80">Use the form to reach me</span>
+                  <span className="text-foreground/80">Use the form to reach me</span>
                 </li>
                 <li className="flex items-center gap-3 text-sm">
-                  <span className="h-9 w-9 rounded-lg bg-background/10 grid place-items-center shrink-0">
+                  <span className="h-9 w-9 rounded-lg bg-black/[0.03] border border-black/10 grid place-items-center shrink-0">
                     <MapPin className="h-4 w-4 text-accent" />
                   </span>
-                  <span className="text-background/80">India · Remote-friendly</span>
+                  <span className="text-foreground/80">India · Remote-friendly</span>
                 </li>
               </ul>
 
-              <div className="mt-8 pt-6 border-t border-background/10">
-                <p className="text-xs font-semibold uppercase tracking-widest text-background/40 mb-4">
+              <div className="mt-8 pt-6 border-t border-black/10">
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
                   Find me on
                 </p>
                 <div className="flex gap-2.5">
@@ -80,7 +80,7 @@ export function Contact() {
                       target="_blank"
                       rel="noreferrer"
                       aria-label={label}
-                      className="h-10 w-10 grid place-items-center rounded-xl bg-background/10 hover:bg-accent hover:text-accent-foreground hover:scale-110 hover:-translate-y-0.5 transition-all duration-300"
+                      className="h-10 w-10 grid place-items-center rounded-xl bg-black/[0.03] border border-black/10 text-foreground hover:bg-accent hover:text-accent-foreground hover:border-transparent hover:scale-110 hover:-translate-y-0.5 transition-all duration-300"
                     >
                       <Icon className="h-4 w-4" />
                     </a>
@@ -98,7 +98,7 @@ export function Contact() {
             transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             onSubmit={onSubmit}
             onMouseMove={onSpotlightMove}
-            className="spotlight lg:col-span-3 rounded-2xl border border-border bg-card p-8 space-y-5"
+            className="spotlight lg:col-span-3 rounded-2xl glass-panel p-8 space-y-5"
           >
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
@@ -108,7 +108,7 @@ export function Contact() {
                 <input
                   required
                   name="name"
-                  className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:border-foreground focus:ring-2 focus:ring-accent/20 transition-all"
+                  className="w-full rounded-xl border border-black/12 bg-black/[0.02] text-foreground placeholder:text-muted-foreground/60 px-4 py-3 text-sm focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20 transition-all"
                   placeholder="Your name"
                 />
               </div>
@@ -120,7 +120,7 @@ export function Contact() {
                   required
                   type="email"
                   name="email"
-                  className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:border-foreground focus:ring-2 focus:ring-accent/20 transition-all"
+                  className="w-full rounded-xl border border-black/12 bg-black/[0.02] text-foreground placeholder:text-muted-foreground/60 px-4 py-3 text-sm focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20 transition-all"
                   placeholder="you@example.com"
                 />
               </div>
@@ -132,7 +132,7 @@ export function Contact() {
               <input
                 required
                 name="subject"
-                className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:border-foreground focus:ring-2 focus:ring-accent/20 transition-all"
+                className="w-full rounded-xl border border-black/12 bg-black/[0.02] text-foreground placeholder:text-muted-foreground/60 px-4 py-3 text-sm focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20 transition-all"
                 placeholder="What's this about?"
               />
             </div>
@@ -144,13 +144,13 @@ export function Contact() {
                 required
                 name="message"
                 rows={5}
-                className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:border-foreground focus:ring-2 focus:ring-accent/20 transition-all resize-none"
+                className="w-full rounded-xl border border-black/12 bg-black/[0.02] text-foreground placeholder:text-muted-foreground/60 px-4 py-3 text-sm focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20 transition-all resize-none"
                 placeholder="Tell me a bit more..."
               />
             </div>
             <button
               disabled={loading}
-              className="press group w-full inline-flex items-center justify-center gap-2 rounded-xl bg-foreground text-background px-6 py-3.5 text-sm font-semibold hover:bg-accent hover:text-accent-foreground disabled:opacity-60 disabled:pointer-events-none transition-colors"
+              className="btn-shine press group w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-accent to-accent-glow text-accent-foreground px-6 py-3.5 text-sm font-semibold shadow-[0_8px_30px_oklch(0.94_0.18_110/0.35)] disabled:opacity-60 disabled:pointer-events-none transition-shadow hover:shadow-[0_10px_40px_oklch(0.94_0.18_110/0.5)]"
             >
               {loading ? "Sending..." : "Send message"}
               <Send
