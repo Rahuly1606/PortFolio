@@ -35,10 +35,22 @@ export function useReveal(stagger = 0.08) {
  * Pointer handler that feeds the CSS `--mx`/`--my` variables used by the
  * `.spotlight` utility, so the accent glow follows the cursor. GPU-friendly:
  * only writes two custom properties, no layout/paint thrash.
+ *
+ * Throttled to one write per animation frame. The raw `mousemove` event can
+ * fire many times per frame, and each write forces the browser to repaint the
+ * panel's `backdrop-filter` blur — doing that per-event (rather than per-frame)
+ * is what made typing in the contact form freeze the page on some machines.
  */
+let spotlightFrame = 0;
 export function onSpotlightMove(e: React.MouseEvent<HTMLElement>) {
   const el = e.currentTarget;
-  const rect = el.getBoundingClientRect();
-  el.style.setProperty("--mx", `${e.clientX - rect.left}px`);
-  el.style.setProperty("--my", `${e.clientY - rect.top}px`);
+  const clientX = e.clientX;
+  const clientY = e.clientY;
+  if (spotlightFrame) return;
+  spotlightFrame = requestAnimationFrame(() => {
+    spotlightFrame = 0;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty("--mx", `${clientX - rect.left}px`);
+    el.style.setProperty("--my", `${clientY - rect.top}px`);
+  });
 }
