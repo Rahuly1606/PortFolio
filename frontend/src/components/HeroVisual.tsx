@@ -110,12 +110,35 @@ export const HeroVisual = memo(function HeroVisual() {
   const [erasing,   setErasing]   = useState(false);
   const reduce = useReducedMotion();
   const stateRef = useRef({ displayed: "", erasing: false });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isVisibleRef = useRef(true);
+
+  /* Pause the typing loop when the component is scrolled out of view.
+     Without this the 14-34ms setDisplayed() calls run non-stop, causing
+     ~30-70 React re-renders per second which — combined with backdrop-filter
+     compositing and framer-motion animations — freeze the main thread on
+     production (Vercel) and trigger "Page Unresponsive". */
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { isVisibleRef.current = entry.isIntersecting; },
+      { threshold: 0 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   useEffect(() => {
     if (reduce) { setDisplayed(FULL_CODE); return; }
     let t: ReturnType<typeof setTimeout>;
 
     function tick() {
+      // Skip rendering while off-screen — just reschedule
+      if (!isVisibleRef.current) {
+        t = setTimeout(tick, 200);
+        return;
+      }
       const { displayed: d, erasing: e } = stateRef.current;
       if (!e) {
         if (d.length < FULL_CODE.length) {
@@ -159,7 +182,7 @@ export const HeroVisual = memo(function HeroVisual() {
   const ease = [0.22, 1, 0.36, 1] as const;
 
   return (
-    <div className="relative flex items-center justify-center w-full h-full min-h-[560px]">
+    <div ref={containerRef} className="relative flex items-center justify-center w-full h-full min-h-[560px]">
 
       {/* ── Orbit system ── */}
       <OrbitRing reduce={reduce} />

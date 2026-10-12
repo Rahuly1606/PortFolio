@@ -373,6 +373,9 @@
     -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
     border: 1px solid var(--glass-border);
     box-shadow: var(--shadow-glass);
+    /* Isolate each panel's compositing layer so blur repaints don't cascade */
+    contain: layout style paint;
+    will-change: backdrop-filter;
   }
   /* Top edge highlight to simulate glass illumination */
   .glass-panel::after {

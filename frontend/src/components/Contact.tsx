@@ -100,10 +100,10 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-2 rounded-2xl glass-panel text-foreground p-8 relative overflow-hidden hover-lift"
+            className="lg:col-span-2 rounded-2xl glass-solid text-foreground p-8 relative overflow-hidden hover-lift"
           >
-            <div className="absolute -top-12 -right-12 h-48 w-48 rounded-full bg-accent/20 blur-3xl blob-drift pointer-events-none" />
-            <div className="absolute bottom-0 left-0 h-32 w-32 rounded-full bg-success/10 blur-2xl pointer-events-none" />
+            <div className="absolute -top-12 -right-12 h-48 w-48 rounded-full bg-accent/20 blur-3xl blob-drift pointer-events-none" style={{ contain: 'strict', willChange: 'transform' }} />
+            <div className="absolute bottom-0 left-0 h-32 w-32 rounded-full bg-success/10 blur-2xl pointer-events-none" style={{ contain: 'strict', willChange: 'transform' }} />
 
             <div className="relative">
               <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-accent to-accent-glow grid place-items-center">
