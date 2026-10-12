@@ -124,7 +124,12 @@ export const HeroVisual = memo(function HeroVisual() {
           setDisplayed(next);
           t = setTimeout(tick, 34);
         } else {
-          t = setTimeout(() => { stateRef.current.erasing = true; setErasing(true); tick(); }, 2200);
+          // Wait 2200ms, then flip to erasing and schedule next tick separately
+          t = setTimeout(() => {
+            stateRef.current.erasing = true;
+            setErasing(true);
+            t = setTimeout(tick, 14); // schedule AFTER state is set, not inline
+          }, 2200);
         }
       } else {
         if (d.length > 0) {
@@ -133,7 +138,12 @@ export const HeroVisual = memo(function HeroVisual() {
           setDisplayed(next);
           t = setTimeout(tick, 14);
         } else {
-          t = setTimeout(() => { stateRef.current.erasing = false; setErasing(false); tick(); }, 500);
+          // Wait 500ms, then flip to typing and schedule next tick separately
+          t = setTimeout(() => {
+            stateRef.current.erasing = false;
+            setErasing(false);
+            t = setTimeout(tick, 34); // schedule AFTER state is set, not inline
+          }, 500);
         }
       }
     }

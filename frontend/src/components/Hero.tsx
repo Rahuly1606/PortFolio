@@ -157,7 +157,7 @@ export function Hero() {
   const ease = [0.22, 1, 0.36, 1] as const;
 
   return (
-    <section ref={sectionRef} className="relative pt-20 pb-0 overflow-hidden flex flex-col">
+    <section ref={sectionRef} className="relative pt-20 pb-0 overflow-hidden flex flex-col" style={{ contain: "layout style" }}>
 
       {/* ── Background stack ── */}
       {/* 1. Dot grid */}
@@ -172,15 +172,13 @@ export function Hero() {
       />
 
       {/* ── Ambient blobs ── */}
-      <motion.div
-        className="absolute -top-48 -right-48 h-[700px] w-[700px] rounded-full bg-accent/15 blur-[120px] pointer-events-none"
-        animate={reduce ? {} : { scale: [1, 1.08, 1], opacity: [0.15, 0.25, 0.15] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      <div
+        className="hero-blob absolute -top-48 -right-48 h-[700px] w-[700px] rounded-full bg-accent/15 blur-[120px] pointer-events-none"
+        style={reduce ? {} : { animation: "blob-pulse-1 8s ease-in-out infinite" }}
       />
-      <motion.div
-        className="absolute bottom-0 -left-48 h-[600px] w-[600px] rounded-full bg-accent-glow/12 blur-[100px] pointer-events-none"
-        animate={reduce ? {} : { scale: [1, 1.06, 1], opacity: [0.1, 0.18, 0.1] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+      <div
+        className="hero-blob absolute bottom-0 -left-48 h-[600px] w-[600px] rounded-full bg-accent-glow/12 blur-[100px] pointer-events-none"
+        style={reduce ? {} : { animation: "blob-pulse-2 10s ease-in-out infinite", animationDelay: "3s" }}
       />
 
       {/* ── Main content ── */}
