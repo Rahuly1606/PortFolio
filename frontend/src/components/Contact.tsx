@@ -4,7 +4,6 @@ import { Github, Linkedin, Twitter, Instagram, Send, Mail, MapPin, MessageSquare
 import { toast } from "sonner";
 import { SectionHeading } from "./SectionHeading";
 import { SOCIAL_LINKS } from "@/lib/portfolio-data";
-import { onSpotlightMove } from "@/lib/motion";
 
 export function Contact() {
   const [loading, setLoading] = useState(false);
@@ -97,8 +96,7 @@ export function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             onSubmit={onSubmit}
-            onMouseMove={onSpotlightMove}
-            className="spotlight lg:col-span-3 rounded-2xl glass-panel p-8 space-y-5"
+            className="lg:col-span-3 rounded-2xl glass-solid p-8 space-y-5"
           >
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
