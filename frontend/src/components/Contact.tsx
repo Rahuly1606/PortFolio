@@ -1,21 +1,64 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Github, Linkedin, Twitter, Instagram, Send, Mail, MapPin, MessageSquare } from "lucide-react";
-import { toast } from "sonner";
+import { useRef, useState } from "react";
+import { Github, Linkedin, Twitter, Instagram, Send, Mail, MapPin, MessageSquare, CheckCircle2, AlertCircle } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import { SOCIAL_LINKS } from "@/lib/portfolio-data";
 
-export function Contact() {
-  const [loading, setLoading] = useState(false);
+const OWNER_EMAIL = "rahulkumar.dev1606@gmail.com";
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+type Status = "idle" | "loading" | "success" | "error";
+
+function validate(name: string, email: string, subject: string, message: string): string | null {
+  if (!name.trim())    return "Name is required.";
+  if (!email.trim())   return "Email is required.";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return "Enter a valid email address.";
+  if (!subject.trim()) return "Subject is required.";
+  if (message.trim().length < 10) return "Message must be at least 10 characters.";
+  return null;
+}
+
+export function Contact() {
+  const formRef  = useRef<HTMLFormElement>(null);
+  const [status, setStatus]   = useState<Status>("idle");
+  const [errMsg, setErrMsg]   = useState("");
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    await new Promise((r) => setTimeout(r, 900));
-    toast.success("Message sent! I'll get back to you shortly.");
-    (e.target as HTMLFormElement).reset();
-    setLoading(false);
+    const fd      = new FormData(e.currentTarget);
+    const name    = fd.get("name")    as string;
+    const email   = fd.get("email")   as string;
+    const subject = fd.get("subject") as string;
+    const message = fd.get("message") as string;
+
+    const validationError = validate(name, email, subject, message);
+    if (validationError) {
+      setErrMsg(validationError);
+      setStatus("error");
+      return;
+    }
+
+    setStatus("loading");
+    setErrMsg("");
+
+    // Build mailto link — opens the user's mail client with fields pre-filled.
+    // This is the only reliable contact method without a backend/email service.
+    const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+    const mailto = `mailto:${OWNER_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    try {
+      window.location.href = mailto;
+      // Give the mail client a moment to open, then show success
+      setTimeout(() => {
+        setStatus("success");
+        formRef.current?.reset();
+      }, 800);
+    } catch {
+      setStatus("error");
+      setErrMsg("Could not open your mail client. Please email directly: " + OWNER_EMAIL);
+    }
   };
+
+  const resetStatus = () => { setStatus("idle"); setErrMsg(""); };
 
   return (
     <section id="contact" className="relative py-24 sm:py-32">
@@ -52,7 +95,12 @@ export function Contact() {
                   <span className="h-9 w-9 rounded-lg bg-black/[0.03] border border-black/10 grid place-items-center shrink-0">
                     <Mail className="h-4 w-4 text-accent" />
                   </span>
-                  <span className="text-foreground/80">Use the form to reach me</span>
+                  <a
+                    href={`mailto:${OWNER_EMAIL}`}
+                    className="text-foreground/80 hover:text-accent transition-colors truncate"
+                  >
+                    {OWNER_EMAIL}
+                  </a>
                 </li>
                 <li className="flex items-center gap-3 text-sm">
                   <span className="h-9 w-9 rounded-lg bg-black/[0.03] border border-black/10 grid place-items-center shrink-0">
@@ -68,9 +116,9 @@ export function Contact() {
                 </p>
                 <div className="flex gap-2.5">
                   {[
-                    { icon: Github, href: SOCIAL_LINKS.github, label: "GitHub" },
-                    { icon: Linkedin, href: SOCIAL_LINKS.linkedin, label: "LinkedIn" },
-                    { icon: Twitter, href: SOCIAL_LINKS.twitter, label: "Twitter / X" },
+                    { icon: Github,    href: SOCIAL_LINKS.github,    label: "GitHub" },
+                    { icon: Linkedin,  href: SOCIAL_LINKS.linkedin,  label: "LinkedIn" },
+                    { icon: Twitter,   href: SOCIAL_LINKS.twitter,   label: "Twitter / X" },
                     { icon: Instagram, href: SOCIAL_LINKS.instagram, label: "Instagram" },
                   ].map(({ icon: Icon, href, label }) => (
                     <a
@@ -91,13 +139,31 @@ export function Contact() {
 
           {/* Form */}
           <motion.form
+            ref={formRef}
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             onSubmit={onSubmit}
+            onChange={resetStatus}
             className="lg:col-span-3 rounded-2xl glass-solid p-8 space-y-5"
           >
+            {/* Success banner */}
+            {status === "success" && (
+              <div className="flex items-start gap-3 rounded-xl bg-success/10 border border-success/25 px-4 py-3 text-sm text-success">
+                <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0" />
+                <span>Your mail client should have opened with the message pre-filled. Hit send there to deliver it!</span>
+              </div>
+            )}
+
+            {/* Error banner */}
+            {status === "error" && errMsg && (
+              <div className="flex items-start gap-3 rounded-xl bg-destructive/10 border border-destructive/25 px-4 py-3 text-sm text-destructive">
+                <AlertCircle className="h-4 w-4 mt-0.5 shrink-0" />
+                <span>{errMsg}</span>
+              </div>
+            )}
+
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">
@@ -106,6 +172,7 @@ export function Contact() {
                 <input
                   required
                   name="name"
+                  autoComplete="name"
                   className="w-full rounded-xl border border-black/12 bg-black/[0.02] text-foreground placeholder:text-muted-foreground/60 px-4 py-3 text-sm focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20 transition-all"
                   placeholder="Your name"
                 />
@@ -118,6 +185,7 @@ export function Contact() {
                   required
                   type="email"
                   name="email"
+                  autoComplete="email"
                   className="w-full rounded-xl border border-black/12 bg-black/[0.02] text-foreground placeholder:text-muted-foreground/60 px-4 py-3 text-sm focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20 transition-all"
                   placeholder="you@example.com"
                 />
@@ -147,16 +215,20 @@ export function Contact() {
               />
             </div>
             <button
-              disabled={loading}
+              type="submit"
+              disabled={status === "loading"}
               className="btn-shine press group w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-accent to-accent-glow text-accent-foreground px-6 py-3.5 text-sm font-semibold shadow-[0_8px_30px_oklch(0.94_0.18_110/0.35)] disabled:opacity-60 disabled:pointer-events-none transition-shadow hover:shadow-[0_10px_40px_oklch(0.94_0.18_110/0.5)]"
             >
-              {loading ? "Sending..." : "Send message"}
+              {status === "loading" ? "Opening mail client…" : "Send message"}
               <Send
                 className={`h-4 w-4 transition-transform duration-300 ${
-                  loading ? "animate-pulse" : "group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  status === "loading" ? "animate-pulse" : "group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 }`}
               />
             </button>
+            <p className="text-center text-[11px] text-muted-foreground/70">
+              Clicking "Send message" opens your default mail client with the form pre-filled.
+            </p>
           </motion.form>
         </div>
       </div>

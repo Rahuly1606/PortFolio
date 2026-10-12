@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, memo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { Code2, Cpu, Globe, Layers, Zap, GitBranch } from "lucide-react";
@@ -105,27 +105,43 @@ function LiveActivityFeed() {
   );
 }
 
-export function HeroVisual() {
+export const HeroVisual = memo(function HeroVisual() {
   const [displayed, setDisplayed] = useState("");
   const [erasing,   setErasing]   = useState(false);
   const reduce = useReducedMotion();
+  const stateRef = useRef({ displayed: "", erasing: false });
 
   useEffect(() => {
     if (reduce) { setDisplayed(FULL_CODE); return; }
     let t: ReturnType<typeof setTimeout>;
-    if (!erasing) {
-      if (displayed.length < FULL_CODE.length)
-        t = setTimeout(() => setDisplayed(FULL_CODE.slice(0, displayed.length + 1)), 34);
-      else
-        t = setTimeout(() => setErasing(true), 2200);
-    } else {
-      if (displayed.length > 0)
-        t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 14);
-      else
-        t = setTimeout(() => setErasing(false), 500);
+
+    function tick() {
+      const { displayed: d, erasing: e } = stateRef.current;
+      if (!e) {
+        if (d.length < FULL_CODE.length) {
+          const next = FULL_CODE.slice(0, d.length + 1);
+          stateRef.current.displayed = next;
+          setDisplayed(next);
+          t = setTimeout(tick, 34);
+        } else {
+          t = setTimeout(() => { stateRef.current.erasing = true; setErasing(true); tick(); }, 2200);
+        }
+      } else {
+        if (d.length > 0) {
+          const next = d.slice(0, -1);
+          stateRef.current.displayed = next;
+          setDisplayed(next);
+          t = setTimeout(tick, 14);
+        } else {
+          t = setTimeout(() => { stateRef.current.erasing = false; setErasing(false); tick(); }, 500);
+        }
+      }
     }
+
+    t = setTimeout(tick, 34);
     return () => clearTimeout(t);
-  }, [displayed, erasing, reduce]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reduce]);
 
   const lines = displayed.split("\n");
   let gIdx = 0;
@@ -282,4 +298,4 @@ export function HeroVisual() {
       </motion.div>
     </div>
   );
-}
+});
