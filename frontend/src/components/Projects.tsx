@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { PROJECTS } from "@/lib/portfolio-data";
 import { DrawnUnderline, HandDrawnArrow } from "./annotations";
 import { ProjectPhoneMockup } from "./ProjectPhoneMockup";
@@ -70,6 +70,7 @@ function CaseVisual({ project, index }: { project: (typeof PROJECTS)[number]; in
 
 export function Projects() {
   const galleryRef = useRef<HTMLElement>(null);
+  const [spread, setSpread] = useState(false);
   const { scrollYProgress } = useScroll({ target: galleryRef, offset: ["start end", "end start"] });
   const galleryY = useTransform(scrollYProgress, [0, 1], [70, -60]);
 
@@ -94,9 +95,21 @@ export function Projects() {
               <HandDrawnArrow color="var(--lavender)" className="project-gallery-arrow" />
             </div>
           </div>
-          <motion.div className="phones-gallery" style={{ y: galleryY }}>
+          <motion.button
+            type="button"
+            className={`phones-gallery ${spread ? "is-spread" : ""}`}
+            style={{ y: galleryY }}
+            onClick={() => setSpread((value) => !value)}
+            aria-expanded={spread}
+            aria-label={spread ? "Stack project previews" : "Spread project previews"}
+          >
             {PROJECTS.map((project, index) => (
-              <div className={`gallery-phone-item gallery-phone-${index + 1}`} key={project.title}>
+              <motion.div
+                layout="position"
+                transition={{ layout: { type: "spring", stiffness: 150, damping: 22 } }}
+                className={`gallery-phone-item gallery-phone-${index + 1}`}
+                key={project.title}
+              >
                 <ProjectPhoneMockup project={project} index={index} />
                 <div className="gallery-phone-label">
                   <span>0{index + 1}</span>
@@ -105,9 +118,12 @@ export function Projects() {
                     <small>{project.tech.slice(0, 2).join(" · ")}</small>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </motion.div>
+            <span className="gallery-interaction-note hand-note">
+              {spread ? "click to gather" : "click the stack to explore"}
+            </span>
+          </motion.button>
           <div className="gallery-footer editorial-rule">
             <span>Five selected builds</span>
             <Link to="/projects">
@@ -118,7 +134,7 @@ export function Projects() {
       </section>
 
       <div className="project-case-studies">
-        {PROJECTS.map((project, index) => {
+        {PROJECTS.slice(0, 2).map((project, index) => {
           const dark = index % 2 === 0;
           return (
             <section
@@ -159,6 +175,14 @@ export function Projects() {
             </section>
           );
         })}
+        <div className="project-more">
+          <div className="editorial-shell">
+            <span>Three more projects in the complete index.</span>
+            <Link to="/projects" className="index-link">
+              View all five projects <ArrowUpRight />
+            </Link>
+          </div>
+        </div>
       </div>
     </>
   );
