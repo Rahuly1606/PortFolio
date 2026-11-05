@@ -1603,32 +1603,90 @@
   text-align: left;
   cursor: pointer;
   perspective: 1400px;
+  isolation: isolate;
+  transition: min-height 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.phones-gallery::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: 50%;
+  width: 430px;
+  aspect-ratio: 1;
+  border: 1px solid rgb(164 154 255 / 0.42);
+  border-radius: 47% 53% 49% 51%;
+  background: radial-gradient(circle, rgb(164 154 255 / 0.18), transparent 66%);
+  transform: translate(-50%, -50%) rotate(-8deg);
+  animation: gallery-halo 3.6s ease-in-out infinite;
+  transition:
+    width 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.55s ease,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.phones-gallery::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: calc(50% + 250px);
+  width: 330px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgb(0 0 0 / 0.34);
+  filter: blur(22px);
+  transform: translateX(-50%);
+  transition:
+    width 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.45s ease;
+}
+.phones-gallery.is-spread::before {
+  width: min(88vw, 1160px);
+  opacity: 0.26;
+  transform: translate(-50%, -50%) rotate(2deg);
+  animation: none;
+}
+.phones-gallery.is-spread::after {
+  width: min(82vw, 1060px);
+  opacity: 0.5;
 }
 .phones-gallery:focus-visible {
   outline: 1px solid var(--lavender);
   outline-offset: 8px;
 }
 .gallery-phone-item {
-  position: relative;
+  position: absolute;
+  left: 50%;
+  top: 50%;
   flex: 0 0 auto;
+  will-change: transform;
+  backface-visibility: hidden;
   transition:
-    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.05s cubic-bezier(0.16, 1, 0.3, 1),
     opacity 0.4s ease;
 }
 .gallery-phone-1 {
-  --stack-x: -38px;
-  --stack-y: 18px;
-  --stack-rotate: -9deg;
+  --stack-x: -28px;
+  --stack-y: 14px;
+  --stack-rotate: -8deg;
   --spread-y: 60px;
+  --spread-x: clamp(-480px, -34vw, -300px);
   --spread-rotate: -7deg;
+  --travel-delay: 0s;
+  --collapse-delay: 0.09s;
+  --label-delay: 0.12s;
   z-index: 1;
 }
 .gallery-phone-2 {
-  --stack-x: -20px;
-  --stack-y: 8px;
-  --stack-rotate: -5deg;
+  --stack-x: -14px;
+  --stack-y: 7px;
+  --stack-rotate: -4deg;
   --spread-y: -45px;
+  --spread-x: clamp(-250px, -17vw, -150px);
   --spread-rotate: 3deg;
+  --travel-delay: 0.045s;
+  --collapse-delay: 0.068s;
+  --label-delay: 0.18s;
   z-index: 2;
 }
 .gallery-phone-3 {
@@ -1636,43 +1694,62 @@
   --stack-y: 0px;
   --stack-rotate: -1deg;
   --spread-y: 25px;
+  --spread-x: 0px;
   --spread-rotate: -1deg;
+  --travel-delay: 0.09s;
+  --collapse-delay: 0.045s;
+  --label-delay: 0.24s;
   z-index: 5;
 }
 .gallery-phone-4 {
-  --stack-x: 20px;
-  --stack-y: 8px;
-  --stack-rotate: 5deg;
+  --stack-x: 14px;
+  --stack-y: 7px;
+  --stack-rotate: 4deg;
   --spread-y: -55px;
+  --spread-x: clamp(150px, 17vw, 250px);
   --spread-rotate: 5deg;
+  --travel-delay: 0.135s;
+  --collapse-delay: 0.022s;
+  --label-delay: 0.3s;
   z-index: 4;
 }
 .gallery-phone-5 {
-  --stack-x: 38px;
-  --stack-y: 18px;
-  --stack-rotate: 9deg;
+  --stack-x: 28px;
+  --stack-y: 14px;
+  --stack-rotate: 8deg;
   --spread-y: 70px;
+  --spread-x: clamp(300px, 34vw, 480px);
   --spread-rotate: 7deg;
+  --travel-delay: 0.18s;
+  --collapse-delay: 0s;
+  --label-delay: 0.36s;
   z-index: 3;
 }
 .phones-gallery:not(.is-spread) .gallery-phone-item {
-  position: absolute;
-  left: 50%;
-  top: 50%;
   transform: translate(-50%, -50%) translate(var(--stack-x), var(--stack-y))
     rotate(var(--stack-rotate));
+  transition-delay: var(--collapse-delay);
 }
 .phones-gallery.is-spread .gallery-phone-item {
-  transform: translateY(var(--spread-y)) rotate(var(--spread-rotate));
+  transform: translate(-50%, -50%) translate(var(--spread-x), var(--spread-y))
+    rotate(var(--spread-rotate));
+  transition-delay: var(--travel-delay);
 }
 .phones-gallery:not(.is-spread) .gallery-phone-label {
+  position: absolute;
+  top: 100%;
+  left: 0;
   opacity: 0;
   transform: translateY(12px);
   pointer-events: none;
 }
 .phones-gallery.is-spread .gallery-phone-label {
+  position: absolute;
+  top: 100%;
+  left: 0;
   opacity: 1;
   transform: translateY(0);
+  transition-delay: var(--label-delay);
 }
 .gallery-phone-label {
   width: 100%;
@@ -1708,7 +1785,52 @@
   bottom: -3.5rem;
   transform: translateX(-50%) rotate(-3deg);
   white-space: nowrap;
+  z-index: 8;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid rgb(164 154 255 / 0.42);
+  background: rgb(38 37 41 / 0.82);
+  backdrop-filter: blur(8px);
   transition: opacity 0.25s ease;
+}
+.phones-gallery:not(.is-spread) .gallery-phone-3 .phone-frame {
+  overflow: hidden;
+}
+.phones-gallery:not(.is-spread) .gallery-phone-3 .phone-frame::after {
+  content: "";
+  position: absolute;
+  z-index: 5;
+  inset: -25% auto -25% -55%;
+  width: 22%;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.28), transparent);
+  transform: rotate(12deg);
+  animation: phone-glint 4.8s ease-in-out infinite 1.4s;
+  pointer-events: none;
+}
+@keyframes gallery-halo {
+  0%,
+  100% {
+    opacity: 0.58;
+    box-shadow: 0 0 0 0 rgb(164 154 255 / 0.04);
+  }
+  50% {
+    opacity: 0.9;
+    box-shadow: 0 0 70px 10px rgb(164 154 255 / 0.08);
+  }
+}
+@keyframes phone-glint {
+  0%,
+  58% {
+    left: -55%;
+    opacity: 0;
+  }
+  67% {
+    opacity: 1;
+  }
+  84%,
+  100% {
+    left: 135%;
+    opacity: 0;
+  }
 }
 .gallery-footer {
   display: flex;
@@ -2947,15 +3069,29 @@
   }
   .phones-gallery {
     min-height: 680px;
-    flex-wrap: nowrap;
-    align-content: center;
   }
   .phones-gallery.is-spread {
-    min-height: 820px;
-    flex-wrap: wrap;
+    min-height: 1700px;
   }
-  .phones-gallery.is-spread .gallery-phone-item {
-    margin: 0 -0.2rem;
+  .phones-gallery.is-spread .gallery-phone-1 {
+    --spread-x: -27vw;
+    --spread-y: -520px;
+  }
+  .phones-gallery.is-spread .gallery-phone-2 {
+    --spread-x: 27vw;
+    --spread-y: -520px;
+  }
+  .phones-gallery.is-spread .gallery-phone-3 {
+    --spread-x: -27vw;
+    --spread-y: 0px;
+  }
+  .phones-gallery.is-spread .gallery-phone-4 {
+    --spread-x: 27vw;
+    --spread-y: 0px;
+  }
+  .phones-gallery.is-spread .gallery-phone-5 {
+    --spread-x: 0px;
+    --spread-y: 520px;
   }
   .project-case {
     min-height: auto;
@@ -3215,23 +3351,32 @@
   .phones-gallery {
     min-height: 620px;
     margin-top: 5rem;
-    gap: 0;
   }
   .phones-gallery.is-spread {
-    min-height: 1000px;
-    gap: 1.5rem 0;
+    min-height: 1420px;
   }
-  .phones-gallery.is-spread .gallery-phone-item {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .phones-gallery .phone-mockup {
+    width: min(43vw, 210px);
   }
-  .phones-gallery:not(.is-spread) .gallery-phone-item {
-    width: auto;
+  .phones-gallery.is-spread .gallery-phone-1 {
+    --spread-x: -27vw;
+    --spread-y: -400px;
   }
-  .phones-gallery.is-spread .gallery-phone-item:nth-child(5) {
-    width: 100%;
+  .phones-gallery.is-spread .gallery-phone-2 {
+    --spread-x: 27vw;
+    --spread-y: -400px;
+  }
+  .phones-gallery.is-spread .gallery-phone-3 {
+    --spread-x: -27vw;
+    --spread-y: 40px;
+  }
+  .phones-gallery.is-spread .gallery-phone-4 {
+    --spread-x: 27vw;
+    --spread-y: 40px;
+  }
+  .phones-gallery.is-spread .gallery-phone-5 {
+    --spread-x: 0px;
+    --spread-y: 480px;
   }
   .gallery-phone-label {
     width: 90%;

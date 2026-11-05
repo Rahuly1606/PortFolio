@@ -71,6 +71,8 @@ function CaseVisual({ project, index }: { project: (typeof PROJECTS)[number]; in
 export function Projects() {
   const galleryRef = useRef<HTMLElement>(null);
   const [spread, setSpread] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const expanded = spread || hovered;
   const { scrollYProgress } = useScroll({ target: galleryRef, offset: ["start end", "end start"] });
   const galleryY = useTransform(scrollYProgress, [0, 1], [70, -60]);
 
@@ -97,19 +99,21 @@ export function Projects() {
           </div>
           <motion.button
             type="button"
-            className={`phones-gallery ${spread ? "is-spread" : ""}`}
+            className={`phones-gallery ${expanded ? "is-spread" : ""} ${spread ? "is-pinned" : ""}`}
             style={{ y: galleryY }}
             onClick={() => setSpread((value) => !value)}
-            aria-expanded={spread}
+            onPointerMove={(event) => {
+              const target = event.target instanceof Element ? event.target : null;
+              if (event.pointerType !== "touch" && target?.closest(".gallery-phone-item")) {
+                setHovered(true);
+              }
+            }}
+            onPointerLeave={() => setHovered(false)}
+            aria-expanded={expanded}
             aria-label={spread ? "Stack project previews" : "Spread project previews"}
           >
             {PROJECTS.map((project, index) => (
-              <motion.div
-                layout="position"
-                transition={{ layout: { type: "spring", stiffness: 150, damping: 22 } }}
-                className={`gallery-phone-item gallery-phone-${index + 1}`}
-                key={project.title}
-              >
+              <div className={`gallery-phone-item gallery-phone-${index + 1}`} key={project.title}>
                 <ProjectPhoneMockup project={project} index={index} />
                 <div className="gallery-phone-label">
                   <span>0{index + 1}</span>
@@ -118,10 +122,14 @@ export function Projects() {
                     <small>{project.tech.slice(0, 2).join(" · ")}</small>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
             <span className="gallery-interaction-note hand-note">
-              {spread ? "click to gather" : "click the stack to explore"}
+              {spread
+                ? "click to gather"
+                : hovered
+                  ? "click to keep them open"
+                  : "hover or click to explore"}
             </span>
           </motion.button>
           <div className="gallery-footer editorial-rule">
