@@ -8,6 +8,7 @@ export function CursorPen() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const trailRef = useRef<HTMLDivElement>(null);
   const frame = useRef<number>(0);
+  const inkUntil = useRef(0);
   const position = useRef({ x: -40, y: -40, tx: -40, ty: -40 });
   const lastDraw = useRef<{ x: number; y: number } | null>(null);
   const [enabled, setEnabled] = useState(false);
@@ -76,6 +77,7 @@ export function CursorPen() {
           context.lineCap = "round";
           context.lineJoin = "round";
           context.stroke();
+          inkUntil.current = performance.now() + 6000;
         }
       }
       lastDraw.current = point;
@@ -97,11 +99,13 @@ export function CursorPen() {
         trailRef.current.style.transform = `translate3d(${current.x}px, ${current.y}px, 0)`;
       }
 
-      context.save();
-      context.globalCompositeOperation = "destination-out";
-      context.fillStyle = "rgba(0, 0, 0, 0.014)";
-      context.fillRect(0, 0, window.innerWidth, window.innerHeight);
-      context.restore();
+      if (performance.now() < inkUntil.current) {
+        context.save();
+        context.globalCompositeOperation = "destination-out";
+        context.fillStyle = "rgba(0, 0, 0, 0.014)";
+        context.fillRect(0, 0, window.innerWidth, window.innerHeight);
+        context.restore();
+      }
       frame.current = requestAnimationFrame(tick);
     };
 

@@ -1604,6 +1604,10 @@
   cursor: pointer;
   perspective: 1400px;
 }
+.phones-gallery:focus-visible {
+  outline: 1px solid var(--lavender);
+  outline-offset: 8px;
+}
 .gallery-phone-item {
   position: relative;
   flex: 0 0 auto;
