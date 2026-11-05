@@ -1191,8 +1191,8 @@
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: var(--charcoal);
-  color: var(--ivory);
+  background: var(--ivory-2);
+  color: var(--ink);
 }
 .portrait-monogram img {
   width: 100%;
@@ -2194,8 +2194,8 @@
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: var(--charcoal);
-  color: var(--lavender);
+  background: var(--ivory-2);
+  color: var(--ink);
   transform: rotate(-3deg);
 }
 .contact-portrait img {

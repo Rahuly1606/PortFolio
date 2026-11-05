@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { HandDrawnArrow, HandDrawnBorder, HandDrawnStar } from "./annotations";
-import profilePhoto from "../../profile-photo-modified.jpg";
+import profilePhoto from "../../profile-photo-modified.png";
 
 export function About() {
   return (

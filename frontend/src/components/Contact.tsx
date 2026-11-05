@@ -4,7 +4,7 @@ import { AlertCircle, ArrowUpRight, CheckCircle2, Loader2, Send } from "lucide-r
 import { useRef, useState } from "react";
 import { SOCIAL_LINKS } from "@/lib/portfolio-data";
 import { DrawnUnderline, HandDrawnArrow, HandwrittenSignature } from "./annotations";
-import profilePhoto from "../../profile-photo-modified.jpg";
+import profilePhoto from "../../profile-photo-modified.png";
 
 const EJ_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID ?? "YOUR_SERVICE_ID";
 const EJ_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID ?? "YOUR_TEMPLATE_ID";
