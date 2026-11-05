@@ -1,9 +1,12 @@
-import { useEffect, useRef, useState, memo } from "react";
+import { lazy, Suspense, useEffect, useRef, useState, memo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { Code2, Cpu, Globe, Layers, Zap, GitBranch } from "lucide-react";
 import { MiniActivityFeed } from "@/components/ActivityCard";
 import { fetchAllActivity } from "@/lib/activity-api";
+const ThreeDimensionalSignal = lazy(() =>
+  import("./ThreeDimensionalSignal").then(({ ThreeDimensionalSignal: Component }) => ({ default: Component })),
+);
 
 /* ── Typing code snippet ── */
 const FULL_CODE = `const dev = {
@@ -108,10 +111,19 @@ function LiveActivityFeed() {
 export const HeroVisual = memo(function HeroVisual() {
   const [displayed, setDisplayed] = useState("");
   const [erasing,   setErasing]   = useState(false);
+  const [show3D, setShow3D] = useState(false);
   const reduce = useReducedMotion();
   const stateRef = useRef({ displayed: "", erasing: false });
   const containerRef = useRef<HTMLDivElement>(null);
   const isVisibleRef = useRef(true);
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 1024px)");
+    const update = () => setShow3D(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
 
   /* Pause the typing loop when the component is scrolled out of view.
      Without this the 14-34ms setDisplayed() calls run non-stop, causing
@@ -183,6 +195,13 @@ export const HeroVisual = memo(function HeroVisual() {
 
   return (
     <div ref={containerRef} className="relative flex items-center justify-center w-full h-full min-h-[560px]">
+
+      {/* A restrained real-time 3D signal core gives the hero a tactile focal point. */}
+      {show3D && (
+        <Suspense fallback={null}>
+          <ThreeDimensionalSignal reduce={reduce} />
+        </Suspense>
+      )}
 
       {/* ── Orbit system ── */}
       <OrbitRing reduce={reduce} />

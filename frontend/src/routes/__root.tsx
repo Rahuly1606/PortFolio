@@ -17,8 +17,12 @@ function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <p className="font-display text-[10rem] font-bold leading-none text-foreground/8 select-none">404</p>
-        <h1 className="-mt-8 font-display text-4xl font-bold tracking-tight text-foreground">Page not found</h1>
+        <p className="font-display text-[10rem] font-bold leading-none text-foreground/8 select-none">
+          404
+        </p>
+        <h1 className="-mt-8 font-display text-4xl font-bold tracking-tight text-foreground">
+          Page not found
+        </h1>
         <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
           The page you're looking for doesn't exist or has been moved.
         </p>
@@ -47,7 +51,7 @@ export const Route = createRootRoute({
           "Portfolio of Rahul Kumar — Full-Stack Developer crafting elegant, scalable products with React, Node, AI and cloud.",
       },
       { name: "author", content: "Rahul Kumar" },
-      { name: "theme-color", content: "#f8f6f1" },
+      { name: "theme-color", content: "#f5f3ef" },
       { property: "og:title", content: "Rahul Kumar — Full-Stack Developer" },
       {
         property: "og:description",

@@ -18,7 +18,7 @@ export function Preloader() {
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    const hold = reduce ? 600 : 2200;
+    const hold = reduce ? 350 : 1200;
     const t = setTimeout(() => {
       setDone(true);
     }, hold);

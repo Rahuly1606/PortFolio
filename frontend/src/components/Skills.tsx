@@ -1,68 +1,77 @@
 import { motion } from "framer-motion";
-import { Code, Palette, Server, Cloud, Zap, Users } from "lucide-react";
-import { SectionHeading } from "./SectionHeading";
 import { SKILLS } from "@/lib/portfolio-data";
-import { useReveal, onSpotlightMove } from "@/lib/motion";
+import { DrawnCircle, DrawnUnderline, HandDrawnArrow } from "./annotations";
 
-const ICONS = { Code, Palette, Server, Cloud, Zap, Users };
+const marks = ["JS", "PY", "JV", "DB", "AI", "UX"];
 
-const ACCENT_CLASSES = [
-  "bg-gradient-to-br from-accent to-accent-glow text-accent-foreground",
-  "bg-accent/15 text-foreground",
-  "bg-gradient-to-br from-accent to-accent-glow text-accent-foreground",
-  "bg-accent/15 text-foreground",
-  "bg-gradient-to-br from-accent to-accent-glow text-accent-foreground",
-  "bg-accent/15 text-foreground",
-];
+function BookStack() {
+  return (
+    <div className="book-stack" role="img" aria-label="Hand-drawn stack of technology books">
+      <div className="book book-one">
+        <span>Systems</span>
+      </div>
+      <div className="book book-two">
+        <span>Interfaces</span>
+      </div>
+      <div className="book book-three">
+        <span>Cloud</span>
+      </div>
+      <div className="book book-four">
+        <span>AI</span>
+      </div>
+      <i className="book-leaf leaf-one" />
+      <i className="book-leaf leaf-two" />
+    </div>
+  );
+}
 
 export function Skills() {
-  const { container, item } = useReveal(0.06);
-
   return (
-    <section id="skills" className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="Toolbox"
-          title="Technical Skills"
-          description="The tools and technologies I use to bring ideas to life."
-        />
+    <section id="skills" className="skills-editorial">
+      <div className="editorial-shell">
+        <div className="skills-top">
+          <motion.div
+            className="skills-title"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="meta-label">03 / Toolbox</div>
+            <h2>Skills.</h2>
+            <DrawnUnderline className="skills-underline" color="var(--lavender)" />
+            <div className="skills-marks">
+              {marks.map((mark) => (
+                <span key={mark}>{mark}</span>
+              ))}
+              <DrawnCircle className="skills-circle" color="var(--lavender)" />
+            </div>
+            <p className="hand-note">
+              tools I reach for
+              <br />
+              to make ideas real
+            </p>
+            <HandDrawnArrow className="skills-arrow" color="var(--lavender)" />
+          </motion.div>
+          <BookStack />
+        </div>
 
         <motion.div
-          variants={container}
+          className="skills-list"
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
-          className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          viewport={{ once: true }}
+          variants={{ show: { transition: { staggerChildren: 0.08 } } }}
         >
-          {SKILLS.map((s, idx) => {
-            const Icon = ICONS[s.icon as keyof typeof ICONS];
-            const iconClass = ACCENT_CLASSES[idx % ACCENT_CLASSES.length];
-            return (
-              <motion.div
-                key={s.title}
-                variants={item}
-                onMouseMove={onSpotlightMove}
-                className="spotlight group rounded-2xl glass-panel p-6 hover-lift hover:border-accent/40 flex flex-col"
-              >
-                <div className="flex items-start justify-between">
-                  <div className={`h-11 w-11 rounded-xl ${iconClass} grid place-items-center group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <span className="text-[11px] font-semibold text-muted-foreground bg-black/[0.03] border border-black/10 rounded-md px-2 py-1 uppercase tracking-wider">
-                    {String(idx + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <h3 className="mt-5 font-display text-lg font-semibold text-foreground">{s.title}</h3>
-                <div className="mt-4 flex flex-wrap gap-1.5 flex-1">
-                  {s.items.map((tag) => (
-                    <span key={tag} className="tag">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
+          {SKILLS.map((group, index) => (
+            <motion.article
+              key={group.title}
+              variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+            >
+              <span>0{index + 1}</span>
+              <h3>{group.title}</h3>
+              <p>{group.items.join(" · ")}</p>
+            </motion.article>
+          ))}
         </motion.div>
       </div>
     </section>

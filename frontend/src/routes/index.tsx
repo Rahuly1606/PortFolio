@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
-import { Preloader } from "@/components/Preloader";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
+import { Education } from "@/components/Education";
 import { Projects } from "@/components/Projects";
 import { Certificates } from "@/components/Certificates";
 import { Experience } from "@/components/Experience";
@@ -11,6 +11,7 @@ import { Skills } from "@/components/Skills";
 import { Competitive } from "@/components/Competitive";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
+import { CursorPen } from "@/components/CursorPen";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,11 +35,12 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Preloader />
+      <CursorPen />
       <Navbar />
       <main>
         <Hero />
         <About />
+        <Education />
         <Projects />
         <Certificates />
         <Experience />

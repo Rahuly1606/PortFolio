@@ -1,75 +1,53 @@
 import { motion } from "framer-motion";
-import { Award, ExternalLink, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { SectionHeading } from "./SectionHeading";
 import { CERTIFICATES } from "@/lib/portfolio-data";
-import { useReveal, onSpotlightMove } from "@/lib/motion";
 
 export function Certificates() {
-  const { container, item } = useReveal(0.08);
-
   return (
-    <section id="certificates" className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between gap-6 flex-wrap">
-          <SectionHeading
-            eyebrow="Certifications"
-            title="Verified Credentials"
-            description="Industry certifications validating expertise across platforms."
-          />
-          <Link
-            to="/certificates"
-            className="group inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors"
-          >
-            View all
-            <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
-        </div>
-
+    <section id="certificates" className="credentials-editorial">
+      <div className="editorial-shell">
+        <header className="credentials-head">
+          <div>
+            <span className="meta-label">05 / Credentials</span>
+            <h2>
+              Verified
+              <br />
+              <em>learning.</em>
+            </h2>
+          </div>
+          <p>Industry credentials across cloud, AI, databases and software collaboration.</p>
+        </header>
         <motion.div
-          variants={container}
+          className="credentials-list"
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
-          className="mt-14 grid md:grid-cols-3 gap-5"
+          viewport={{ once: true }}
+          variants={{ show: { transition: { staggerChildren: 0.08 } } }}
         >
-          {CERTIFICATES.slice(0, 3).map((c) => (
+          {CERTIFICATES.slice(0, 3).map((certificate, index) => (
             <motion.a
-              key={c.title}
-              href={c.url}
+              key={certificate.title}
+              href={certificate.url}
               target="_blank"
               rel="noreferrer"
-              variants={item}
-              onMouseMove={onSpotlightMove}
-              className="spotlight group rounded-2xl glass-panel p-6 hover-lift hover:border-accent/60 flex flex-col"
+              variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0 } }}
             >
-              <div className="flex items-start justify-between">
-                <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-accent to-accent-glow text-accent-foreground grid place-items-center transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
-                  <Award className="h-5 w-5" />
-                </div>
-                <ExternalLink className="h-4 w-4 text-muted-foreground/50 transition-all duration-300 group-hover:text-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <span>0{index + 1}</span>
+              <div>
+                <small>
+                  {certificate.issuer} · {certificate.date}
+                </small>
+                <h3>{certificate.title}</h3>
+                <p>{certificate.description}</p>
               </div>
-
-              <div className="mt-5 flex items-center gap-1.5">
-                <CheckCircle2 className="h-3.5 w-3.5 text-success shrink-0" />
-                <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                  {c.issuer} · {c.date}
-                </p>
-              </div>
-
-              <h3 className="mt-2 font-display text-lg font-semibold leading-tight flex-1 text-foreground">
-                {c.title}
-              </h3>
-              <p className="mt-3 text-sm text-subtext leading-relaxed">{c.description}</p>
-
-              <div className="mt-5 pt-4 border-t border-black/10">
-                <span className="text-xs font-semibold text-accent group-hover:underline">
-                  View credential →
-                </span>
-              </div>
+              <ArrowUpRight />
             </motion.a>
           ))}
         </motion.div>
+        <Link to="/certificates" className="index-link">
+          View all seven credentials <ArrowUpRight />
+        </Link>
       </div>
     </section>
   );

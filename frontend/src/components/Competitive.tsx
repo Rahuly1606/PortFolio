@@ -1,85 +1,44 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Trophy, TrendingUp } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { COMPETITIVE } from "@/lib/portfolio-data";
-import { useReveal } from "@/lib/motion";
 
 export function Competitive() {
-  const { container, item } = useReveal(0.08);
-
   return (
-    <section className="relative py-24 sm:py-32 overflow-hidden">
-      <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
-      <div className="absolute -top-48 left-1/2 h-[500px] w-[500px] rounded-full bg-accent/12 blur-[80px] -translate-x-1/2 blob-drift pointer-events-none" />
-      <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-success/8 blur-3xl pointer-events-none" />
-
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col sm:flex-row sm:items-end justify-between gap-6"
-        >
+    <section className="coding-editorial">
+      <div className="editorial-shell">
+        <div className="coding-head">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full glass-panel px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
-              <Trophy className="h-3 w-3 text-accent" />
-              Competitive Coding
-            </div>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl font-bold tracking-tight leading-[1.05] text-foreground">
-              Sharpening edge on{" "}
-              <span className="text-gradient-accent">global arenas</span>.
+            <span className="meta-label">07 / Practice</span>
+            <h2>
+              Keeping
+              <br />
+              the edge.
             </h2>
           </div>
-          <div className="flex items-center gap-2 text-muted-foreground text-sm">
-            <TrendingUp className="h-4 w-4" />
-            <span>Actively competing</span>
-          </div>
-        </motion.div>
-
+          <p>Problem solving across global competitive programming platforms.</p>
+        </div>
         <motion.div
-          variants={container}
+          className="coding-grid"
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
-          className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
+          viewport={{ once: true }}
+          variants={{ show: { transition: { staggerChildren: 0.08 } } }}
         >
-          {COMPETITIVE.map((c) => (
+          {COMPETITIVE.map((profile) => (
             <motion.a
-              key={c.platform}
-              href={c.url}
+              key={profile.platform}
+              href={profile.url}
               target="_blank"
               rel="noreferrer"
-              variants={item}
-              className="group relative rounded-2xl glass-panel p-6 hover:border-accent/50 hover:-translate-y-2 transition-all duration-300 overflow-hidden"
+              variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
             >
-              {/* Color glow */}
-              <div
-                className="absolute top-0 right-0 h-28 w-28 rounded-full blur-2xl opacity-20 group-hover:opacity-50 transition-opacity duration-300"
-                style={{ backgroundColor: c.color }}
-              />
-              <div
-                className="absolute bottom-0 left-0 h-16 w-16 rounded-full blur-xl opacity-10 group-hover:opacity-30 transition-opacity duration-300"
-                style={{ backgroundColor: c.color }}
-              />
-
-              <div className="relative flex items-center justify-between mb-6">
-                <span className="font-display text-sm font-bold" style={{ color: c.color }}>
-                  {c.platform}
-                </span>
-                <ExternalLink className="h-4 w-4 text-muted-foreground/50 group-hover:text-accent transition-colors" />
+              <div>
+                <span>{profile.platform}</span>
+                <ArrowUpRight />
               </div>
-
-              <p className="relative stat-number text-5xl text-foreground">{c.stat}</p>
-              <p className="relative mt-2 text-xs text-muted-foreground uppercase tracking-widest">
-                {c.label}
-              </p>
-
-              <div className="relative mt-6 pt-4 border-t border-black/10">
-                <div className="inline-flex items-center gap-1.5 rounded-md bg-black/[0.03] border border-black/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-foreground">
-                  <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: c.color }} />
-                  {c.badge}
-                </div>
-              </div>
+              <strong>{profile.stat}</strong>
+              <p>{profile.label}</p>
+              <small>{profile.badge}</small>
             </motion.a>
           ))}
         </motion.div>
